@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E135252A4779005E05A1 /* AppDelegate.swift */; };
-		0BE3E138252A477A005E05A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E137252A477A005E05A1 /* ViewController.swift */; };
 		0BE3E13B252A477A005E05A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E139252A477A005E05A1 /* Main.storyboard */; };
 		0BE3E13D252A477D005E05A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13C252A477D005E05A1 /* Assets.xcassets */; };
 		0BE3E140252A477D005E05A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13E252A477D005E05A1 /* LaunchScreen.storyboard */; };
+		0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E14E252A6FE9005E05A1 /* CustomViewSignIn.swift */; };
+		0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E150252A819B005E05A1 /* CustomViewSignInLower.swift */; };
+		0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224CD252AF6CC00674D9A /* CustomButtonDesign.swift */; };
+		0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224CF252AFC6600674D9A /* CustomButton.swift */; };
+		0BF224D2252AFED700674D9A /* CustomViewTxtField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */; };
+		0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D3252B1D1300674D9A /* SignInViewController.swift */; };
+		0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0BE3E132252A4779005E05A1 /* Kenakata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kenakata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE3E135252A4779005E05A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0BE3E137252A477A005E05A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BE3E13A252A477A005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BE3E13C252A477D005E05A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BE3E13F252A477D005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BE3E141252A477D005E05A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BE3E14E252A6FE9005E05A1 /* CustomViewSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewSignIn.swift; sourceTree = "<group>"; };
+		0BE3E150252A819B005E05A1 /* CustomViewSignInLower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewSignInLower.swift; sourceTree = "<group>"; };
+		0BF224CD252AF6CC00674D9A /* CustomButtonDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonDesign.swift; sourceTree = "<group>"; };
+		0BF224CF252AFC6600674D9A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewTxtField.swift; sourceTree = "<group>"; };
+		0BF224D3252B1D1300674D9A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextLbl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,60 @@
 		0BE3E134252A4779005E05A1 /* Kenakata */ = {
 			isa = PBXGroup;
 			children = (
-				0BE3E135252A4779005E05A1 /* AppDelegate.swift */,
-				0BE3E137252A477A005E05A1 /* ViewController.swift */,
-				0BE3E139252A477A005E05A1 /* Main.storyboard */,
-				0BE3E13C252A477D005E05A1 /* Assets.xcassets */,
-				0BE3E13E252A477D005E05A1 /* LaunchScreen.storyboard */,
+				0BE3E149252A47E2005E05A1 /* Model */,
+				0BE3E148252A47CB005E05A1 /* View */,
+				0BE3E147252A47A4005E05A1 /* Controller */,
+				0BE3E14B252A4803005E05A1 /* Extensions */,
+				0BE3E14A252A47F2005E05A1 /* Supporting_Files */,
 				0BE3E141252A477D005E05A1 /* Info.plist */,
+				0BE3E13C252A477D005E05A1 /* Assets.xcassets */,
 			);
 			path = Kenakata;
+			sourceTree = "<group>";
+		};
+		0BE3E147252A47A4005E05A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BF224D3252B1D1300674D9A /* SignInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BE3E148252A47CB005E05A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BE3E139252A477A005E05A1 /* Main.storyboard */,
+				0BE3E13E252A477D005E05A1 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BE3E149252A47E2005E05A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BE3E14E252A6FE9005E05A1 /* CustomViewSignIn.swift */,
+				0BE3E150252A819B005E05A1 /* CustomViewSignInLower.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BE3E14A252A47F2005E05A1 /* Supporting_Files */ = {
+			isa = PBXGroup;
+			children = (
+				0BE3E135252A4779005E05A1 /* AppDelegate.swift */,
+			);
+			path = Supporting_Files;
+			sourceTree = "<group>";
+		};
+		0BE3E14B252A4803005E05A1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0BF224CD252AF6CC00674D9A /* CustomButtonDesign.swift */,
+				0BF224CF252AFC6600674D9A /* CustomButton.swift */,
+				0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */,
+				0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +193,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE3E138252A477A005E05A1 /* ViewController.swift in Sources */,
+				0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */,
+				0BF224D2252AFED700674D9A /* CustomViewTxtField.swift in Sources */,
+				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
+				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
+				0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */,
+				0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */,
 				0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */,
+				0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
