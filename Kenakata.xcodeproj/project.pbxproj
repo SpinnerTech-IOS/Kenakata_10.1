@@ -18,6 +18,7 @@
 		0BF224D2252AFED700674D9A /* CustomViewTxtField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */; };
 		0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D3252B1D1300674D9A /* SignInViewController.swift */; };
 		0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */; };
+		0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D7252B6B4300674D9A /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewTxtField.swift; sourceTree = "<group>"; };
 		0BF224D3252B1D1300674D9A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextLbl.swift; sourceTree = "<group>"; };
+		0BF224D7252B6B4300674D9A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				0BF224D3252B1D1300674D9A /* SignInViewController.swift */,
+				0BF224D7252B6B4300674D9A /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
 				0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */,
 				0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */,
+				0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */,
 				0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */,
 				0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */,
 			);
