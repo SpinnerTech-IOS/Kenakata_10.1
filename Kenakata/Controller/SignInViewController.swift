@@ -17,7 +17,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "example@gmail.com")
         passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "1234")
-        passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"))
+        passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"), isSecure: true)
         // Do any additional setup after loading the view.
     }
     

@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController {
         nameTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "Your Name")
         emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "envelope"), placeholder: "Your Email")
         passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "Password")
-        passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"))
+        passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"), isSecure: true)
         // Do any additional setup after loading the view.
     }
     

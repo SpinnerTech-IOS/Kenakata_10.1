@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */; };
 		0B1E1BBC252C825800876C13 /* CustomViewOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */; };
+		0B1E1BBE252CB75000876C13 /* CustomHomeOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBD252CB75000876C13 /* CustomHomeOfferView.swift */; };
+		0B1E1BC0252CBA9800876C13 /* DataModelHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */; };
+		0B1E1BC2252CE50500876C13 /* CustomHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */; };
+		0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */; };
 		0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E135252A4779005E05A1 /* AppDelegate.swift */; };
 		0BE3E13B252A477A005E05A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E139252A477A005E05A1 /* Main.storyboard */; };
 		0BE3E13D252A477D005E05A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13C252A477D005E05A1 /* Assets.xcassets */; };
@@ -29,6 +33,10 @@
 /* Begin PBXFileReference section */
 		0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewOtp.swift; sourceTree = "<group>"; };
+		0B1E1BBD252CB75000876C13 /* CustomHomeOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeOfferView.swift; sourceTree = "<group>"; };
+		0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelHome.swift; sourceTree = "<group>"; };
+		0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeTableViewCell.swift; sourceTree = "<group>"; };
+		0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		0BE3E132252A4779005E05A1 /* Kenakata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kenakata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE3E135252A4779005E05A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE3E13A252A477A005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,6 +122,9 @@
 			children = (
 				0BE3E14E252A6FE9005E05A1 /* CustomViewSignIn.swift */,
 				0BE3E150252A819B005E05A1 /* CustomViewSignInLower.swift */,
+				0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */,
+				0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */,
+				0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +147,7 @@
 				0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */,
 				0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */,
 				0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */,
+				0B1E1BBD252CB75000876C13 /* CustomHomeOfferView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +225,7 @@
 			files = (
 				0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */,
 				0BF224D2252AFED700674D9A /* CustomViewTxtField.swift in Sources */,
+				0B1E1BC0252CBA9800876C13 /* DataModelHome.swift in Sources */,
 				0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */,
 				0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */,
 				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
@@ -220,9 +233,12 @@
 				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
 				0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */,
 				0BFE6A26252BFBE600A6BC3B /* HomeViewController.swift in Sources */,
+				0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */,
 				0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */,
 				0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */,
 				0B1E1BBC252C825800876C13 /* CustomViewOtp.swift in Sources */,
+				0B1E1BBE252CB75000876C13 /* CustomHomeOfferView.swift in Sources */,
+				0B1E1BC2252CE50500876C13 /* CustomHomeTableViewCell.swift in Sources */,
 				0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */,
 				0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */,
 			);

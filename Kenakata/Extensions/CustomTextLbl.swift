@@ -9,11 +9,24 @@
 import UIKit
 
 extension UITextField{
-    func addRightImageView(image: UIImage){
+    func addRightImageView(image: UIImage, isSecure: Bool){
         let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
         imageView.image = image
-        rightView = imageView
+        if isSecure{
+            let btn = UIButton(frame: imageView.frame)
+            btn.setImage(#imageLiteral(resourceName: "lock"), for: .normal)
+            btn.setImage(#imageLiteral(resourceName: "eye-view"), for: .selected)
+            btn.isSelected = true
+            btn.addTarget(self, action: #selector(onClickEye), for: .touchUpInside)
+            rightView = btn
+        }else{
+            rightView = imageView
+        }
         rightViewMode = .always
+    }
+    @objc func onClickEye(sender: UIButton){
+        self.isSecureTextEntry = !self.isSecureTextEntry
+        sender.isSelected = !sender.isSelected
     }
     func addLeftImageView(icon: UIImage, placeholder: String) {
         let imageView = UIImageView()

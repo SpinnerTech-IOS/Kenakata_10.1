@@ -20,6 +20,7 @@ class CustomViewOtp: UIView {
             setDesignfrotpview()
         }
         func setDesignfrotpview(){
+            layer.borderWidth = 1
             layer.borderColor = #colorLiteral(red: 0.09960857766, green: 1, blue: 0.9294861437, alpha: 1)
             layer.cornerRadius = 12
             clipsToBounds = true
