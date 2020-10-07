@@ -13,6 +13,10 @@
 		0B1E1BC0252CBA9800876C13 /* DataModelHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */; };
 		0B1E1BC2252CE50500876C13 /* CustomHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */; };
 		0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */; };
+		0B971025252DB632003ABB22 /* CatagoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971024252DB632003ABB22 /* CatagoriesCollectionViewCell.swift */; };
+		0B971027252DB66A003ABB22 /* CatagoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */; };
+		0B971029252DDD6A003ABB22 /* WomensCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */; };
+		0B97102B252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97102A252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift */; };
 		0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E135252A4779005E05A1 /* AppDelegate.swift */; };
 		0BE3E13B252A477A005E05A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E139252A477A005E05A1 /* Main.storyboard */; };
 		0BE3E13D252A477D005E05A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13C252A477D005E05A1 /* Assets.xcassets */; };
@@ -37,6 +41,10 @@
 		0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelHome.swift; sourceTree = "<group>"; };
 		0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeTableViewCell.swift; sourceTree = "<group>"; };
 		0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B971024252DB632003ABB22 /* CatagoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesViewController.swift; sourceTree = "<group>"; };
+		0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensCollectionViewController.swift; sourceTree = "<group>"; };
+		0B97102A252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensCoolectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BE3E132252A4779005E05A1 /* Kenakata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kenakata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE3E135252A4779005E05A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE3E13A252A477A005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +112,8 @@
 				0BF224D7252B6B4300674D9A /* SignUpViewController.swift */,
 				0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */,
 				0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */,
+				0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */,
+				0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -125,6 +135,8 @@
 				0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */,
 				0B1E1BC1252CE50500876C13 /* CustomHomeTableViewCell.swift */,
 				0B1E1BC3252CED6D00876C13 /* CustomHomeCollectionViewCell.swift */,
+				0B971024252DB632003ABB22 /* CatagoriesCollectionViewCell.swift */,
+				0B97102A252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,7 +238,9 @@
 				0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */,
 				0BF224D2252AFED700674D9A /* CustomViewTxtField.swift in Sources */,
 				0B1E1BC0252CBA9800876C13 /* DataModelHome.swift in Sources */,
+				0B97102B252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift in Sources */,
 				0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */,
+				0B971025252DB632003ABB22 /* CatagoriesCollectionViewCell.swift in Sources */,
 				0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */,
 				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
 				0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */,
@@ -238,8 +252,10 @@
 				0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */,
 				0B1E1BBC252C825800876C13 /* CustomViewOtp.swift in Sources */,
 				0B1E1BBE252CB75000876C13 /* CustomHomeOfferView.swift in Sources */,
+				0B971029252DDD6A003ABB22 /* WomensCollectionViewController.swift in Sources */,
 				0B1E1BC2252CE50500876C13 /* CustomHomeTableViewCell.swift in Sources */,
 				0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */,
+				0B971027252DB66A003ABB22 /* CatagoriesViewController.swift in Sources */,
 				0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
