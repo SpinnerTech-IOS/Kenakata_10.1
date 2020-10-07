@@ -29,6 +29,7 @@
 		0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D3252B1D1300674D9A /* SignInViewController.swift */; };
 		0BF224D6252B1E0200674D9A /* CustomTextLbl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */; };
 		0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF224D7252B6B4300674D9A /* SignUpViewController.swift */; };
+		0BF22768252E369000C7F587 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF22767252E369000C7F587 /* RoundImageView.swift */; };
 		0BFE6A26252BFBE600A6BC3B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */; };
 		0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */; };
 		0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */; };
@@ -59,6 +60,7 @@
 		0BF224D3252B1D1300674D9A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextLbl.swift; sourceTree = "<group>"; };
 		0BF224D7252B6B4300674D9A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0BF22767252E369000C7F587 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */,
 				0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */,
 				0B1E1BBD252CB75000876C13 /* CustomHomeOfferView.swift */,
+				0BF22767252E369000C7F587 /* RoundImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
 				0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */,
 				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
+				0BF22768252E369000C7F587 /* RoundImageView.swift in Sources */,
 				0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */,
 				0BFE6A26252BFBE600A6BC3B /* HomeViewController.swift in Sources */,
 				0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */,
