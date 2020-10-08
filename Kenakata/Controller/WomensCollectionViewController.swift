@@ -10,6 +10,7 @@ import UIKit
 
 class WomensCollectionViewController: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,17 +20,19 @@ class WomensCollectionViewController: UIViewController {
 
 }
 
-//extension WomensCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//    }
-//    
-//    
-//}
+extension WomensCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! WomensCollectionCollectionViewCell
+       // cell.wcollectionImaheView.image = UIImage(named: "icon-shoe")
+        return cell
+    }
+    
+    
+}
 //extension WomensCollectionViewController: UITableViewDelegate, UITableViewDataSource{
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        

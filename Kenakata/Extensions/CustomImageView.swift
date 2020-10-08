@@ -1,5 +1,5 @@
 //
-//  RoundView.swift
+//  CustomImageView.swift
 //  Kenakata
 //
 //  Created by Md Sifat on 8/10/20.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RoundView: UIView {
-
+class CustomImageView: UIImageView{
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeRounded()
@@ -20,11 +20,8 @@ class RoundView: UIView {
         makeRounded()
     }
     func makeRounded() {
-        
-       // layer.borderWidth = 1
-        layer.masksToBounds = false
-    //    layer.borderColor = UIColor.black.cgColor
-        layer.cornerRadius = frame.size.height/2
+
+        layer.cornerRadius = 15
         clipsToBounds = true
     }
 }
