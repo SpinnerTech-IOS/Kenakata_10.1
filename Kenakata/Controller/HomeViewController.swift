@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchTextFieldHome: UITextField!
 
     @IBOutlet weak var tableView: UITableView!
+
     let header = ["Features..", "New Arivals.."]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,15 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         searchTextFieldHome.addLeftImageView(icon: #imageLiteral(resourceName: "search"), placeholder: "e.g. Kids Shoe")
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 
+    @IBAction func onClickMenu(_ sender: Any) {
+
+    }
+    
 }
-
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
