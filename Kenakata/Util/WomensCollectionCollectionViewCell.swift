@@ -9,6 +9,6 @@
 import UIKit
 
 class WomensCollectionCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var wcollectionImaheView: CustomImageView!
+
     
 }

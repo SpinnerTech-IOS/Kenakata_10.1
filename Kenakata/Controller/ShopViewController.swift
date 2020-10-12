@@ -9,10 +9,10 @@
 import UIKit
 
 class ShopViewController: UIViewController {
-
-
+    
+    
     @IBOutlet weak var collectionView: UICollectionView!
- 
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
@@ -24,6 +24,8 @@ class ShopViewController: UIViewController {
     var filteredData: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
         searchBar.delegate = self
         filteredData = data
         
@@ -34,13 +36,10 @@ class ShopViewController: UIViewController {
             let size = CGSize(width:(collectionView!.bounds.width-30)/2, height: 250)
             layout.itemSize = size
         }
-      
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    } 
-
+    
 }
 
 extension ShopViewController: UICollectionViewDelegate,UICollectionViewDataSource, UISearchBarDelegate {
@@ -57,14 +56,20 @@ extension ShopViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     }
     // This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-     
-        filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
         
+        filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
+            
             return dataString.range(of: searchText, options: .caseInsensitive) != nil
         })
         
         collectionView.reloadData()
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController")
+        detailViewController.modalPresentationStyle = .fullScreen
+        
+        self.present(detailViewController, animated: true, completion: nil)
+    }
 }
 

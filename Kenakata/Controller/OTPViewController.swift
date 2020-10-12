@@ -11,7 +11,8 @@ import UIKit
 class OTPViewController: UIViewController {
 
     override func viewDidLoad() {
-      
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
     }
 
 }

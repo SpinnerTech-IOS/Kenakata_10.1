@@ -9,6 +9,7 @@
 import UIKit
 
 class SignInViewController: UIViewController {
+    var isLogin = false
     let userName =
     "sifat@gmail.com"
     let password = 1234
@@ -24,6 +25,9 @@ class SignInViewController: UIViewController {
     
     @IBAction func onClickSignIn(_ sender: Any) {
         if (String(emailTxtLbl.text!) == userName && Int(passwordTxtLbl.text!) == password){
+        
+            UserDefaults.standard.set(true, forKey: "USERISLOGIN")
+            UserDefaults.standard.synchronize()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "CustomTabBarController")
             (UIApplication.shared.delegate as? AppDelegate)?.changeRootViewController(mainTabBarController)

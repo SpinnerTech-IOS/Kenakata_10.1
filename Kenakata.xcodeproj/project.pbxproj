@@ -33,6 +33,9 @@
 		0B887B422532D763003AEE6E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B887B412532D763003AEE6E /* MenuViewController.swift */; };
 		0B887B4625332348003AEE6E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B887B4525332348003AEE6E /* SearchViewController.swift */; };
 		0B887B4825332391003AEE6E /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B887B4725332391003AEE6E /* ShopViewController.swift */; };
+		0B96C67B253441390067C9E6 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96C67A253441390067C9E6 /* NavigationBarExtension.swift */; };
+		0B96C67D25344F190067C9E6 /* NavBarItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96C67C25344F190067C9E6 /* NavBarItemExtension.swift */; };
+		0B96C67F2534C89B0067C9E6 /* ShopingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96C67E2534C89B0067C9E6 /* ShopingCartTableViewCell.swift */; };
 		0B971025252DB632003ABB22 /* CatagoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971024252DB632003ABB22 /* CatagoriesCollectionViewCell.swift */; };
 		0B971027252DB66A003ABB22 /* CatagoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */; };
 		0B971029252DDD6A003ABB22 /* WomensCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */; };
@@ -85,6 +88,9 @@
 		0B887B412532D763003AEE6E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0B887B4525332348003AEE6E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0B887B4725332391003AEE6E /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		0B96C67A253441390067C9E6 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
+		0B96C67C25344F190067C9E6 /* NavBarItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarItemExtension.swift; sourceTree = "<group>"; };
+		0B96C67E2534C89B0067C9E6 /* ShopingCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingCartTableViewCell.swift; sourceTree = "<group>"; };
 		0B971024252DB632003ABB22 /* CatagoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesViewController.swift; sourceTree = "<group>"; };
 		0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensCollectionViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				0B7BEBD5252EF5AF00732CE4 /* WishlistTableViewCell.swift */,
 				0BF4752125333C720036F919 /* ShopCollectionViewCell.swift */,
 				0BF4752325335F5F0036F919 /* SearchCollectionViewCell.swift */,
+				0B96C67E2534C89B0067C9E6 /* ShopingCartTableViewCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -240,6 +247,8 @@
 				0BF22769252E609800C7F587 /* RoundView.swift */,
 				0B7BEBCD252EDFF800732CE4 /* CustomImageView.swift */,
 				0B621FED25303E6800854269 /* CustomDetailView.swift */,
+				0B96C67A253441390067C9E6 /* NavigationBarExtension.swift */,
+				0B96C67C25344F190067C9E6 /* NavBarItemExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 				0B621FEE25303E6800854269 /* CustomDetailView.swift in Sources */,
 				0B97102B252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift in Sources */,
 				0B44BA952531C330001ACF4F /* Product.swift in Sources */,
+				0B96C67B253441390067C9E6 /* NavigationBarExtension.swift in Sources */,
 				0B184939252F86A70018AEDF /* FiltersViewController.swift in Sources */,
 				0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */,
 				0B8007D125318EA90097E019 /* HeaderView.swift in Sources */,
@@ -340,9 +350,11 @@
 				0B7BEBD6252EF5AF00732CE4 /* WishlistTableViewCell.swift in Sources */,
 				0BF2276A252E609800C7F587 /* RoundView.swift in Sources */,
 				0B27C6822533266300DA62C4 /* MyCartViewController.swift in Sources */,
+				0B96C67D25344F190067C9E6 /* NavBarItemExtension.swift in Sources */,
 				0B27C6882533281000DA62C4 /* SettingsViewController.swift in Sources */,
 				0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */,
 				0B27C6842533269900DA62C4 /* ShoppingCartViewController.swift in Sources */,
+				0B96C67F2534C89B0067C9E6 /* ShopingCartTableViewCell.swift in Sources */,
 				0BF4752225333C720036F919 /* ShopCollectionViewCell.swift in Sources */,
 				0B7BEBD4252EF56900732CE4 /* WishlistViewController.swift in Sources */,
 				0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */,

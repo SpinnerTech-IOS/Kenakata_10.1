@@ -12,20 +12,22 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         // Do any additional setup after loading the view.
     }
 
     @IBAction func onClickHome(_ sender: Any) {
         let viewController = storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-        viewController?.modalPresentationStyle = .fullScreen
-        
         self.present(viewController! , animated: true, completion: nil)
     }
     
     
     @IBAction func onClickCatagories(_ sender: Any) {
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "CatagoriesViewController")
+        viewController?.modalPresentationStyle = .currentContext
+        
+        self.present(viewController! , animated: true, completion: nil)
     }
     @IBAction func onClickNewArivals(_ sender: Any) {
     }

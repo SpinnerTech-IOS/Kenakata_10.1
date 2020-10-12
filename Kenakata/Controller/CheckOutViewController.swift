@@ -12,7 +12,10 @@ class CheckOutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
         // Do any additional setup after loading the view.
     }
     

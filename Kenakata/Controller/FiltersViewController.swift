@@ -18,6 +18,8 @@ class FiltersViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
     data = [Product(catagory: "Men", price: 500, color: "Red", productState: "Popular", size: "XL", brand: "Apex"), Product(catagory: "Women", price: 1000, color: "Pink", productState: "Most Popular", size: "M", brand: "Nike"),Product(catagory: "Men", price: 1000, color: "Red", productState: "Popular", size: "L", brand: "Bata"), ]        // Do any additional setup after loading the view.
     }
  

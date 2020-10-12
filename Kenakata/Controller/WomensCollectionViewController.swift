@@ -10,11 +10,15 @@ import UIKit
 
 class WomensCollectionViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        navigationController?.addCustomBorderLine()
+        addCustomItem()        // Do any additional setup after loading the view.
     }
 
 
@@ -22,12 +26,11 @@ class WomensCollectionViewController: UIViewController {
 
 extension WomensCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! WomensCollectionCollectionViewCell
-       // cell.wcollectionImaheView.image = UIImage(named: "icon-shoe")
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath)
         return cell
     }
     

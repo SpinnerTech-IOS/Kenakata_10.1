@@ -12,13 +12,18 @@ class AccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
         // Do any additional setup after loading the view.
     }
     
 
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    @IBAction func onClickLogout(_ sender: Any) {
+        
+        UserDefaults.standard.set(false, forKey: "USERISLOGIN")
+        UserDefaults.standard.synchronize()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
+        (UIApplication.shared.delegate as? AppDelegate)?.changeRootViewController(mainViewController)
     }
-
 }

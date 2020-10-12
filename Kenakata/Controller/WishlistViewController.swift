@@ -9,20 +9,17 @@
 import UIKit
 
 class WishlistViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-
-
+    
 }
 
 extension WishlistViewController: UITableViewDataSource, UITableViewDelegate{

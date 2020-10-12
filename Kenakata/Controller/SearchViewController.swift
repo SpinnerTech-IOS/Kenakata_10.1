@@ -11,10 +11,10 @@ import UIKit
 class SearchViewController: UIViewController {
 
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     
-    @IBOutlet weak var searchBar: UISearchBar!
-
+    
+    @IBOutlet var searchBar: UISearchBar!
     let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
                 "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA", "San Antonio, TX",
                 "Dallas, TX", "Detroit, MI", "San Jose, CA", "Indianapolis, IN",
@@ -24,6 +24,8 @@ class SearchViewController: UIViewController {
     var filteredData: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -39,9 +41,6 @@ class SearchViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
     
 }
 
@@ -52,7 +51,7 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SearchCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! SearchCollectionViewCell
         //cell.imageView.image = UIImage(named: "icon-bag")
         cell.dataNameLbl.text = filteredData[indexPath.row]
         return cell
