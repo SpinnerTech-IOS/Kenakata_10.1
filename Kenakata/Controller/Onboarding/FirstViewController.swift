@@ -1,14 +1,14 @@
 //
-//  PageViewControllerOnboarding.swift
+//  FirstViewController.swift
 //  Kenakata
 //
-//  Created by Md Sifat on 8/10/20.
+//  Created by Md Sifat on 14/10/20.
 //  Copyright © 2020 Md Sifat. All rights reserved.
 //
 
 import UIKit
 
-class PageViewControllerOnboarding: UIPageViewController {
+class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

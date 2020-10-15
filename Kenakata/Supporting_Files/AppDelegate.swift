@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
+        let launchScreenStoryboard = UIStoryboard(name: "LaunchScreen", bundle: nil)
+        let mainTabBarController = launchScreenStoryboard.instantiateViewController(withIdentifier: "LaunchScreen")
+        window?.rootViewController = mainTabBarController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // if user is logged in before

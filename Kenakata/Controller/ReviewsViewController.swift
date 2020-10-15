@@ -15,9 +15,19 @@ class ReviewsViewController: UIViewController {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = self
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "Reviews"
+        navigationController!.navigationBar.barStyle = UIBarStyle.black
+        navigationController!.navigationBar.tintColor = UIColor.white
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func onClickAddReview(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "AddAReviewViewController")
+        self.navigationController?.pushViewController(cartVC, animated: false)
+    }
 }
 
 extension ReviewsViewController: UITableViewDelegate, UITableViewDataSource{

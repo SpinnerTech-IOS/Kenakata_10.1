@@ -14,10 +14,16 @@ class MyCartViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
         addCustomItem()
-        // Do any additional setup after loading the view.
+        navigationController!.navigationBar.topItem?.title = "My Cart"
+        navigationController!.navigationBar.barStyle = UIBarStyle.black
+        navigationController!.navigationBar.tintColor = UIColor.white        // Do any additional setup after loading the view.
     }
     
     @IBAction func onClickShopNow(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "ShopViewController")
+        self.navigationController?.pushViewController(cartVC, animated: false)
     }
     
 }

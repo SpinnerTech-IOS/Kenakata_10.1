@@ -24,6 +24,7 @@ class ShopViewController: UIViewController {
     var filteredData: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
         navigationController?.addCustomBorderLine()
         addCustomItem()
         searchBar.delegate = self
@@ -65,11 +66,10 @@ extension ShopViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         collectionView.reloadData()
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailViewController = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController")
-        detailViewController.modalPresentationStyle = .fullScreen
-        
-        self.present(detailViewController, animated: true, completion: nil)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController")
+        self.navigationController?.pushViewController(cartVC, animated: false)
     }
 }
 

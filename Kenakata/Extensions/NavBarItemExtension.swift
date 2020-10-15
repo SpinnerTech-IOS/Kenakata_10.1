@@ -18,7 +18,7 @@ extension UIViewController{
         label.layer.cornerRadius = label.bounds.size.height / 2
         label.textAlignment = .center
         label.layer.masksToBounds = true
-        label.font = UIFont(name: "SanFranciscoText-Light", size: 12)
+        label.font = UIFont(name: "SanFranciscoText-Light", size: 10)
         label.textColor = .white
         label.backgroundColor = #colorLiteral(red: 0.07323727757, green: 0.851349175, blue: 0.8049345016, alpha: 1)
         label.text = "8"
@@ -29,26 +29,33 @@ extension UIViewController{
         rightButton.addTarget(self, action: #selector(rightButtonTouched), for: .touchUpInside)
         rightButton.addSubview(label)
         
-//        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//        leftButton.setBackgroundImage(UIImage(named: "menu-icon"), for: .normal)
-//        leftButton.addTarget(self, action: #selector(leftButtonTouched), for: .touchUpInside)
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        leftButton.setBackgroundImage(UIImage(named: "menu-icon"), for: .normal)
+        leftButton.addTarget(self, action: #selector(leftButtonTouched), for: .touchUpInside)
         
         // Bar button item
-       // let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         let rightBarButtomItem = UIBarButtonItem(customView: rightButton)
-       // navigationItem.leftBarButtonItem = leftBarButtonItem
+        navigationItem.leftBarButtonItem = leftBarButtonItem
         navigationItem.rightBarButtonItem = rightBarButtomItem
     }
     @objc func rightButtonTouched() {
-        print("right button touched")
-     //ret   let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard?.instantiateViewController(withIdentifier: "MyCartViewController")
-        self.present(mainViewController! , animated: false, completion: nil)
-    }
-    @objc func leftButtonTouched() {
-        print("left button touched")
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "CustomTabBarController")
-        self.present(mainViewController, animated: false, completion: nil)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
+        self.navigationController?.pushViewController(cartVC, animated: false)
+       
+ }
+    @objc func leftButtonTouched() {
+        print("right button touched")
+        let popvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        
+        self.addChild(popvc)
+        
+        popvc.view.frame = self.view.frame
+        
+        self.view.addSubview(popvc.view)
+        
+        popvc.didMove(toParent: self)
     }
 }

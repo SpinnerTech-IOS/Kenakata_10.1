@@ -10,9 +10,9 @@ import UIKit
 
 class SignInViewController: UIViewController {
     var isLogin = false
-    let userName =
-    "sifat@gmail.com"
-    let password = 1234
+    var userName = "sifat@gmail.com"
+    var password = "1234"
+    var customerData = [CustomerData]()
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
     override func viewDidLoad() {
@@ -22,10 +22,14 @@ class SignInViewController: UIViewController {
         passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"), isSecure: true)
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+    
+    }
     
     @IBAction func onClickSignIn(_ sender: Any) {
-        if (String(emailTxtLbl.text!) == userName && Int(passwordTxtLbl.text!) == password){
-        
+        if (String(emailTxtLbl.text!) == userName && String(passwordTxtLbl.text!) == password){
+            
+            print("Login")
             UserDefaults.standard.set(true, forKey: "USERISLOGIN")
             UserDefaults.standard.synchronize()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
