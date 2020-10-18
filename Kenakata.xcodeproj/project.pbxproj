@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		0B971027252DB66A003ABB22 /* CatagoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */; };
 		0B971029252DDD6A003ABB22 /* WomensCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */; };
 		0B97102B252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97102A252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift */; };
+		0BA454592539E9DB00192BBB /* UserDefaultsExtensionj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */; };
 		0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E135252A4779005E05A1 /* AppDelegate.swift */; };
 		0BE3E13B252A477A005E05A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E139252A477A005E05A1 /* Main.storyboard */; };
 		0BE3E140252A477D005E05A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13E252A477D005E05A1 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 		0BFE6A26252BFBE600A6BC3B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */; };
 		0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */; };
 		0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */; };
+		6FB3F31CB7CE2AD1A482D0A9 /* Pods_Kenakata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B952B9DD97D422314E0C42 /* Pods_Kenakata.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,7 @@
 		0B971026252DB66A003ABB22 /* CatagoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesViewController.swift; sourceTree = "<group>"; };
 		0B971028252DDD6A003ABB22 /* WomensCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensCollectionViewController.swift; sourceTree = "<group>"; };
 		0B97102A252DDF53003ABB22 /* WomensCoolectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensCoolectionTableViewCell.swift; sourceTree = "<group>"; };
+		0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensionj.swift; sourceTree = "<group>"; };
 		0BE3E132252A4779005E05A1 /* Kenakata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kenakata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE3E135252A4779005E05A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE3E13A252A477A005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +119,9 @@
 		0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		38AA1049F96201612EEFCEE3 /* Pods-Kenakata.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kenakata.debug.xcconfig"; path = "Target Support Files/Pods-Kenakata/Pods-Kenakata.debug.xcconfig"; sourceTree = "<group>"; };
+		7235D48E2CFEABF1E5340711 /* Pods-Kenakata.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kenakata.release.xcconfig"; path = "Target Support Files/Pods-Kenakata/Pods-Kenakata.release.xcconfig"; sourceTree = "<group>"; };
+		E0B952B9DD97D422314E0C42 /* Pods_Kenakata.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kenakata.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB3F31CB7CE2AD1A482D0A9 /* Pods_Kenakata.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,11 +163,20 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		0BA454572539E9A200192BBB /* ButtonExtension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ButtonExtension;
+			sourceTree = "<group>";
+		};
 		0BE3E129252A4779005E05A1 = {
 			isa = PBXGroup;
 			children = (
 				0BE3E134252A4779005E05A1 /* Kenakata */,
 				0BE3E133252A4779005E05A1 /* Products */,
+				D7E93027A045A885A628356C /* Pods */,
+				F35B727149209E7595E7D72A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,6 +256,7 @@
 		0BE3E14B252A4803005E05A1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0BA454572539E9A200192BBB /* ButtonExtension */,
 				0BF224CD252AF6CC00674D9A /* CustomButtonDesign.swift */,
 				0B8007D025318EA90097E019 /* HeaderView.swift */,
 				0BE3E14E252A6FE9005E05A1 /* CustomViewSignIn.swift */,
@@ -257,8 +274,26 @@
 				0B621FED25303E6800854269 /* CustomDetailView.swift */,
 				0B96C67A253441390067C9E6 /* NavigationBarExtension.swift */,
 				0B96C67C25344F190067C9E6 /* NavBarItemExtension.swift */,
+				0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D7E93027A045A885A628356C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38AA1049F96201612EEFCEE3 /* Pods-Kenakata.debug.xcconfig */,
+				7235D48E2CFEABF1E5340711 /* Pods-Kenakata.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F35B727149209E7595E7D72A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0B952B9DD97D422314E0C42 /* Pods_Kenakata.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,9 +303,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BE3E144252A477D005E05A1 /* Build configuration list for PBXNativeTarget "Kenakata" */;
 			buildPhases = (
+				B320A3ADE2001650C3627994 /* [CP] Check Pods Manifest.lock */,
 				0BE3E12E252A4779005E05A1 /* Sources */,
 				0BE3E12F252A4779005E05A1 /* Frameworks */,
 				0BE3E130252A4779005E05A1 /* Resources */,
+				C296169EFB6F4E91FA60FA60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +364,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B320A3ADE2001650C3627994 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kenakata-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C296169EFB6F4E91FA60FA60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kenakata/Pods-Kenakata-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kenakata/Pods-Kenakata-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kenakata/Pods-Kenakata-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0BE3E12E252A4779005E05A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -363,6 +442,7 @@
 				0B27C6842533269900DA62C4 /* ShoppingCartViewController.swift in Sources */,
 				0B96C67F2534C89B0067C9E6 /* ShopingCartTableViewCell.swift in Sources */,
 				0BF4752225333C720036F919 /* ShopCollectionViewCell.swift in Sources */,
+				0BA454592539E9DB00192BBB /* UserDefaultsExtensionj.swift in Sources */,
 				0B7C480B25372985000365C7 /* ForgotPassViewController.swift in Sources */,
 				0BE3E14F252A6FE9005E05A1 /* CustomViewSignIn.swift in Sources */,
 				0BF224D8252B6B4300674D9A /* SignUpViewController.swift in Sources */,
@@ -524,6 +604,7 @@
 		};
 		0BE3E145252A477D005E05A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38AA1049F96201612EEFCEE3 /* Pods-Kenakata.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -541,6 +622,7 @@
 		};
 		0BE3E146252A477D005E05A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7235D48E2CFEABF1E5340711 /* Pods-Kenakata.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

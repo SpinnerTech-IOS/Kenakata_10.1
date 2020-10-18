@@ -8,11 +8,17 @@
 
 import UIKit
 
+struct CatagoryData: Decodable{
+    let name: String
+    let image: String
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var searchBarHome: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
+    var catagoryData = [CatagoryData]()
     
     let header = ["Features..", "New Arivals.."]
     override func viewDidLoad() {
@@ -23,6 +29,21 @@ class HomeViewController: UIViewController {
         
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        let url = URL(string: "https://afiqsouq.com//wp-json/wc/v1/products/categories")
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error == nil{
+                do{
+                    self.catagoryData = try JSONDecoder().decode([CatagoryData].self, from: data!)
+                }catch{
+                    print("Error")
+                }
+                DispatchQueue.main.async {
+                    print(self.catagoryData.count)
+                }
+            }
+        }.resume()
+        
+
         
     }
 }

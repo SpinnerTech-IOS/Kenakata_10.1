@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SVProgressHUD
 
 class CatagoriesViewController: UIViewController{
+    
+    let catagoriesUrl = "https:afiqsouq.com/wp-json/wc/store/products/categories"
+    //"https:/afiqsouq.com/wp-json/wc/v1/products"
     
     @IBOutlet weak var collectionView: UICollectionView!
     let catagoryName = ["Men", "Women", "Kids", "Cosmetics", "Accessories", "Miscellaneous", "Watch"]
@@ -26,9 +32,31 @@ class CatagoriesViewController: UIViewController{
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
             let size = CGSize(width:(collectionView!.bounds.width-30)/2, height: 200)
             layout.itemSize = size
+            
+            }// Do any additional setup after loading the view.
+        
+        Alamofire.request(catagoriesUrl, method: .get).responseJSON { (myresponse) in
+            switch myresponse.result{
+            case .success:
+                if let value = myresponse.result.value as? [[String: Any]] {
+            
+                        //If you want array of task id you can try like
+                    let taskArray = value.compactMap { $0["name"] as? String }
+                        print(taskArray)
+//                    for (key, value) in data {
+//                        print("id:\(key), value:\(value)")
+//                    }
+                   
+                }
+                
+            case let .failure(error):
+                print(error)
+                print("Wrong")
+            }
         }
-        // Do any additional setup after loading the view.
-    }
+         
+            
+            }
 }
 extension CatagoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

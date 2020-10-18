@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SVProgressHUD
 
 class SignInViewController: UIViewController {
-    var isLogin = false
-    var userName = "sifat@gmail.com"
-    var password = "1234"
-    var customerData = [CustomerData]()
+    let loginURL = "https://afiqsouq.com/api/oauth/token/"
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
     override func viewDidLoad() {
@@ -23,22 +23,40 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-    
+        
     }
     
-    @IBAction func onClickSignIn(_ sender: Any) {
-        if (String(emailTxtLbl.text!) == userName && String(passwordTxtLbl.text!) == password){
+    
+    @IBAction func onClickLogin(_ sender: UIButton) {
+        
+        if emailTxtLbl.text != "" && passwordTxtLbl.text != "" {
+            SVProgressHUD.show(withStatus: "Loading...")
+            //            let headers: HTTPHeaders =
+            let params = ["email": emailTxtLbl!.text!, "password": passwordTxtLbl!.text!]
+            Alamofire.request(loginURL, method: .post, parameters: params as Parameters).responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let value = response.result.value{
+                        let data = JSON(value)
+                        let token = data["success"]["token"]
+                        print("successfull: \(token)")
+                        UserDefaults.standard.setLoggedIn(tokenText: token)
+                        self.changeRootView()
+                    }
+                    self.emailTxtLbl.text = nil
+                    self.passwordTxtLbl.text = nil
+                case let .failure(error):
+                    print(error)
+                    print("Wrong")
+                }
+                SVProgressHUD.dismiss()
+            }
             
-            print("Login")
-            UserDefaults.standard.set(true, forKey: "USERISLOGIN")
-            UserDefaults.standard.synchronize()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "CustomTabBarController")
-            (UIApplication.shared.delegate as? AppDelegate)?.changeRootViewController(mainTabBarController)
-            }else{
-            let alert = UIAlertController(title: "Error", message: "Wrong User Name or Password", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)        }
+        }
     }
-    
+    func changeRootView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBar")
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
 }

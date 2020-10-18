@@ -101,7 +101,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="onClickSignIn:" destination="hNd-OR-mfQ" eventType="touchUpInside" id="7f1-my-dY8"/>
+                                                            <action selector="onClickLogin:" destination="hNd-OR-mfQ" eventType="touchUpInside" id="Xkh-he-dPR"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="wL8-8i-MDO">
@@ -539,7 +539,6 @@
         <!--Discover-->
         <scene sceneID="dCc-0X-pgo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w4u-NL-z9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="HomeViewController" id="ga3-fL-Oy5" customClass="HomeViewController" customModule="Kenakata" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xzU-H2-GHE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -630,7 +629,7 @@
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mcw-de-cGV">
                                                                     <rect key="frame" x="7.3333333333333428" y="37" width="327.66666666666663" height="183"/>
                                                                     <color key="backgroundColor" name="landingPage_BackgroundColor"/>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="agt-Yy-lgi">
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="agt-Yy-lgi">
                                                                         <size key="itemSize" width="180" height="172"/>
                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -638,7 +637,7 @@
                                                                     </collectionViewFlowLayout>
                                                                     <cells>
                                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ccell" id="5x2-0V-ejd" customClass="CustomHomeCollectionViewCell" customModule="Kenakata" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="5.666666666666667" width="180" height="172"/>
+                                                                            <rect key="frame" x="73.666666666666671" y="0.0" width="180" height="172"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="172"/>
@@ -752,13 +751,14 @@
                         <outlet property="tableView" destination="Jgt-6O-ibX" id="nMa-m5-re6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4u-NL-z9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4608.8000000000002" y="946.55172413793105"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="NuO-ok-gIF">
             <objects>
-                <tabBarController storyboardIdentifier="CustomTabBarController" id="Rmb-Wg-TPl" customClass="CustomTabBarController" customModule="Kenakata" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBar" id="Rmb-Wg-TPl" customClass="CustomTabBarController" customModule="Kenakata" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34O-IB-wTP" customClass="CustomTabBar" customModule="Kenakata" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2138,6 +2138,11 @@
                         <viewLayoutGuide key="safeArea" id="y2i-Bm-uua"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Account" id="IKA-Ie-9l7"/>
+                    <connections>
+                        <outlet property="emailTxtLbl" destination="LyS-ke-b66" id="DHo-XQ-bvj"/>
+                        <outlet property="myProfileTxtLbl" destination="xD5-C9-g6x" id="wc1-QX-7Mh"/>
+                        <outlet property="nameTxtLbl" destination="ryC-NW-F59" id="31l-y2-wVn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKS-gO-1vP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4066,10 +4071,10 @@ Phone: +0123 456 7890</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvJ-yD-MNk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtK-fr-3y3" customClass="CustomImageView" customModule="Kenakata" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kR3-EM-JAT">
                                                                     <rect key="frame" x="5" y="5.0000000000000071" width="130" height="125.66666666666669"/>
