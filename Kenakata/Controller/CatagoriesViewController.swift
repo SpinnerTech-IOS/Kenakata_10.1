@@ -10,15 +10,16 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import AlamofireImage
 
 class CatagoriesViewController: UIViewController{
     
-    let catagoriesUrl = "https:afiqsouq.com/wp-json/wc/store/products/categories"
+    let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?filter[parent]&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     //"https:/afiqsouq.com/wp-json/wc/v1/products"
     
     @IBOutlet weak var collectionView: UICollectionView!
-    let catagoryName = ["Men", "Women", "Kids", "Cosmetics", "Accessories", "Miscellaneous", "Watch"]
-    let catagoryAmount = [22,66,0,7,10,99]
+    var productsCatagories = [[String: Any]]()
+    var parentCatagories = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
@@ -33,20 +34,23 @@ class CatagoriesViewController: UIViewController{
             let size = CGSize(width:(collectionView!.bounds.width-30)/2, height: 200)
             layout.itemSize = size
             
-            }// Do any additional setup after loading the view.
-        
+        }
         Alamofire.request(catagoriesUrl, method: .get).responseJSON { (myresponse) in
             switch myresponse.result{
             case .success:
                 if let value = myresponse.result.value as? [[String: Any]] {
-            
-                        //If you want array of task id you can try like
-                    let taskArray = value.compactMap { $0["name"] as? String }
-                        print(taskArray)
-//                    for (key, value) in data {
-//                        print("id:\(key), value:\(value)")
-//                    }
-                   
+                    self.productsCatagories = value
+                    
+                    for i in 0..<self.productsCatagories.count{
+                        let id = self.productsCatagories[i]["parent"] as! Int
+                        
+                        if id == 0{
+                            self.parentCatagories.append(contentsOf: [self.productsCatagories[i]]) 
+                            print(self.parentCatagories)
+                           self.collectionView.reloadData()
+                        }
+                    }
+                    print(self.parentCatagories.count)
                 }
                 
             case let .failure(error):
@@ -60,16 +64,13 @@ class CatagoriesViewController: UIViewController{
 }
 extension CatagoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return catagoryName.count
-    }
+        return self.parentCatagories.count    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CatagoriesCollectionViewCell
-        cell.catagoryNameLbl.text = catagoryName[indexPath.row]
-        //        if catagoryAmount[indexPath.row] == 0{
-        //            cell.catagoryAmountLbl.text = ""
-        //        }else{
-        cell.catagoryAmountLbl.text = " 0 Items"
+        cell.catagoryNameLbl.text = self.parentCatagories[indexPath.row]["name"] as? String
+      
+        cell.catagoryAmountLbl.text = " "
         
         return cell
         

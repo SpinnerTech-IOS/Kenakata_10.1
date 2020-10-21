@@ -206,6 +206,7 @@
 		0BE3E147252A47A4005E05A1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0BED4AA62540B85900A29CD6 /* TabBar */,
 				0B7C481325372E0D000365C7 /* SignInAndSignUp */,
 				0BFE6A25252BFBE600A6BC3B /* HomeViewController.swift */,
 				0B887B4725332391003AEE6E /* ShopViewController.swift */,
@@ -265,7 +266,6 @@
 				0BF224D1252AFED700674D9A /* CustomViewTxtField.swift */,
 				0BF224D5252B1E0200674D9A /* CustomTextLbl.swift */,
 				0BFE6A27252C008800A6BC3B /* CustomTabBar.swift */,
-				0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */,
 				0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */,
 				0B1E1BBD252CB75000876C13 /* CustomHomeOfferView.swift */,
 				0BF22767252E369000C7F587 /* RoundImageView.swift */,
@@ -277,6 +277,14 @@
 				0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0BED4AA62540B85900A29CD6 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				0BFE6A29252C00AA00A6BC3B /* CustomTabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		D7E93027A045A885A628356C /* Pods */ = {
