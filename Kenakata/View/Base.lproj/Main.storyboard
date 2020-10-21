@@ -1029,8 +1029,8 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="qzw-4e-4Xy" secondAttribute="height" multiplier="107:24" id="0WX-Pr-gQf"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                                            <color key="textColor" name="Splash_BackgroundColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTq-Gw-b9i">
@@ -3075,7 +3075,7 @@ Phone: +0123 456 7890</string>
                                                     <fragment content="  ">
                                                         <attributes>
                                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" metaFont="label" size="11"/>
+                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -3124,7 +3124,7 @@ Phone: +0123 456 7890</string>
                                                     <fragment content=" ">
                                                         <attributes>
                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <font key="NSFont" metaFont="label" size="11"/>
+                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -3180,7 +3180,7 @@ Phone: +0123 456 7890</string>
                                                     <fragment content=" ">
                                                         <attributes>
                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <font key="NSFont" metaFont="label" size="11"/>
+                                                            <font key="NSFont" metaFont="controlContent" size="11"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -4709,14 +4709,14 @@ Phone: +0123 456 7890</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-cN-kOi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3UT-cN-kOi" secondAttribute="height" multiplier="375:56" id="pRq-Dp-9ej"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xmN-dk-8kh">
-                                <rect key="frame" x="10" y="174.5" width="355" height="443.5"/>
+                                <rect key="frame" x="10" y="130.5" width="355" height="536.5"/>
                                 <color key="backgroundColor" name="landingPage_BackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sp0-Xs-Oem">
                                     <size key="itemSize" width="144" height="170"/>
@@ -4776,7 +4776,7 @@ Phone: +0123 456 7890</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7G-hz-2Rw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4608.8000000000002" y="3011.8226600985222"/>
+            <point key="canvasLocation" x="3220" y="3853"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x9e-vR-RUK">
@@ -4828,7 +4828,7 @@ Phone: +0123 456 7890</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nlE-JK-gI6" kind="relationship" relationship="rootViewController" id="qh8-oZ-xmu"/>
+                        <segue destination="ht9-gV-Dyu" kind="relationship" relationship="rootViewController" id="XAv-fy-7qn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gne-kB-jux" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4854,6 +4854,130 @@ Phone: +0123 456 7890</string>
             </objects>
             <point key="canvasLocation" x="3814" y="3684"/>
         </scene>
+        <!--Wishlist-->
+        <scene sceneID="9u8-VD-Pxu">
+            <objects>
+                <viewController storyboardIdentifier="WishlistViewController" id="ht9-gV-Dyu" customClass="WishlistViewController" customModule="AfiqSouqApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="02p-pA-4yg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QCp-L6-RNn">
+                                <rect key="frame" x="10" y="64" width="355" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" name="landingPage_BackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="WishlistTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="128" id="1vS-X0-FvU" customClass="WishlistTableViewCell" customModule="AfiqSouqApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1vS-X0-FvU" id="EPA-bn-cCY">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNx-nR-FsG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="133" height="128"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M3F-pH-t0m" customClass="CustomImageView" customModule="AfiqSouqApp" customModuleProvider="target">
+                                                            <rect key="frame" x="10" y="18" width="113" height="88"/>
+                                                            <color key="backgroundColor" name="settingsBackColor"/>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgp-aZ-MA5">
+                                                            <rect key="frame" x="4" y="8.5" width="18" height="22"/>
+                                                            <state key="normal" image="btn-close"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="landingPage_BackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="M3F-pH-t0m" firstAttribute="top" secondItem="yNx-nR-FsG" secondAttribute="top" constant="18" id="Qe7-JN-vef"/>
+                                                        <constraint firstAttribute="trailing" secondItem="M3F-pH-t0m" secondAttribute="trailing" constant="10" id="Zpq-xa-nAB"/>
+                                                        <constraint firstItem="M3F-pH-t0m" firstAttribute="top" secondItem="lgp-aZ-MA5" secondAttribute="bottom" constant="-12.5" id="fvS-J2-sGV"/>
+                                                        <constraint firstItem="M3F-pH-t0m" firstAttribute="leading" secondItem="yNx-nR-FsG" secondAttribute="leading" constant="10" id="lmQ-tU-dPv"/>
+                                                        <constraint firstItem="lgp-aZ-MA5" firstAttribute="leading" secondItem="yNx-nR-FsG" secondAttribute="leading" constant="4" id="nDS-zI-XLb"/>
+                                                        <constraint firstAttribute="bottom" secondItem="M3F-pH-t0m" secondAttribute="bottom" constant="22" id="pdH-d7-Wh4"/>
+                                                        <constraint firstAttribute="width" secondItem="yNx-nR-FsG" secondAttribute="height" multiplier="133:128" id="wcg-zn-KOb"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue silk flare sleeved top" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4a-IE-LbN">
+                                                    <rect key="frame" x="141" y="10" width="214" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="$ 1150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD3-aF-Vqm">
+                                                    <rect key="frame" x="141" y="35.5" width="214" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                                    <color key="textColor" name="Splash_BackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7c4-0G-54Q" customClass="CustomHomeOfferView" customModule="AfiqSouqApp" customModuleProvider="target">
+                                                    <rect key="frame" x="141" y="65" width="181.5" height="40"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y7O-qY-gx4">
+                                                            <rect key="frame" x="34.5" y="10" width="113" height="20.5"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-qA-5ES">
+                                                                    <rect key="frame" x="0.0" y="2.5" width="15" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="15" id="VRz-bn-kNW"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="Veh-vI-6kt"/>
+                                                                        <constraint firstAttribute="width" constant="15" id="u57-OY-L8s"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywS-1w-i0J">
+                                                                    <rect key="frame" x="25" y="0.0" width="88" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" name="forgotpasstxtlblcolor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="settingsBackColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Y7O-qY-gx4" firstAttribute="centerY" secondItem="7c4-0G-54Q" secondAttribute="centerY" id="b5u-MX-K17"/>
+                                                        <constraint firstAttribute="height" constant="40" id="edg-x6-2eO"/>
+                                                        <constraint firstItem="Y7O-qY-gx4" firstAttribute="centerX" secondItem="7c4-0G-54Q" secondAttribute="centerX" id="ogK-cJ-wSh"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" name="landingPage_BackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="yNx-nR-FsG" secondAttribute="bottom" id="6mF-4B-0uX"/>
+                                                <constraint firstItem="MD3-aF-Vqm" firstAttribute="top" secondItem="F4a-IE-LbN" secondAttribute="bottom" constant="5" id="Aic-hq-AHm"/>
+                                                <constraint firstItem="7c4-0G-54Q" firstAttribute="leading" secondItem="yNx-nR-FsG" secondAttribute="trailing" constant="8" id="BQO-l7-4gO"/>
+                                                <constraint firstItem="MD3-aF-Vqm" firstAttribute="leading" secondItem="yNx-nR-FsG" secondAttribute="trailing" constant="8" id="BeQ-Ns-vHo"/>
+                                                <constraint firstAttribute="trailing" secondItem="F4a-IE-LbN" secondAttribute="trailing" id="HYa-6z-IRa"/>
+                                                <constraint firstAttribute="trailing" secondItem="MD3-aF-Vqm" secondAttribute="trailing" id="IL8-H7-Z1I"/>
+                                                <constraint firstItem="7c4-0G-54Q" firstAttribute="top" secondItem="MD3-aF-Vqm" secondAttribute="bottom" constant="10" id="N56-11-wvu"/>
+                                                <constraint firstAttribute="trailing" secondItem="7c4-0G-54Q" secondAttribute="trailing" multiplier="1.1" id="S5D-Fh-VVK"/>
+                                                <constraint firstItem="yNx-nR-FsG" firstAttribute="top" secondItem="EPA-bn-cCY" secondAttribute="top" id="U4J-5d-hrj"/>
+                                                <constraint firstItem="yNx-nR-FsG" firstAttribute="leading" secondItem="EPA-bn-cCY" secondAttribute="leading" id="VSn-g9-Nzp"/>
+                                                <constraint firstItem="F4a-IE-LbN" firstAttribute="leading" secondItem="yNx-nR-FsG" secondAttribute="trailing" constant="8" id="k0M-0j-oxx"/>
+                                                <constraint firstItem="F4a-IE-LbN" firstAttribute="top" secondItem="EPA-bn-cCY" secondAttribute="top" constant="10" id="kMI-1W-nr8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="landingPage_BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QCp-L6-RNn" firstAttribute="top" secondItem="nxG-RU-llb" secondAttribute="top" id="1Yc-MR-QNI"/>
+                            <constraint firstItem="nxG-RU-llb" firstAttribute="trailing" secondItem="QCp-L6-RNn" secondAttribute="trailing" constant="10" id="7Wd-aH-WSu"/>
+                            <constraint firstAttribute="bottom" secondItem="QCp-L6-RNn" secondAttribute="bottom" id="HrW-Ez-Z2Z"/>
+                            <constraint firstItem="QCp-L6-RNn" firstAttribute="leading" secondItem="nxG-RU-llb" secondAttribute="leading" constant="10" id="pNQ-P5-VKX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nxG-RU-llb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Wishlist" id="uRE-Qv-dSm"/>
+                    <connections>
+                        <outlet property="tableView" destination="QCp-L6-RNn" id="S8g-SU-AwJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="otk-zk-6ni" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4609" y="2970"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Banner-thumb" width="375" height="338"/>
@@ -4867,6 +4991,7 @@ Phone: +0123 456 7890</string>
         <image name="Rectangle 995" width="343" height="573"/>
         <image name="btn-back" width="23" height="12"/>
         <image name="btn-close" width="18" height="18"/>
+        <image name="cart-icon" width="16" height="15.5"/>
         <image name="chevron-down" width="11.5" height="6.5"/>
         <image name="empty-cart" width="92" height="100"/>
         <image name="heart" width="24" height="19.5"/>

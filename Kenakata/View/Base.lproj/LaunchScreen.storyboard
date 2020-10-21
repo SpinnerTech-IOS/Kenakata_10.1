@@ -14,7 +14,6 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LaunchScreen" id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -27,40 +26,38 @@
                                         <rect key="frame" x="9.5" y="9.5" width="180" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="qTj-hS-I8Z">
-                                        <rect key="frame" x="20" y="82.5" width="160" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="ip1-MW-Iot"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="qTj-hS-I8Z" firstAttribute="centerX" secondItem="wN6-cb-sam" secondAttribute="centerX" id="2ga-TN-Eak"/>
                                     <constraint firstAttribute="width" constant="200" id="4sq-3P-UpX"/>
                                     <constraint firstAttribute="height" constant="200" id="6hg-yc-iO3"/>
-                                    <constraint firstItem="qTj-hS-I8Z" firstAttribute="leading" secondItem="wN6-cb-sam" secondAttribute="leading" constant="20" id="mtQ-RQ-1gj"/>
-                                    <constraint firstAttribute="trailing" secondItem="qTj-hS-I8Z" secondAttribute="trailing" constant="20" id="s9C-P5-oqs"/>
-                                    <constraint firstItem="qTj-hS-I8Z" firstAttribute="centerY" secondItem="wN6-cb-sam" secondAttribute="centerY" id="wRc-24-3Rn"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afiq Souq" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2G-lj-5p6">
+                                <rect key="frame" x="139.5" y="321.5" width="96" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <color key="textColor" name="Splash_BackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="Splash_BackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="v2G-lj-5p6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5ok-rs-h7b"/>
                             <constraint firstItem="wN6-cb-sam" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="D1W-ob-GQP"/>
+                            <constraint firstItem="v2G-lj-5p6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YEh-7I-lIa"/>
                             <constraint firstItem="wN6-cb-sam" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aSU-2c-e9P"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="68" y="217.24137931034485"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="160" height="23.5"/>
         <image name="splash-circle" width="248" height="248"/>
         <namedColor name="Splash_BackgroundColor">
-            <color red="0.12549019607843137" green="0.82745098039215681" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.125" green="0.82700002193450928" blue="0.76099997758865356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
