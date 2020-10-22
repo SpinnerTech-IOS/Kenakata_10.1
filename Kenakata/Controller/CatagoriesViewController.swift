@@ -22,6 +22,7 @@ class CatagoriesViewController: UIViewController{
     var parentCatagories = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         navigationController?.addCustomBorderLine()
         addCustomItem()
         collectionView.dataSource = self
@@ -35,6 +36,9 @@ class CatagoriesViewController: UIViewController{
             layout.itemSize = size
             
         }
+        
+    }
+    func fetchData() {
         Alamofire.request(catagoriesUrl, method: .get).responseJSON { (myresponse) in
             switch myresponse.result{
             case .success:
@@ -45,22 +49,25 @@ class CatagoriesViewController: UIViewController{
                         let id = self.productsCatagories[i]["parent"] as! Int
                         
                         if id == 0{
-                            self.parentCatagories.append(contentsOf: [self.productsCatagories[i]]) 
+                            self.parentCatagories.append(contentsOf: [self.productsCatagories[i]])
                             print(self.parentCatagories)
-                           self.collectionView.reloadData()
+                            
                         }
                     }
                     print(self.parentCatagories.count)
+                    self.collectionView.reloadData()
                 }
                 
             case let .failure(error):
                 print(error)
                 print("Wrong")
             }
-        }
-         
             
-            }
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
 }
 extension CatagoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,12 +76,21 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CatagoriesCollectionViewCell
         cell.catagoryNameLbl.text = self.parentCatagories[indexPath.row]["name"] as? String
-      
         cell.catagoryAmountLbl.text = " "
+        //    guard let imageUrl = self.parentCatagories[indexPath.row]["image"] else {return}
+        //  print(imageUrl)
+        //        Alamofire.request(imageUrl).responseImage { (response) in
+        //            if let img = response.result.value{
+        //                cell.catagoryImageView.image = img
+        //            }
+        //        }
         
         return cell
-        
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
+        collectionVC.parentCatagory = self.parentCatagories;        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
     
 }

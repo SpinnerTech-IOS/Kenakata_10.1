@@ -8,7 +8,8 @@
 
 import UIKit
 
-class WomensCollectionCollectionViewCell: UICollectionViewCell {
+class CollectionCollectionViewCell: UICollectionViewCell {
 
     
+    @IBOutlet weak var parentCatagoryName: UILabel!
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WomensCoolectionTableViewCell: UITableViewCell {
+class CoolectionTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

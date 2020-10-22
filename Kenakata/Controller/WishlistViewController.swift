@@ -2,21 +2,18 @@
 //  WishlistViewController.swift
 //  Kenakata
 //
-//  Created by Md Sifat on 8/10/20.
+//  Created by Md Sifat on 22/10/20.
 //  Copyright © 2020 Md Sifat. All rights reserved.
 //
 
 import UIKit
 
 class WishlistViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        navigationController?.addCustomBorderLine()
-        addCustomItem()
+
         // Do any additional setup after loading the view.
     }
     
@@ -31,6 +28,5 @@ extension WishlistViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WishlistTableViewCell
         return cell
     }
-    
-    
+
 }
