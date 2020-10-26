@@ -10,6 +10,8 @@ import UIKit
 
 class CoolectionTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var collectionViewB: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

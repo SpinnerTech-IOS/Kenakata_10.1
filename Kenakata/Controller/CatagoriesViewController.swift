@@ -12,17 +12,19 @@ import SwiftyJSON
 import SVProgressHUD
 import AlamofireImage
 
+
+
 class CatagoriesViewController: UIViewController{
     
-    let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?filter[parent]&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
-    //"https:/afiqsouq.com/wp-json/wc/v1/products"
+    let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var productsCatagories = [[String: Any]]()
-    var parentCatagories = [[String: Any]]()
+    var parentCatagories: [ParentCatagory] = []
+    var parentCatagory = [[String: Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        getJson()
+        collectionView.reloadData()
         navigationController?.addCustomBorderLine()
         addCustomItem()
         collectionView.dataSource = self
@@ -38,59 +40,67 @@ class CatagoriesViewController: UIViewController{
         }
         
     }
-    func fetchData() {
-        Alamofire.request(catagoriesUrl, method: .get).responseJSON { (myresponse) in
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
+    func getJson() {
+        Alamofire.request(catagoriesUrl).responseJSON { (myresponse) in
             switch myresponse.result{
             case .success:
-                if let value = myresponse.result.value as? [[String: Any]] {
-                    self.productsCatagories = value
-                    
-                    for i in 0..<self.productsCatagories.count{
-                        let id = self.productsCatagories[i]["parent"] as! Int
-                        
+                if let json = myresponse.result.value as? [[String: Any]] {
+                    for i in 0..<json.count{
+                        let id = json[i]["parent"] as! Int
                         if id == 0{
-                            self.parentCatagories.append(contentsOf: [self.productsCatagories[i]])
-                            print(self.parentCatagories)
-                            
+                            self.parentCatagory.append(json[i])
+                        }
+                    }
+                    print(self.parentCatagory.count)
+                    
+                    for dic in self.parentCatagory {
+                        if dic["image"] != nil{
+                            let allData = ParentCatagory.init(json: dic)
+                            self.parentCatagories.append(allData)
                         }
                     }
                     print(self.parentCatagories.count)
-                    self.collectionView.reloadData()
                 }
                 
             case let .failure(error):
                 print(error)
                 print("Wrong")
             }
-            
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
     }
 }
 extension CatagoriesViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.parentCatagories.count    }
+        return  self.parentCatagories.count   }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CatagoriesCollectionViewCell
-        cell.catagoryNameLbl.text = self.parentCatagories[indexPath.row]["name"] as? String
+        cell.catagoryNameLbl.text = self.parentCatagories[indexPath.row].name
         cell.catagoryAmountLbl.text = " "
-        //    guard let imageUrl = self.parentCatagories[indexPath.row]["image"] else {return}
-        //  print(imageUrl)
-        //        Alamofire.request(imageUrl).responseImage { (response) in
-        //            if let img = response.result.value{
-        //                cell.catagoryImageView.image = img
-        //            }
-        //        }
+        let imageUrl = self.parentCatagories[indexPath.row].Image.src
+        print(imageUrl!)
+        Alamofire.request(imageUrl ?? "", method: .get).validate().responseImage { (response) in
+            print("IMA: \(response)")
+            if let img = response.result.value{
+                DispatchQueue.main.async {
+                    cell.catagoryImageView.image = img
+                }
+                
+            }
+        }
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
-        collectionVC.parentCatagory = self.parentCatagories;        self.navigationController?.pushViewController(collectionVC, animated: false)
+        collectionVC.parentCatagory = self.parentCatagories;
+        collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     
 }

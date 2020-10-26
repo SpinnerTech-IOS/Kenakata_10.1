@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B085F1325418F1200CE6329 /* LiveChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B085F1225418F1200CE6329 /* LiveChatViewController.swift */; };
 		0B085F152541915C00CE6329 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B085F142541915C00CE6329 /* WishlistViewController.swift */; };
+		0B0CBD6B2545D49300E339BE /* ParentCatagory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CBD6A2545D49300E339BE /* ParentCatagory.swift */; };
 		0B184939252F86A70018AEDF /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B184938252F86A70018AEDF /* FiltersViewController.swift */; };
 		0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */; };
 		0B1E1BBC252C825800876C13 /* CustomViewOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */; };
@@ -44,6 +45,9 @@
 		0B971029252DDD6A003ABB22 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B971028252DDD6A003ABB22 /* CollectionViewController.swift */; };
 		0B97102B252DDF53003ABB22 /* CoolectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97102A252DDF53003ABB22 /* CoolectionTableViewCell.swift */; };
 		0BA454592539E9DB00192BBB /* UserDefaultsExtensionj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */; };
+		0BA603D125473CE70032A303 /* CollectionSecondCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA603D025473CE60032A303 /* CollectionSecondCollectionViewCell.swift */; };
+		0BA603D3254778220032A303 /* AllProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA603D2254778220032A303 /* AllProduct.swift */; };
+		0BA603D5254788B10032A303 /* RewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA603D4254788B00032A303 /* RewardsViewController.swift */; };
 		0BE3E136252A4779005E05A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE3E135252A4779005E05A1 /* AppDelegate.swift */; };
 		0BE3E13B252A477A005E05A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E139252A477A005E05A1 /* Main.storyboard */; };
 		0BE3E140252A477D005E05A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE3E13E252A477D005E05A1 /* LaunchScreen.storyboard */; };
@@ -68,6 +72,7 @@
 /* Begin PBXFileReference section */
 		0B085F1225418F1200CE6329 /* LiveChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatViewController.swift; sourceTree = "<group>"; };
 		0B085F142541915C00CE6329 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		0B0CBD6A2545D49300E339BE /* ParentCatagory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCatagory.swift; sourceTree = "<group>"; };
 		0B184938252F86A70018AEDF /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewOtp.swift; sourceTree = "<group>"; };
@@ -103,6 +108,9 @@
 		0B971028252DDD6A003ABB22 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		0B97102A252DDF53003ABB22 /* CoolectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolectionTableViewCell.swift; sourceTree = "<group>"; };
 		0BA454582539E9DB00192BBB /* UserDefaultsExtensionj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensionj.swift; sourceTree = "<group>"; };
+		0BA603D025473CE60032A303 /* CollectionSecondCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSecondCollectionViewCell.swift; sourceTree = "<group>"; };
+		0BA603D2254778220032A303 /* AllProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProduct.swift; sourceTree = "<group>"; };
+		0BA603D4254788B00032A303 /* RewardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsViewController.swift; sourceTree = "<group>"; };
 		0BE3E132252A4779005E05A1 /* Kenakata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kenakata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE3E135252A4779005E05A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE3E13A252A477A005E05A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 				0BF4752125333C720036F919 /* ShopCollectionViewCell.swift */,
 				0BF4752325335F5F0036F919 /* SearchCollectionViewCell.swift */,
 				0B96C67E2534C89B0067C9E6 /* ShopingCartTableViewCell.swift */,
+				0BA603D025473CE60032A303 /* CollectionSecondCollectionViewCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 				0B27C6872533281000DA62C4 /* SettingsViewController.swift */,
 				0B27C689253328C200DA62C4 /* AddAReviewViewController.swift */,
 				0B27C68B2533293E00DA62C4 /* ProductDetailsViewController.swift */,
+				0BA603D4254788B00032A303 /* RewardsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 				0B1E1BBF252CBA9800876C13 /* DataModelHome.swift */,
 				0B54FB552535D7230083DDAE /* CustomerData.swift */,
 				0B44BA942531C330001ACF4F /* Product.swift */,
+				0B0CBD6A2545D49300E339BE /* ParentCatagory.swift */,
+				0BA603D2254778220032A303 /* AllProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,13 +448,16 @@
 				0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */,
 				0B8007D125318EA90097E019 /* HeaderView.swift in Sources */,
 				0B971025252DB632003ABB22 /* CatagoriesCollectionViewCell.swift in Sources */,
+				0BA603D3254778220032A303 /* AllProduct.swift in Sources */,
 				0BF4752425335F5F0036F919 /* SearchCollectionViewCell.swift in Sources */,
 				0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */,
 				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
 				0B70900D25332502004BD425 /* AccountViewController.swift in Sources */,
 				0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */,
+				0BA603D125473CE70032A303 /* CollectionSecondCollectionViewCell.swift in Sources */,
 				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
 				0B085F152541915C00CE6329 /* WishlistViewController.swift in Sources */,
+				0B0CBD6B2545D49300E339BE /* ParentCatagory.swift in Sources */,
 				0BF22768252E369000C7F587 /* RoundImageView.swift in Sources */,
 				0BF224D4252B1D1300674D9A /* SignInViewController.swift in Sources */,
 				0B27C68A253328C200DA62C4 /* AddAReviewViewController.swift in Sources */,
@@ -451,6 +466,7 @@
 				0B7BEBD6252EF5AF00732CE4 /* WishlistTableViewCell.swift in Sources */,
 				0BF2276A252E609800C7F587 /* RoundView.swift in Sources */,
 				0B27C6822533266300DA62C4 /* MyCartViewController.swift in Sources */,
+				0BA603D5254788B10032A303 /* RewardsViewController.swift in Sources */,
 				0B96C67D25344F190067C9E6 /* NavBarItemExtension.swift in Sources */,
 				0B27C6882533281000DA62C4 /* SettingsViewController.swift in Sources */,
 				0B1E1BC4252CED6D00876C13 /* CustomHomeCollectionViewCell.swift in Sources */,
