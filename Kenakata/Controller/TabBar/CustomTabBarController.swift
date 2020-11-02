@@ -17,8 +17,15 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.navigationItem.hidesBackButton = true
         self.delegate = self
         setupMiddleButton()
+        
+        if (UIInterfaceOrientation.landscapeLeft.isLandscape || UIInterfaceOrientation.landscapeRight.isLandscape){
+            self.tabBar.isHidden = false}
+        else{
+            self.tabBar.isHidden = true}
+        
         // Do any additional setup after loading the view.
     }
+    
     
     // TabBarButton – Setup Middle Button
     func setupMiddleButton() {
@@ -44,5 +51,8 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
         self.selectedIndex = 2
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "Catagories") as! CatagoriesViewController
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
 }

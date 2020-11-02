@@ -12,7 +12,7 @@ import SwiftyJSON
 import SVProgressHUD
 
 class SignInViewController: UIViewController {
-    let loginURL = "https://afiqsouq.com/api/oauth/token/"
+    let loginURL = "https://afiqsouq.com/api/user/generate_auth_cookie?"
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
     override func viewDidLoad() {
@@ -27,6 +27,14 @@ class SignInViewController: UIViewController {
     }
     
     
+    @IBAction func onClickForgotPassword(_ sender: Any) {
+    }
+    @IBAction func onClickSignUp(_ sender: Any) {
+        print("signup")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUp")
+        self.navigationController?.pushViewController(signUpVC, animated: false)
+    }
     @IBAction func onClickLogin(_ sender: UIButton) {
         
         if emailTxtLbl.text != "" && passwordTxtLbl.text != "" {
@@ -38,10 +46,13 @@ class SignInViewController: UIViewController {
                 case .success:
                     if let value = response.result.value{
                         let data = JSON(value)
-                        let token = data["success"]["token"]
-                        print("successfull: \(token)")
+                        print("Data\(data)")
+                        let token = data["cookie"]
+                        let user = data["user"]["email"]
                         UserDefaults.standard.setLoggedIn(tokenText: token)
-                        self.changeRootView()
+                        if [self.emailTxtLbl.text!] == [user]{
+                            self.changeRootView()
+                        }
                     }
                     self.emailTxtLbl.text = nil
                     self.passwordTxtLbl.text = nil

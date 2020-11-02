@@ -12,7 +12,10 @@ class LiveChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "Live Chat"
+       
         // Do any additional setup after loading the view.
     }
     

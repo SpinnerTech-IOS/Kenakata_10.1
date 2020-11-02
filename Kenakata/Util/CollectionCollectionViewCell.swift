@@ -12,4 +12,5 @@ class CollectionCollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak var parentCatagoryName: UILabel!
+    @IBOutlet weak var collectionCatagoryImageView: UIImageView!
 }

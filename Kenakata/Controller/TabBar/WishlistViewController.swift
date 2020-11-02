@@ -13,7 +13,9 @@ class WishlistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.addCustomBorderLine()
+        addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "Wish Lists"
         // Do any additional setup after loading the view.
     }
     

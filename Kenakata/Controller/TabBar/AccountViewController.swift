@@ -13,7 +13,7 @@ import SwiftyJSON
 import SVProgressHUD
 
 class AccountViewController: UIViewController {
-    let userURL = "https://afiqsouq.com/api"
+    let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
     var activityIndicator = UIActivityIndicatorView(style: .gray)
     
     @IBOutlet weak var nameTxtLbl: UILabel!
@@ -23,39 +23,36 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "My Account"
+        getUser()
         // Do any additional setup after loading the view.
     }
     func getUser(){
         let token = UserDefaults.standard.string(forKey: "access_token")
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token!)"
-        ]
-        Alamofire.request(self.userURL, method: .get, headers: headers).responseJSON { response in
-            switch response.result{
+        let params = ["cookie": token!]
+        Alamofire.request(userURL, method: .post, parameters: params as Parameters).responseJSON { response in
+            switch response.result {
             case .success:
-                DispatchQueue.main.async { // Main UI Thread
-                    let data = JSON(response.result.value as Any)
-                    print("Main UI: \(data)")
-                    self.nameTxtLbl.text = "Name: \(String(describing: data["name"]))"
-                    self.emailTxtLbl.text = "Email: \(String(describing: data["email"]))"
-                    self.myProfileTxtLbl.text = String(describing: data["created_at"])
-                    print(self.nameTxtLbl.text as Any)
+                if let value = response.result.value{
+                    let data = JSON(value)
+                    self.nameTxtLbl.text = "\(data["user"]["displayname"])"
+                    self.emailTxtLbl.text = "\(data["user"]["email"])"
                 }
+                
             case let .failure(error):
                 print(error)
+                print("Wrong")
             }
+            
         }
         
     }
     
     
+    
     @IBAction func onClickLogout(_ sender: Any) {
         UserDefaults.standard.logout()
-        //        UserDefaults.standard.set(false, forKey: "USERISLOGIN")
-        //        UserDefaults.standard.synchronize()
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //        let mainViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
-        //      (UIApplication.shared.delegate as? AppDelegate)?.changeRootView(mainViewController)
+        
     }
     func startIndicator()
     {

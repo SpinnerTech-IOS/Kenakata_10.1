@@ -11,6 +11,8 @@ import UIKit
 extension UIViewController{
     func addCustomItem()
     {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         // badge label
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))
         label.layer.borderColor = UIColor.clear.cgColor
@@ -44,8 +46,8 @@ extension UIViewController{
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
-       
- }
+        
+    }
     @objc func leftButtonTouched() {
         print("right button touched")
         let popvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController

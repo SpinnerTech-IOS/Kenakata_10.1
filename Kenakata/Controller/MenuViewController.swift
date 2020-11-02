@@ -15,7 +15,9 @@ class MenuViewController: UIViewController {
       //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
         showAnimate()
         // Do any additional setup after loading the view.
+    
     }
+
     @IBAction func Close_popupView(_ sender: Any) {
         removeAnimate()
     }

@@ -24,9 +24,9 @@ class CatagoriesViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         getJson()
-        collectionView.reloadData()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "Catagories"
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -38,12 +38,12 @@ class CatagoriesViewController: UIViewController{
             layout.itemSize = size
             
         }
+        self.collectionView.reloadData()
+
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
-    }
+
     func getJson() {
         Alamofire.request(catagoriesUrl).responseJSON { (myresponse) in
             switch myresponse.result{
@@ -62,6 +62,8 @@ class CatagoriesViewController: UIViewController{
                             let allData = ParentCatagory.init(json: dic)
                             self.parentCatagories.append(allData)
                         }
+                        self.collectionView.reloadData()
+
                     }
                     print(self.parentCatagories.count)
                 }
