@@ -34,6 +34,16 @@ class CollectionViewController: UIViewController {
         navigationController!.navigationBar.topItem?.title = CatagoryTitle
         // Do any additional setup after loading the view.
         
+        if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            let size = CGSize(width:(collectionViewB!.bounds.width-30)/2, height: 200)
+            layout.itemSize = size
+            
+        }
+        self.collectionViewB.reloadData()
+        
         
     }
     func getCatagoryWiseProducts(){
@@ -85,7 +95,8 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         
         if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! CollectionSecondCollectionViewCell
-            cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].name
+            cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].price
+            cell.collectionViewNameTextLbl.text = self.allProducts[indexPath.row].name
             let imageUrlB = self.allProducts[indexPath.row].images.name
             print("nb: \(String(describing: imageUrlB))")
             Alamofire.request(imageUrlB ?? "", method: .get).validate().responseImage { (responseB) in
