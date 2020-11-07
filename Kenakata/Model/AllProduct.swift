@@ -7,65 +7,48 @@
 //
 
 import Foundation
-
 struct AllProduct {
-    let Catagory : Productatagory
-    let id: String!
+    let id: Int!
     let name: String!
     let slug: String?
     let description: String!
-    let Image: ProductImage
-    
+    let price: String!
+    let images: ProductImage
+
     init(json: [String: Any]) {
-        let Id = json["id"] as? String
+        let Id = json["id"] as? Int
         let Name = json["name"] as? String
         let Slug = json["slug"] as? String
         let Description = json["description"] as? String
-        let catagoryDict = json["categories"] as? [String: Any]
-        let catagory = Productatagory(json: catagoryDict as AnyObject)
+        let Price = json["price"] as? String
         let imageDict = json["images"] as? [String: Any]
-        let image = ProductImage(json: imageDict as AnyObject)
-        
+        let images = ProductImage(jsonImage: imageDict)
+
         self.id = Id
         self.name = Name
         self.slug = Slug
         self.description = Description
-        self.Image = image
-        self.Catagory = catagory
+        self.price = Price
+        self.images = images
+
+
     }
-    
-    struct Productatagory {
-        let id: String!
-        let name: String!
-        let slug: String!
-        
-        init(json: AnyObject?){
-            let ImgId = json!["id"] as? String ?? ""
-            let ImgName = json!["name"] as? String ?? ""
-            let ImgSrc = json!["slug"] as? String ?? ""
-            
-            self.id = ImgId
-            self.name = ImgName
-            self.slug = ImgSrc
-            
-        }
-    }
-    
     struct ProductImage {
-        let id: String!
+        let id: Int!
         let src: String!
         let name: String!
-        
-        init(json: AnyObject?){
-            let ImgId = json!["id"] as? String ?? ""
-            let ImgName = json!["name"] as? String ?? ""
-            let ImgSrc = json!["src"] as? String ?? ""
-            
+
+
+
+        init(jsonImage: [String: Any]?){
+            let ImgId = jsonImage?["id"] as? Int ?? 0
+            let ImgName = jsonImage?["name"] as? String ?? ""
+            let ImgSrc = jsonImage?["src"] as? String ?? ""
+
+
             self.id = ImgId
             self.name = ImgName
             self.src = ImgSrc
-            
         }
     }
 }
-

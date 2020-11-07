@@ -52,9 +52,9 @@ struct ParentCatagory {
         
 
         init(json: AnyObject?){
-            let ImgId = json!["id"] as? String ?? ""
-            let ImgName = json!["name"] as? String ?? ""
-            let ImgSrc = json!["src"] as? String ?? ""
+            let ImgId = json?["id"] as? String ?? ""
+            let ImgName = json?["name"] as? String ?? ""
+            let ImgSrc = json?["src"] as? String ?? ""
             let ImgThumbnail = json?["thumbnail"] as? String ?? ""
             let ImgSizes = json?["sizes"] as? String ?? ""
             let ImgAlt = json?["alt"] as? String ?? ""

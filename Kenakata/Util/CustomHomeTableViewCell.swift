@@ -2,7 +2,7 @@
 //  CustomHomeTableViewCell.swift
 //  Kenakata
 //
-//  Created by Md Sifat on 6/10/20.
+//  Created by Md Sifat on 6/11/20.
 //  Copyright © 2020 Md Sifat. All rights reserved.
 //
 

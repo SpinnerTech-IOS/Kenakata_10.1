@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import AlamofireImage
 
 class CollectionViewController: UIViewController {
     
@@ -18,7 +19,7 @@ class CollectionViewController: UIViewController {
     let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?category=707&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     var parentCatagory : [ParentCatagory] = []
     var CatagoryTitle: String?
-   var allProducts : [AllProduct] = []
+    var allProducts : [AllProduct] = []
     var dataStore = [[String:Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class CollectionViewController: UIViewController {
         navigationController!.navigationBar.topItem?.title = CatagoryTitle
         // Do any additional setup after loading the view.
         
-        print("ds: \(self.dataStore.count)")
+        
     }
     func getCatagoryWiseProducts(){
         
@@ -44,24 +45,27 @@ class CollectionViewController: UIViewController {
                     for i in 0..<json.count{
                         self.dataStore.append(json[i])
                     }
-                    print("dfs: \(self.dataStore.count)")
-                    for dic in json{
-                        let allData = AllProduct.init(json: dic)
-                        self.allProducts.append(allData)
+                    for dict in self.dataStore{
+                        if dict["images"] != nil{
+                            let allData = AllProduct.init(json: dict)
+                            self.allProducts.append(allData)
+                        }
                     }
-                    print("uuu: \(self.allProducts.count)")
+                    print(self.allProducts)
+                    self.collectionViewA.reloadData()
+                    self.collectionViewB.reloadData()
+                    
                     
                 }
-                
             case let .failure(error):
                 print(error)
                 print("Wrong")
             }
         }
         
-    
+        
     }
-
+    
     
 }
 
@@ -72,7 +76,7 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         if collectionView == self.collectionViewA{
             return parentCatagory.count
         }else if collectionView == self.collectionViewB{
-            return 7
+            return self.allProducts.count
         }
         return 0
     }
@@ -81,13 +85,22 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         
         if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! CollectionSecondCollectionViewCell
-            
+            cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].name
+            let imageUrlB = self.allProducts[indexPath.row].images.name
+            print("nb: \(String(describing: imageUrlB))")
+            Alamofire.request(imageUrlB ?? "", method: .get).validate().responseImage { (responseB) in
+                if let img = responseB.result.value{
+                    DispatchQueue.main.async {
+                        cell.colletionViewBImageView.image = img
+                    }
+                    
+                }
+            }
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionCollectionViewCell
         cell.parentCatagoryName.text = self.parentCatagory[indexPath.row].name
         let imageUrl = self.parentCatagory[indexPath.row].Image.src
-        print(imageUrl!)
         Alamofire.request(imageUrl ?? "", method: .get).validate().responseImage { (response) in
             if let img = response.result.value{
                 DispatchQueue.main.async {
@@ -99,6 +112,15 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionViewB{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let collectionVC = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+            //collectionVC.parentCatagory = self.parentCatagories;
+            //  collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
+            self.navigationController?.pushViewController(collectionVC, animated: false)
+            
+        }
+    }
 }
 

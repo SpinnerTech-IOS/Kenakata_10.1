@@ -40,7 +40,7 @@ class CatagoriesViewController: UIViewController{
         }
         self.collectionView.reloadData()
 
-        
+        print("scope: \(self.parentCatagories.count)")
     }
     
 
@@ -55,7 +55,7 @@ class CatagoriesViewController: UIViewController{
                             self.parentCatagory.append(json[i])
                         }
                     }
-                    print(self.parentCatagory.count)
+                    print(self.parentCatagory)
                     
                     for dic in self.parentCatagory {
                         if dic["image"] != nil{
