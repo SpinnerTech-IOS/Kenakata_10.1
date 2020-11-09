@@ -49,6 +49,8 @@ class AccountViewController: UIViewController {
     }
     
     
+    @IBAction func onClickGiftVoucher(_ sender: Any) {
+    }
     
     @IBAction func onClickLogout(_ sender: Any) {
         UserDefaults.standard.logout()

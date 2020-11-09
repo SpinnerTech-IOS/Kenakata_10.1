@@ -22,6 +22,9 @@
 		0B27C6882533281000DA62C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27C6872533281000DA62C4 /* SettingsViewController.swift */; };
 		0B27C68A253328C200DA62C4 /* AddAReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27C689253328C200DA62C4 /* AddAReviewViewController.swift */; };
 		0B27C68C2533293E00DA62C4 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27C68B2533293E00DA62C4 /* ProductDetailsViewController.swift */; };
+		0B2B06E7255915510030AA6B /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B06E6255915510030AA6B /* MyWalletViewController.swift */; };
+		0B2B06E9255923E20030AA6B /* HomeCollectionViewCellB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B06E8255923E10030AA6B /* HomeCollectionViewCellB.swift */; };
+		0B2B06EB255928CA0030AA6B /* HomeCollectionViewCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B06EA255928CA0030AA6B /* HomeCollectionViewCatCell.swift */; };
 		0B44BA952531C330001ACF4F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B44BA942531C330001ACF4F /* Product.swift */; };
 		0B54FB562535D7230083DDAE /* CustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB552535D7230083DDAE /* CustomerData.swift */; };
 		0B621FEE25303E6800854269 /* CustomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B621FED25303E6800854269 /* CustomDetailView.swift */; };
@@ -84,6 +87,9 @@
 		0B27C6872533281000DA62C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0B27C689253328C200DA62C4 /* AddAReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAReviewViewController.swift; sourceTree = "<group>"; };
 		0B27C68B2533293E00DA62C4 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
+		0B2B06E6255915510030AA6B /* MyWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
+		0B2B06E8255923E10030AA6B /* HomeCollectionViewCellB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCellB.swift; sourceTree = "<group>"; };
+		0B2B06EA255928CA0030AA6B /* HomeCollectionViewCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCatCell.swift; sourceTree = "<group>"; };
 		0B44BA942531C330001ACF4F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0B54FB552535D7230083DDAE /* CustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerData.swift; sourceTree = "<group>"; };
 		0B621FED25303E6800854269 /* CustomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDetailView.swift; sourceTree = "<group>"; };
@@ -182,6 +188,8 @@
 				0B96C67E2534C89B0067C9E6 /* ShopingCartTableViewCell.swift */,
 				0BA603D025473CE60032A303 /* CollectionSecondCollectionViewCell.swift */,
 				0B0745A2255688F500FC8F06 /* HomeCollectionViewACell.swift */,
+				0B2B06E8255923E10030AA6B /* HomeCollectionViewCellB.swift */,
+				0B2B06EA255928CA0030AA6B /* HomeCollectionViewCatCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 				0B27C689253328C200DA62C4 /* AddAReviewViewController.swift */,
 				0B27C68B2533293E00DA62C4 /* ProductDetailsViewController.swift */,
 				0BA603D4254788B00032A303 /* RewardsViewController.swift */,
+				0B2B06E6255915510030AA6B /* MyWalletViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,6 +467,7 @@
 				0BFE6A2A252C00AA00A6BC3B /* CustomTabBarController.swift in Sources */,
 				0BE3E151252A819B005E05A1 /* CustomViewSignInLower.swift in Sources */,
 				0B70900D25332502004BD425 /* AccountViewController.swift in Sources */,
+				0B2B06E9255923E20030AA6B /* HomeCollectionViewCellB.swift in Sources */,
 				0BFE6A28252C008800A6BC3B /* CustomTabBar.swift in Sources */,
 				0BA603D125473CE70032A303 /* CollectionSecondCollectionViewCell.swift in Sources */,
 				0BF224D0252AFC6600674D9A /* CustomButton.swift in Sources */,
@@ -471,6 +481,7 @@
 				0B7BEBD2252EE0F200732CE4 /* CollectionCollectionViewCell.swift in Sources */,
 				0B7BEBD6252EF5AF00732CE4 /* WishlistTableViewCell.swift in Sources */,
 				0BF2276A252E609800C7F587 /* RoundView.swift in Sources */,
+				0B2B06E7255915510030AA6B /* MyWalletViewController.swift in Sources */,
 				0B27C6822533266300DA62C4 /* MyCartViewController.swift in Sources */,
 				0BA603D5254788B10032A303 /* RewardsViewController.swift in Sources */,
 				0B96C67D25344F190067C9E6 /* NavBarItemExtension.swift in Sources */,
@@ -486,6 +497,7 @@
 				0B1E1BBE252CB75000876C13 /* CustomHomeOfferView.swift in Sources */,
 				0B54FB562535D7230083DDAE /* CustomerData.swift in Sources */,
 				0B971029252DDD6A003ABB22 /* CollectionViewController.swift in Sources */,
+				0B2B06EB255928CA0030AA6B /* HomeCollectionViewCatCell.swift in Sources */,
 				0B8040BE2530DE9800C87D5D /* ReviewsViewController.swift in Sources */,
 				0B27C68C2533293E00DA62C4 /* ProductDetailsViewController.swift in Sources */,
 				0B27C686253327F400DA62C4 /* CheckOutViewController.swift in Sources */,

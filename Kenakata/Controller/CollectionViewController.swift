@@ -16,11 +16,13 @@ class CollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionViewA: UICollectionView!
     @IBOutlet weak var collectionViewB: UICollectionView!
-    let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?category=707&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    
     var parentCatagory : [ParentCatagory] = []
     var CatagoryTitle: String?
+    var catagoryID = Int()
     var allProducts : [AllProduct] = []
     var dataStore = [[String:Any]]()
+    var allProductUrl = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         getCatagoryWiseProducts()
@@ -33,22 +35,23 @@ class CollectionViewController: UIViewController {
         collectionViewA.reloadData()
         navigationController!.navigationBar.topItem?.title = CatagoryTitle
         // Do any additional setup after loading the view.
-        
+        allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?category=\(catagoryID)&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
         if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-30)/2, height: 200)
+            let size = CGSize(width:(collectionViewB!.bounds.width-80)/2, height: 200)
             layout.itemSize = size
             
         }
         self.collectionViewB.reloadData()
-        
+        print(allProductUrl)
         
     }
     func getCatagoryWiseProducts(){
-        
-        Alamofire.request(allProductUrl).responseJSON { (myresponse) in
+        if let encoded = self.allProductUrl.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
+        {
+        Alamofire.request(url).responseJSON { (myresponse) in
             switch myresponse.result{
             case .success:
                 if let json = myresponse.result.value as? [[String: Any]] {
@@ -64,7 +67,7 @@ class CollectionViewController: UIViewController {
                     print(self.allProducts)
                     self.collectionViewA.reloadData()
                     self.collectionViewB.reloadData()
-                    
+                    print("WOWOWOW")
                     
                 }
             case let .failure(error):
@@ -76,7 +79,7 @@ class CollectionViewController: UIViewController {
         
     }
     
-    
+    }
 }
 
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -112,13 +115,18 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionCollectionViewCell
         cell.parentCatagoryName.text = self.parentCatagory[indexPath.row].name
         let imageUrl = self.parentCatagory[indexPath.row].Image.src
-        Alamofire.request(imageUrl ?? "", method: .get).validate().responseImage { (response) in
-            if let img = response.result.value{
-                DispatchQueue.main.async {
-                    cell.collectionCatagoryImageView.image = img
+        if imageUrl == ""{
+            cell.collectionCatagoryImageView.image = nil
+        }else{
+            Alamofire.request(imageUrl!, method: .get).validate().responseImage { (response) in
+                if let img = response.result.value{
+                    DispatchQueue.main.async {
+                        cell.collectionCatagoryImageView.image = img
+                    }
+                    
                 }
-                
             }
+            
         }
         return cell
     }

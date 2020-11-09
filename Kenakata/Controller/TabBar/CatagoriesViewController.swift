@@ -18,7 +18,7 @@ class CatagoriesViewController: UIViewController{
     
     let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var myCollectionView: UICollectionView!
     var parentCatagories: [ParentCatagory] = []
     var parentCatagory = [[String: Any]]()
     override func viewDidLoad() {
@@ -27,23 +27,23 @@ class CatagoriesViewController: UIViewController{
         navigationController?.addCustomBorderLine()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Catagories"
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        myCollectionView.dataSource = self
+        myCollectionView.delegate = self
         
-        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
+        if let layout = myCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionView!.bounds.width-30)/2, height: 200)
+            let size = CGSize(width:(myCollectionView!.bounds.width-80)/2, height: 180)
             layout.itemSize = size
             
         }
-        self.collectionView.reloadData()
-
+        self.myCollectionView.reloadData()
+        
         print("scope: \(self.parentCatagories.count)")
     }
     
-
+    
     func getJson() {
         Alamofire.request(catagoriesUrl).responseJSON { (myresponse) in
             switch myresponse.result{
@@ -62,8 +62,8 @@ class CatagoriesViewController: UIViewController{
                             let allData = ParentCatagory.init(json: dic)
                             self.parentCatagories.append(allData)
                         }
-                        self.collectionView.reloadData()
-
+                        self.myCollectionView.reloadData()
+                        
                     }
                     print(self.parentCatagories.count)
                 }
@@ -85,22 +85,26 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
         cell.catagoryAmountLbl.text = " "
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
         print(imageUrl!)
-        Alamofire.request(imageUrl ?? "", method: .get).validate().responseImage { (response) in
-            print("IMA: \(response)")
-            if let img = response.result.value{
-                DispatchQueue.main.async {
-                    cell.catagoryImageView.image = img
+        if imageUrl == ""{
+            cell.catagoryImageView.image = nil
+        }else{
+            Alamofire.request(imageUrl!, method: .get).validate().responseImage { (response) in
+                print("IMA: \(response)")
+                if let img = response.result.value{
+                    DispatchQueue.main.async {
+                        cell.catagoryImageView.image = img
+                    }
+                    
                 }
-                
             }
         }
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
         collectionVC.parentCatagory = self.parentCatagories;
+        collectionVC.catagoryID = self.parentCatagories[indexPath.row].id
         collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
         self.navigationController?.pushViewController(collectionVC, animated: false)
     }

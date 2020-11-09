@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import WebKit
 
 class LiveChatViewController: UIViewController {
 
+    @IBOutlet weak var webView: WKWebView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Live Chat"
-       
+        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.webView.frame.size.height))
+        self.view.addSubview(webView)
+        let url = URL(string: "https://afiqsouq.com/faqs")
+        webView.load(URLRequest(url: url!))
+        
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         // Do any additional setup after loading the view.
     }
     
