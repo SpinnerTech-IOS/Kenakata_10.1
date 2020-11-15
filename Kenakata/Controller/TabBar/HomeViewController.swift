@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 145)
+            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
             layout.itemSize = size
             
         }
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 145)
+            let size = CGSize(width:(collectionViewA!.bounds.width-60)/2, height: 120)
             layout.itemSize = size
             
         }
@@ -93,13 +93,17 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         cell.catagoryNameTxtLbl.text = parentCatagories[indexPath.row].name
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
         print(imageUrl!)
-        Alamofire.request(imageUrl ?? "", method: .get).validate().responseImage { (response) in
-            print("IMA: \(response)")
-            if let img = response.result.value{
-                DispatchQueue.main.async {
-                    cell.catagryImgView.image = img
-                }
+        if imageUrl == ""{
+            cell.catagryImgView.image = nil
+        }else{
+            Alamofire.request(imageUrl!, method: .get).validate().responseImage { (response) in
                 
+                if let img = response.result.value{
+                    DispatchQueue.main.async {
+                        cell.catagryImgView.image = img
+                    }
+                    
+                }
             }
         }
         return cell
@@ -129,8 +133,8 @@ extension HomeViewController{
                         }
                     }
                     self.collectionviewCatgry.reloadData()
-                    self.collectionViewA.reloadData()
-                    self.collectionViewB.reloadData()
+                   // self.collectionViewA.reloadData()
+                   // self.collectionViewB.reloadData()
                 }
                 
             case let .failure(error):
@@ -156,8 +160,7 @@ extension HomeViewController{
                     self.collectionviewCatgry.reloadData()
                     self.collectionViewA.reloadData()
                     self.collectionViewB.reloadData()
-                    print("ffff: \(json[1]["images"] ?? "")")
-                    print("ffff: \(self.allProduct[1].images)")
+                    
                 }
                 
             case let .failure(error):

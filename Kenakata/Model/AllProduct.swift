@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 struct AllProduct {
     let id: Int!
     let name: String!
@@ -14,15 +15,16 @@ struct AllProduct {
     let description: String!
     let price: String!
     let images: ProductImage
-
+    let imgUrl: AnyObject!
     init(json: [String: Any]) {
         let Id = json["id"] as? Int
         let Name = json["name"] as? String
         let Slug = json["slug"] as? String
         let Description = json["description"] as? String
         let Price = json["price"] as? String
-        let imageDict = json["images"] as? [String: Any]
-        let images = ProductImage(jsonImage: imageDict)
+        let ImgUrl = json["images"]! as? [[String:Any]]
+        //let imageDict = json["images"] as? AnyObject
+        let images = ProductImage(jsonImage: ImgUrl!)
 
         self.id = Id
         self.name = Name
@@ -30,7 +32,7 @@ struct AllProduct {
         self.description = Description
         self.price = Price
         self.images = images
-
+        self.imgUrl = ImgUrl as AnyObject?
 
     }
     struct ProductImage {
@@ -40,10 +42,10 @@ struct AllProduct {
 
 
 
-        init(jsonImage: [String: Any]?){
-            let ImgId = jsonImage?["id"] as? Int ?? 0
-            let ImgName = jsonImage?["name"] as? String ?? ""
-            let ImgSrc = jsonImage?["src"] as? String ?? ""
+        init(jsonImage: [[String:Any]]){
+            let ImgId = jsonImage[0]["id"] as? Int
+            let ImgName = jsonImage[0]["name"] as? String
+            let ImgSrc = jsonImage[0]["src"] as? String
 
 
             self.id = ImgId

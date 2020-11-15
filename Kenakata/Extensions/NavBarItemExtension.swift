@@ -8,9 +8,14 @@
 
 import Foundation
 import UIKit
+import Realm
+import RealmSwift
 extension UIViewController{
     func addCustomItem()
     {
+        let realm = try! Realm()
+        let cartDatas = realm.objects(CartDataModel.self)
+
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         // badge label
@@ -23,7 +28,7 @@ extension UIViewController{
         label.font = UIFont(name: "SanFranciscoText-Light", size: 10)
         label.textColor = .white
         label.backgroundColor = #colorLiteral(red: 0.07323727757, green: 0.851349175, blue: 0.8049345016, alpha: 1)
-        label.text = "8"
+        label.text = "\(cartDatas.count)"
         
         // button
         let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -42,11 +47,18 @@ extension UIViewController{
         navigationItem.rightBarButtonItem = rightBarButtomItem
     }
     @objc func rightButtonTouched() {
-        
+        let realm = try! Realm()
+        // Retrieve
+        let cartDatas = realm.objects(CartDataModel.self)
+        if cartDatas.count != 0{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let cartVC = storyboard.instantiateViewController(withIdentifier: "ShoppingCartViewController")
+            self.navigationController?.pushViewController(cartVC, animated: false)
+        }else{
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
-        
+        }
     }
     @objc func leftButtonTouched() {
         print("right button touched")

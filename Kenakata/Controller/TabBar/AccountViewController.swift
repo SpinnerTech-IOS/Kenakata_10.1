@@ -94,6 +94,6 @@ class AccountViewController: UIViewController {
     {
         UIApplication.shared.endIgnoringInteractionEvents()
         self.activityIndicator.stopAnimating()
-        ((self.activityIndicator.superview as UIView!).superview as UIView!).removeFromSuperview()
+        ((self.activityIndicator.superview as UIView?)?.superview as UIView?)!.removeFromSuperview()
     }
 }

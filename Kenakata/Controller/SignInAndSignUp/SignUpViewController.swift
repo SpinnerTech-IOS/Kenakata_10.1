@@ -16,11 +16,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var nameTxtLbl: UITextField!
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
+    @IBOutlet weak var mobileNbTxtField: UITextField!
+    @IBOutlet weak var addressTxtField: UITextField!
     let signUpUrl = "https://afiqsouq.com/api/user/register/?"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.isHidden = true
         nameTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "Your Name")
         emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "envelope"), placeholder: "Your Email")
         passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "Password")

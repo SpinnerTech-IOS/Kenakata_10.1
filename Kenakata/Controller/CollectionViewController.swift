@@ -19,12 +19,13 @@ class CollectionViewController: UIViewController {
     
     var parentCatagory : [ParentCatagory] = []
     var CatagoryTitle: String?
-    var catagoryID = Int()
+    var catagoryID: Int?
     var allProducts : [AllProduct] = []
     var dataStore = [[String:Any]]()
-    var allProductUrl = String()
+    let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.parentCatagory)
         getCatagoryWiseProducts()
         collectionViewA.delegate = self
         collectionViewA.dataSource = self
@@ -35,39 +36,45 @@ class CollectionViewController: UIViewController {
         collectionViewA.reloadData()
         navigationController!.navigationBar.topItem?.title = CatagoryTitle
         // Do any additional setup after loading the view.
-        allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?category=\(catagoryID)&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+        
         if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-80)/2, height: 200)
+            let size = CGSize(width:(collectionViewB!.bounds.width-100)/2, height: 200)
             layout.itemSize = size
             
         }
         self.collectionViewB.reloadData()
-        print(allProductUrl)
+        
         
     }
     func getCatagoryWiseProducts(){
-        if let encoded = self.allProductUrl.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
-        {
-        Alamofire.request(url).responseJSON { (myresponse) in
+        let params = ["category": self.catagoryID]
+        Alamofire.request(allProductUrl, method: .get, parameters: params as Parameters).responseJSON { (myresponse) in
             switch myresponse.result{
             case .success:
                 if let json = myresponse.result.value as? [[String: Any]] {
-                    for i in 0..<json.count{
-                        self.dataStore.append(json[i])
-                    }
-                    for dict in self.dataStore{
+                   print(json)
+                    for dict in json{
+                       
                         if dict["images"] != nil{
                             let allData = AllProduct.init(json: dict)
                             self.allProducts.append(allData)
                         }
+                       
+                        
                     }
                     print(self.allProducts)
+//                    if let data = self.allProducts[1].imgUrl as? [[String:Any]], !data.isEmpty,
+//                       let username = data[0]["src"] as? String {
+//                          print("Alhamdulillah:\(username)")
+//                    }
+                    
+                   // print(self.allProducts[1].images)
                     self.collectionViewA.reloadData()
                     self.collectionViewB.reloadData()
-                    print("WOWOWOW")
+                    
                     
                 }
             case let .failure(error):
@@ -79,7 +86,7 @@ class CollectionViewController: UIViewController {
         
     }
     
-    }
+    
 }
 
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -100,9 +107,9 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! CollectionSecondCollectionViewCell
             cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].price
             cell.collectionViewNameTextLbl.text = self.allProducts[indexPath.row].name
-            let imageUrlB = self.allProducts[indexPath.row].images.name
+            let imageUrlB = self.allProducts[indexPath.row].images.src
             print("nb: \(String(describing: imageUrlB))")
-            Alamofire.request(imageUrlB ?? "", method: .get).validate().responseImage { (responseB) in
+            Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
                 if let img = responseB.result.value{
                     DispatchQueue.main.async {
                         cell.colletionViewBImageView.image = img
@@ -134,10 +141,13 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionViewB{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let collectionVC = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
-            //collectionVC.parentCatagory = self.parentCatagories;
-            //  collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
-            self.navigationController?.pushViewController(collectionVC, animated: false)
+            let detailVC = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+            detailVC.productID = self.allProducts[indexPath.row].id
+            detailVC.productsName = self.allProducts[indexPath.row].name
+            detailVC.Descriptn = self.allProducts[indexPath.row].description
+            detailVC.imageSrc = self.allProducts[indexPath.row].images.src
+            detailVC.productPrice = self.allProducts[indexPath.row].price
+            self.navigationController?.pushViewController(detailVC, animated: false)
             
         }
     }

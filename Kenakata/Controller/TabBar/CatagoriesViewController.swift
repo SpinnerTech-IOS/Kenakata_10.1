@@ -40,7 +40,6 @@ class CatagoriesViewController: UIViewController{
         }
         self.myCollectionView.reloadData()
         
-        print("scope: \(self.parentCatagories.count)")
     }
     
     
@@ -65,7 +64,7 @@ class CatagoriesViewController: UIViewController{
                         self.myCollectionView.reloadData()
                         
                     }
-                    print(self.parentCatagories.count)
+                    
                 }
                 
             case let .failure(error):

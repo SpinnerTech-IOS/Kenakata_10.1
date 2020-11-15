@@ -43,7 +43,7 @@ struct ParentCatagory {
         
     }
     struct CatagoryImage {
-        let id: String!
+        let id: Int!
         let src: String!
         let thumbnail: String!
         let sizes: String!
@@ -52,7 +52,7 @@ struct ParentCatagory {
         
 
         init(json: AnyObject?){
-            let ImgId = json?["id"] as? String ?? ""
+            let ImgId = json?["id"] as? Int ?? 0
             let ImgName = json?["name"] as? String ?? ""
             let ImgSrc = json?["src"] as? String ?? ""
             let ImgThumbnail = json?["thumbnail"] as? String ?? ""
