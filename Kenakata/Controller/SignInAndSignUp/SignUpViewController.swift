@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTxtLbl.becomeFirstResponder()
         navigationController?.navigationBar.isHidden = true
         nameTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "Your Name")
         emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "envelope"), placeholder: "Your Email")
@@ -38,10 +39,17 @@ class SignUpViewController: UIViewController {
     
     @IBAction func onClickSignUp(_ sender: Any) {
         if (nameTxtLbl.text != "" && emailTxtLbl.text != "" && passwordTxtLbl.text != ""){
-            
+            func random(digits:Int) -> String {
+                var number = String()
+                for _ in 1...digits {
+                   number += "\(Int.random(in: 1...9))"
+                }
+                return number
+            }
+
             SVProgressHUD.show(withStatus: "Loading...")
             //            let headers: HTTPHeaders =
-            let params = ["email": emailTxtLbl!.text!, "username": nameTxtLbl.text!, "user_pass": passwordTxtLbl!.text!, "nonce" : "f717cb978e"]
+            let params = ["email": emailTxtLbl!.text!, "username": nameTxtLbl.text!, "user_pass": passwordTxtLbl!.text!, "mobile_nb": mobileNbTxtField!.text!, "address": addressTxtField!.text!, "nonce" : "f717cb978e"]
             Alamofire.request(signUpUrl, method: .post, parameters: params as Parameters).responseJSON { response in
                 switch response.result {
                 case .success:
@@ -51,6 +59,14 @@ class SignUpViewController: UIViewController {
 
                         
                     }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let otpVC = storyboard.instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
+                    otpVC.otpCode = random(digits: 6)
+                    otpVC.mobileNumber = self.mobileNbTxtField.text!
+                    otpVC.userEmail = self.emailTxtLbl.text!
+                    otpVC.userPass = self.passwordTxtLbl.text!
+                    
+                    self.navigationController?.pushViewController(otpVC, animated: false)
                     self.emailTxtLbl.text = nil
                     self.passwordTxtLbl.text = nil
                     self.nameTxtLbl.text = nil

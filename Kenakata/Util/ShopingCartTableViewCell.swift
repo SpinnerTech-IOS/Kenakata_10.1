@@ -10,6 +10,13 @@ import UIKit
 
 class ShopingCartTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var quantityIncreaseLbl: UIButton!
+    @IBOutlet weak var quantityLbl: UILabel!
+    @IBOutlet weak var quantitydecreaseBtn: UIButton!
+    @IBOutlet weak var productImagemageView: CustomImageView!
+    @IBOutlet weak var productNameTxtLbl: UILabel!
+        @IBOutlet weak var priceTxtLbl: UILabel!
+    @IBOutlet weak var deleteCartProductBtn: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

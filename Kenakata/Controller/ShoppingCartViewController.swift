@@ -12,19 +12,19 @@ import SVProgressHUD
 import SwiftyJSON
 import Realm
 import RealmSwift
+import AlamofireImage
 
 class ShoppingCartViewController: UIViewController {
 
     let realm = try! Realm()
-    
+   
+    let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
     // Save
-    let cartData = CartDataModel()
+    @IBOutlet weak var myTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Retrieve
-        let cartDatas = realm.objects(CartDataModel.self)
-        print(cartDatas.count)
-
+        navigationController!.navigationBar.topItem?.title = "My Shopping Cart"
         // Do any additional setup after loading the view.
     }
     
@@ -37,14 +37,33 @@ class ShoppingCartViewController: UIViewController {
 }
 extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        return self.results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShopingCartTableViewCell
+        cell.productNameTxtLbl.text = self.results[indexPath.row].productName
+        cell.priceTxtLbl.text = self.results[indexPath.row].productPrice
+        cell.deleteCartProductBtn.tag = self.results[indexPath.row].id
+        cell.deleteCartProductBtn.addTarget(self,  action: #selector(buttonClicked), for: .touchUpInside)
         return cell
     }
-    
+     @objc func buttonClicked(_sender: UIButton) {
+
+                // Delete
+        if let userObject = realm.objects(CartDataModel.self).filter("id == \(_sender.tag)").first {
+            print("In process of deleting")
+            try! realm.write {
+                realm.delete(userObject)
+            }
+            print("Object deleted.")
+        }
+        else{
+            print("Object not found.")
+        }
+        self.myTableView.reloadData()
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }

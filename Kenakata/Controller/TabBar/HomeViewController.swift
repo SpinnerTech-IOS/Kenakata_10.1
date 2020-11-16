@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchBarHome: UISearchBar!
     @IBOutlet weak var collectionViewA: UICollectionView!
     @IBOutlet weak var collectionViewB: UICollectionView!
+    
     let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?category=707&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     var parentCatagories: [ParentCatagory] = []
@@ -53,7 +54,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewA!.bounds.width-60)/2, height: 120)
+            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
             layout.itemSize = size
             
         }
@@ -133,8 +134,8 @@ extension HomeViewController{
                         }
                     }
                     self.collectionviewCatgry.reloadData()
-                   // self.collectionViewA.reloadData()
-                   // self.collectionViewB.reloadData()
+                    // self.collectionViewA.reloadData()
+                    // self.collectionViewB.reloadData()
                 }
                 
             case let .failure(error):

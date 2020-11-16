@@ -23,9 +23,10 @@ class ReviewsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+   
     @IBAction func onClickAddReview(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "AddAReviewViewController")
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
     }
 }

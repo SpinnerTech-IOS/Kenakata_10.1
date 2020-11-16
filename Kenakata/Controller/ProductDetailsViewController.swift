@@ -63,7 +63,7 @@ class ProductDetailsViewController: UIViewController {
         // Save
         let cartData = CartDataModel()
         cartData.id = incrementID()
-        cartData.productId = "22"
+        cartData.productId = "\(self.productID!)"
         cartData.productName = self.productsName!
         cartData.productPrice = self.productPrice!
         cartData.productImage = self.imageSrc!
@@ -109,7 +109,7 @@ class ProductDetailsViewController: UIViewController {
         // Simple Incremental ID
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
     }
     
