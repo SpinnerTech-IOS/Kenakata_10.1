@@ -46,22 +46,15 @@ class HomeViewController: UIViewController {
         addCustomItem()
         print(self.allProductA.count)
         
-        //        if let layout = collectionViewA?.collectionViewLayout as? UICollectionViewFlowLayout{
-        //            layout.minimumLineSpacing = 10
-        //            layout.minimumInteritemSpacing = 10
-        //            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        //            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
-        //            layout.itemSize = size
-        //            
-        //        }
-        //        if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
-        //            layout.minimumLineSpacing = 10
-        //            layout.minimumInteritemSpacing = 10
-        //            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        //            let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
-        //            layout.itemSize = size
-        //            
-        //        }
+  
+                if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
+                    layout.minimumLineSpacing = 10
+                    layout.minimumInteritemSpacing = 10
+                    layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                    let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
+                    layout.itemSize = size
+                    
+                }
         
     }
     
@@ -118,7 +111,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             
             return cell
         }
-        let cell = collectionviewCatgry.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewACatCell", for: indexPath) as! HomeCollectionViewCatCell
+        let cell = collectionviewCatgry.dequeueReusableCell(withReuseIdentifier: "catCell", for: indexPath) as! HomeCollectionViewCatCell
         cell.catagoryNameTxtLbl.text = parentCatagories[indexPath.row].name
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
         print(imageUrl!)

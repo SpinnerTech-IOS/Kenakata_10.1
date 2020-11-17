@@ -83,6 +83,10 @@ class OTPViewController: UIViewController {
                 
             }
             
+        }else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUp")
+            self.present(signUpVC, animated: false)
         }
     }
     override func viewWillAppear(_ animated: Bool) {
