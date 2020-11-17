@@ -12,5 +12,6 @@ class HomeCollectionViewACell: UICollectionViewCell {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var productNameLbl: UILabel!
     
+    @IBOutlet weak var caCartBtn: UIButton!
     @IBOutlet weak var productPriceLbl: UILabel!
 }

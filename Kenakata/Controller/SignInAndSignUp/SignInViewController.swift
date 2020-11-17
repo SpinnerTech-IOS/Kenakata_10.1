@@ -33,7 +33,7 @@ class SignInViewController: UIViewController {
         print("signup")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUp")
-        self.navigationController?.pushViewController(signUpVC, animated: false)
+        self.present(signUpVC, animated: false)
     }
     @IBAction func onClickLogin(_ sender: UIButton) {
         

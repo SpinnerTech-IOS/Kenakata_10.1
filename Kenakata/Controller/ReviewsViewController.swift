@@ -9,7 +9,8 @@
 import UIKit
 
 class ReviewsViewController: UIViewController {
-
+    
+    var productId : Int?
     @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,9 @@ class ReviewsViewController: UIViewController {
    
     @IBAction func onClickAddReview(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController")
-        self.navigationController?.pushViewController(cartVC, animated: false)
+        let addReviewVC = storyboard.instantiateViewController(withIdentifier: "AddAReviewViewController") as! AddAReviewViewController
+        addReviewVC.productID = self.productId
+        self.navigationController?.pushViewController(addReviewVC, animated: false)
     }
 }
 

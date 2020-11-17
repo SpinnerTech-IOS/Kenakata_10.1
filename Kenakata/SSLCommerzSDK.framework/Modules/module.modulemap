@@ -1,0 +1,4 @@
+framework module SSLCommerzSDK {
+  header "SSLCommerzSDK-Swift.h"
+  requires objc
+}

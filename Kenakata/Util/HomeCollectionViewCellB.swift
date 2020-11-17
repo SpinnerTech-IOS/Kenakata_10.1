@@ -9,5 +9,9 @@
 import UIKit
 
 class HomeCollectionViewCellB: UICollectionViewCell {
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var productNameLbl: UILabel!
     
+    @IBOutlet weak var cbCartBtn: UIButton!
+    @IBOutlet weak var productPriceLbl: UILabel!
 }

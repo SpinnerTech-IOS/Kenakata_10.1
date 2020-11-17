@@ -109,8 +109,9 @@ class ProductDetailsViewController: UIViewController {
         // Simple Incremental ID
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController")
-        self.navigationController?.pushViewController(cartVC, animated: false)
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
+        reviewVC.productId = self.productID
+        self.navigationController?.pushViewController(reviewVC, animated: false)
     }
     
 }

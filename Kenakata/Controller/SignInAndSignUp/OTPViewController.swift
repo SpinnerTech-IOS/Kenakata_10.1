@@ -25,12 +25,17 @@ class OTPViewController: UIViewController {
     var userEmail: String?
     var userPass: String?
     var checkOtp: String?
+    var apiUsername = "afiqsouq2021"
+    var apiPass = "12afiqsouq3434$"
+    
     let otpSendUrl = "http://66.45.237.70/api.php?"
     let loginURL = "https://afiqsouq.com/api/user/generate_auth_cookie?"
     override func viewDidLoad() {
-        
-        let params = ["username": "afiqsouq2021", "password": "12afiqsouq3434", "number": mobileNumber!, "message": otpCode ]
-        Alamofire.request(otpSendUrl, method: .post, parameters: params as Parameters).responseJSON { response in
+        super.viewDidLoad()
+        let sms = "OTP : \(self.otpCode!)"
+    
+        let params = ["username": apiUsername, "password": apiPass, "number": mobileNumber!, "message": sms ]
+        Alamofire.request(otpSendUrl, method: .get, parameters: params as Parameters).responseJSON { response in
             switch response.result {
             case .success:
                 if let value = response.result.value{
@@ -43,17 +48,17 @@ class OTPViewController: UIViewController {
                 print(error)
                 print("Wrong")
             }
-            SVProgressHUD.dismiss()
+        
         }
-        navigationController?.addCustomBorderLine()
-        addCustomItem()
+        
     }
     
     
     
     @IBAction func onClickVarifyBtn(_ sender: Any) {
-        
-        if self.otpCode == checkOtp{
+        print("OTP : \(self.otpCode!)")
+        print("OTP : \(self.otp1TxtField.text!)\(self.otp2TxtField.text!)\(self.otp3TxtField.text!)\(self.otp4TxtField.text!)\(self.otp5TxtField.text!)\(self.otp6TxtField.text!)")
+        if "OTP : \(self.otpCode!)" == "OTP : \(self.otp1TxtField.text!)\(self.otp2TxtField.text!)\(self.otp3TxtField.text!)\(self.otp4TxtField.text!)\(self.otp5TxtField.text!)\(self.otp6TxtField.text!)"{
             SVProgressHUD.show(withStatus: "Loading...")
             //            let headers: HTTPHeaders =
             let params = ["email": userEmail!, "password": userPass!]
@@ -75,7 +80,7 @@ class OTPViewController: UIViewController {
                     print(error)
                     print("Wrong")
                 }
-                SVProgressHUD.dismiss()
+                
             }
             
         }
@@ -89,7 +94,7 @@ class OTPViewController: UIViewController {
          otp4TxtField.addTarget(self, action: #selector(textdidCgange(textfield:)), for: UIControl.Event.editingChanged)
          otp5TxtField.addTarget(self, action: #selector(textdidCgange(textfield:)), for: UIControl.Event.editingChanged)
          otp6TxtField.addTarget(self, action: #selector(textdidCgange(textfield:)), for: UIControl.Event.editingChanged)
-        self.checkOtp = "\(self.otp1TxtField.text!)\(self.otp2TxtField.text!)\(self.otp3TxtField.text!)\(self.otp4TxtField.text!)\(self.otp5TxtField.text!)\(self.otp6TxtField.text!)"
+       
     }
     
     func changeRootView() {
