@@ -11,6 +11,22 @@ import UIKit
 import Realm
 import RealmSwift
 extension UIViewController{
+    //Alert
+    func notifyUser(message: String) -> Void {
+     let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+     present(alert, animated: true, completion: nil)
+     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+      self.dismiss(animated: true)
+     }
+    }
+    func addMenuBtn(){
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+               leftButton.setBackgroundImage(UIImage(named: "menu-icon"), for: .normal)
+               leftButton.addTarget(self, action: #selector(leftButtonTouched), for: .touchUpInside)
+         let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+         navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
     func addCustomItem()
     {
         let realm = try! Realm()
@@ -36,14 +52,12 @@ extension UIViewController{
         rightButton.addTarget(self, action: #selector(rightButtonTouched), for: .touchUpInside)
         rightButton.addSubview(label)
         
-        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        leftButton.setBackgroundImage(UIImage(named: "menu-icon"), for: .normal)
-        leftButton.addTarget(self, action: #selector(leftButtonTouched), for: .touchUpInside)
+       
         
         // Bar button item
-        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+       
         let rightBarButtomItem = UIBarButtonItem(customView: rightButton)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+       
         navigationItem.rightBarButtonItem = rightBarButtomItem
     }
     @objc func rightButtonTouched() {

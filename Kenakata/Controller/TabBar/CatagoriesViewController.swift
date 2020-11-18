@@ -26,6 +26,7 @@ class CatagoriesViewController: UIViewController{
         getJson()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "Catagories"
         myCollectionView.dataSource = self
         myCollectionView.delegate = self

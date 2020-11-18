@@ -55,6 +55,27 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func onClickAddCart(_ sender: Any) {
+        addCustomItem()
+        let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
+        var pId : String?
+        for i in 0..<results.count{
+            print(results[i].productId)
+            print("\(self.productID!)")
+            if results[i].productId == "\(self.productID)"{
+                pId = results[i].productId
+            }
+        }
+        print(pId)
+//        for item in realm.objects(CartDataModel.self).filter("user_id == 4") {
+//           print(item)
+//        }
+        //
+        //               if let object = objects.first {
+        //                   try! realm.write {
+        //                       object.text = "updatedtext"
+        //                       object.title = "updatetitle"
+        //                   }
+        //               }
         func incrementID() -> Int {
             let realm = try! Realm()
             return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
@@ -71,6 +92,7 @@ class ProductDetailsViewController: UIViewController {
         
         try! realm.write {
             realm.add(cartData)
+            notifyUser(message: "Added To Cart Successfully")
         }
         
         // Retrieve
@@ -81,7 +103,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func onClickReview(_ sender: Any) {
-        
+  
         //
         //               // Update
         //               let objects = realm.objects(Note.self).filter("title = %@", "Remember the milk!")

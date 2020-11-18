@@ -68,7 +68,7 @@ extension ShopViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "ProductDetailsViewController")
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
     }
 }

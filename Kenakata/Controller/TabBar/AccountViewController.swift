@@ -11,7 +11,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
-
+import RealmSwift
+import Realm
 class AccountViewController: UIViewController {
     let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
     var activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -23,8 +24,10 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "My Account"
         getUser()
+        
         // Do any additional setup after loading the view.
     }
     func getUser(){

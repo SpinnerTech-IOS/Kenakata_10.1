@@ -16,6 +16,7 @@ class MyCartViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "My Cart"
         navigationController!.navigationBar.barStyle = UIBarStyle.black
         navigationController!.navigationBar.tintColor = UIColor.white        // Do any additional setup after loading the view.

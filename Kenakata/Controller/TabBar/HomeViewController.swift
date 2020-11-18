@@ -11,10 +11,21 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import AlamofireImage
+import Realm
+import RealmSwift
 
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var sliderCollectionView: UICollectionView!
+    @IBOutlet weak var pageView: UIPageControl!
+    
+    var imgArr = [  UIImage(named:"mobile_app_final-1"),
+                    UIImage(named:"mobile_app_final-2") ,
+                    UIImage(named:"mobile_app_final-3") ,
+                    UIImage(named:"mobile_app_final-4") ,
+                    UIImage(named:"mobile_app_final-5") ,
+                    UIImage(named:"mobile_app_final-2") ]
     @IBOutlet weak var collectionviewCatgry: UICollectionView!
     @IBOutlet weak var searchBarHome: UISearchBar!
     @IBOutlet weak var collectionViewA: UICollectionView!
@@ -30,31 +41,69 @@ class HomeViewController: UIViewController {
     var dataA = [[String: Any]]()
     var dataB = [[String: Any]]()
     let header = ["Features..", "New Arivals.."]
+    var timer = Timer()
+    var counter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionviewCatgry.dataSource = self
         self.collectionviewCatgry.delegate = self
+        self.sliderCollectionView.dataSource = self
+        self.sliderCollectionView.delegate = self
         self.collectionViewA.dataSource = self
         self.collectionViewA.delegate = self
         self.collectionViewB.dataSource = self
         self.collectionViewB.delegate = self
+        //let realm = try! Realm()
+        
+        
         getParentCatagoryJson()
         getJsonA()
         getJsonB()
         
+        pageView.numberOfPages = imgArr.count
+        pageView.currentPage = 0
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+        }
+        
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        addMenuBtn()
         print(self.allProductA.count)
         
-  
-                if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
-                    layout.minimumLineSpacing = 10
-                    layout.minimumInteritemSpacing = 10
-                    layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-                    let size = CGSize(width:(collectionViewA!.bounds.width-30)/2, height: 140)
-                    layout.itemSize = size
-                    
-                }
+        
+        if let layout = sliderCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
+            layout.minimumLineSpacing = 0.0
+            layout.minimumInteritemSpacing = 0.0
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            let size = sliderCollectionView.frame.size
+            //        return CGSize(width: size.width, height: size.height)
+            let itmsize = CGSize(width: size.width, height: size.height)
+            layout.itemSize = itmsize
+            
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func changeImage() {
+        
+        if counter < imgArr.count {
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            pageView.currentPage = counter
+            counter += 1
+        } else {
+            counter = 0
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+            pageView.currentPage = counter
+            counter = 1
+        }
         
     }
     
@@ -75,6 +124,8 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             return allProductA.count
         }else if collectionView == self.collectionViewB{
             return allProductB.count
+        }else if collectionView == self.sliderCollectionView{
+            return imgArr.count
         }
         return 0
     }
@@ -85,6 +136,8 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             cell.productNameLbl.text = self.allProductA[indexPath.row].name
             cell.productPriceLbl.text = self.allProductA[indexPath.row].price
             let imageUrlB = self.allProductA[indexPath.row].images.src
+            cell.caCartBtn.tag = indexPath.row
+            cell.caCartBtn.addTarget(self,  action: #selector(addToCartA), for: .touchUpInside)
             Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
                 if let img = responseB.result.value{
                     DispatchQueue.main.async {
@@ -108,6 +161,14 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
                     
                 }
             }
+            
+            return cell
+        }else if collectionView == self.sliderCollectionView{
+            let cell = sliderCollectionView.dequeueReusableCell(withReuseIdentifier: "bnrcell", for: indexPath) as! HomeBannerCollectionViewCell
+            cell.bannerImageView.image = imgArr[indexPath.row]
+            cell.bannerImageView.contentMode = .scaleAspectFill
+            
+            cell.clipsToBounds = true
             
             return cell
         }
@@ -151,6 +212,37 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             detailVC.productPrice = self.allProductB[indexPath.row].price
             self.navigationController?.pushViewController(detailVC, animated: false)
         }
+    }
+    @objc func addToCartA(sender:UIButton) {
+        
+        addCustomItem()
+        print(sender.tag)
+        func incrementID() -> Int {
+            let realm = try! Realm()
+            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        }
+        let realm = try! Realm()
+        // Save
+        let cartData = CartDataModel()
+        cartData.id = incrementID()
+        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productName = self.allProductA[sender.tag].name
+        cartData.productPrice = self.allProductA[sender.tag].price
+        cartData.productImage = self.allProductA[sender.tag].images.src
+        cartData.ProductQuantity = 1
+        
+        try! realm.write {
+            realm.add(cartData)
+            notifyUser(message: "Added To Cart Successfully")
+        }
+        
+        // Retrieve
+        let cartDatas = realm.objects(CartDataModel.self)
+        for cart in cartDatas {
+            print(cart)
+        }
+        
+
     }
 }
 extension HomeViewController{
@@ -235,6 +327,27 @@ extension HomeViewController{
         }
     }
 }
+
+//extension HomeViewController: UICollectionViewDelegateFlowLayout {
+//   
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let size = sliderCollectionView.frame.size
+//        return CGSize(width: size.width, height: size.height)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0.0
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0.0
+//    }
+//    
+//}
 
 
 

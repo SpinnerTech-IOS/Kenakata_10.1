@@ -32,6 +32,7 @@
 		0B3F41FD25627E8700D342CE /* Onbrding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3F41FC25627E8700D342CE /* Onbrding3ViewController.swift */; };
 		0B44BA952531C330001ACF4F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B44BA942531C330001ACF4F /* Product.swift */; };
 		0B54FB562535D7230083DDAE /* CustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB552535D7230083DDAE /* CustomerData.swift */; };
+		0B5E88C025643C760045528B /* HomeBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E88BF25643C760045528B /* HomeBannerCollectionViewCell.swift */; };
 		0B621FEE25303E6800854269 /* CustomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B621FED25303E6800854269 /* CustomDetailView.swift */; };
 		0B70900D25332502004BD425 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70900C25332502004BD425 /* AccountViewController.swift */; };
 		0B7BEBCC252EC72200732CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B7BEBCB252EC72100732CE4 /* Assets.xcassets */; };
@@ -120,6 +121,7 @@
 		0B3F41FC25627E8700D342CE /* Onbrding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onbrding3ViewController.swift; sourceTree = "<group>"; };
 		0B44BA942531C330001ACF4F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0B54FB552535D7230083DDAE /* CustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerData.swift; sourceTree = "<group>"; };
+		0B5E88BF25643C760045528B /* HomeBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B621FED25303E6800854269 /* CustomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDetailView.swift; sourceTree = "<group>"; };
 		0B70900C25332502004BD425 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		0B7BEBCB252EC72100732CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Kenakata/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -227,6 +229,7 @@
 				0B2B06E8255923E10030AA6B /* HomeCollectionViewCellB.swift */,
 				0B2B06EA255928CA0030AA6B /* HomeCollectionViewCatCell.swift */,
 				0B990B8925623722009B1B52 /* HomeCollectionViewCCell.swift */,
+				0B5E88BF25643C760045528B /* HomeBannerCollectionViewCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				0B621FEE25303E6800854269 /* CustomDetailView.swift in Sources */,
 				0B44BA952531C330001ACF4F /* Product.swift in Sources */,
 				0B96C67B253441390067C9E6 /* NavigationBarExtension.swift in Sources */,
+				0B5E88C025643C760045528B /* HomeBannerCollectionViewCell.swift in Sources */,
 				0B2ED2082560FD4F00C91D35 /* OnboardingViewController.swift in Sources */,
 				0B184939252F86A70018AEDF /* FiltersViewController.swift in Sources */,
 				0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */,
