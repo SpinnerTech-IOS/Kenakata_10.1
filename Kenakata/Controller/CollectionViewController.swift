@@ -68,7 +68,7 @@ class CollectionViewController: UIViewController {
                     print(self.allProducts)
 //                    if let data = self.allProducts[1].imgUrl as? [[String:Any]], !data.isEmpty,
 //                       let username = data[0]["src"] as? String {
-//                          print("Alhamdulillah:\(username)")
+//                          print("uname:\(username)")
 //                    }
                     
                    // print(self.allProducts[1].images)

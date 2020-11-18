@@ -112,7 +112,28 @@ class HomeViewController: UIViewController {
         let catagoryVC = storyboard.instantiateViewController(withIdentifier: "Catagories")
         self.navigationController?.pushViewController(catagoryVC, animated: false)
     }
+    @IBAction func onClickSeeMoreClctnViewA(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
+        collectionVC.parentCatagory = self.parentCatagories;
+        collectionVC.catagoryID = 458
+        collectionVC.CatagoryTitle = ""
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
+    @IBAction func onClickSeeMoreClctnViewB(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
+        collectionVC.parentCatagory = self.parentCatagories;
+        collectionVC.catagoryID = 458
+        collectionVC.CatagoryTitle = ""
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
     
+    @IBAction func onclickSearchBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let catagoryVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController")
+        self.navigationController?.pushViewController(catagoryVC, animated: false)
+    }
     
 }
 

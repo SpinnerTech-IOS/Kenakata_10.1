@@ -32,7 +32,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LB-hF-R6T" userLabel="TopView">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="323.33333333333331"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Banner-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="b33-6u-xYF">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="b33-6u-xYF">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="323.33333333333331"/>
                                                     </imageView>
                                                 </subviews>
@@ -431,7 +431,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-2B-Qm0" userLabel="TopView">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="327.33333333333331"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Banner-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-pf-Ere">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-pf-Ere">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="327.33333333333331"/>
                                                     </imageView>
                                                 </subviews>
@@ -687,6 +687,9 @@
                                                     </searchBar>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1y-AE-ZTE">
                                                         <rect key="frame" x="0.0" y="0.0" width="362" height="50"/>
+                                                        <connections>
+                                                            <action selector="onclickSearchBtn:" destination="ga3-fL-Oy5" eventType="touchUpInside" id="wLs-6f-KeP"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -784,6 +787,9 @@
                                                                                 <state key="normal" title="See More ⌄">
                                                                                     <color key="titleColor" name="Splash_BackgroundColor"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="onClickSeeMoreCatgry:" destination="ga3-fL-Oy5" eventType="touchUpInside" id="Nfz-86-Ddg"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -901,6 +907,9 @@
                                                                                 <state key="normal" title="See More ⌄">
                                                                                     <color key="titleColor" name="Splash_BackgroundColor"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="onClickSeeMoreClctnViewA:" destination="ga3-fL-Oy5" eventType="touchUpInside" id="NvX-mn-NJz"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -1052,6 +1061,9 @@
                                                                                 <state key="normal" title="See More ⌄">
                                                                                     <color key="titleColor" name="Splash_BackgroundColor"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="onClickSeeMoreClctnViewB:" destination="ga3-fL-Oy5" eventType="touchUpInside" id="AVv-v6-Bd8"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -6524,6 +6536,7 @@ every $100 spend</string>
         <image name="icon-shield" width="13.666666984558105" height="16"/>
         <image name="icon-trash" width="17" height="20"/>
         <image name="lock-help" width="70" height="85"/>
+        <image name="loginLogo" width="1280" height="296"/>
         <image name="menu-icon" width="20" height="15"/>
         <image name="mobile_app_final-1" width="500" height="171"/>
         <image name="my-cart" width="38" height="26"/>

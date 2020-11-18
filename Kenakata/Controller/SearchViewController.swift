@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
     var filteredData: [String]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.becomeFirstResponder()
         navigationController?.addCustomBorderLine()
         addCustomItem()
         searchBar.delegate = self
