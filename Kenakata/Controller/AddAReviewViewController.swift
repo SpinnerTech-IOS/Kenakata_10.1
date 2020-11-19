@@ -25,7 +25,7 @@ class AddAReviewViewController: UIViewController {
     var productID : Int?
     
      let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
-    let reviewURL = "https://afiqsouq.com/wp-json/wc/v3/products/reviews"
+    let reviewURL = "https://afiqsouq.com/wp-json/wc/v3/products/reviews?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     var rating = 1
     override func viewDidLoad() {
       
@@ -56,23 +56,32 @@ class AddAReviewViewController: UIViewController {
           }
     
     @IBAction func onClickSubmitBtn(_ sender: Any) {
+        
+        print("\(self.productID!)\(self.reviewTxtField!.text!)\(self.nameTxtField!.text!)\(self.emailTextField!.text!)\(self.rating)")
         if emailTextField.text != "" && nameTxtField.text != "" && reviewTxtField.text != ""{
-            
-            let param = [ "product_id": self.productID!, "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!,
-                   "reviewer_email": self.emailTextField!.text!, "rating": self.rating ]  as [String: Any]
-           Alamofire.request(reviewURL, method: .post, parameters: param as Parameters).responseJSON { response in
-               switch response.result {
-               case .success:
-                   if let value = response.result.value{
-                       print(value)
-                   }
-                   
-               case let .failure(error):
-                   print(error)
-                   print("Wrong")
-               }
-               
-           }
+            //Convert text data to binary
+            let dict: Dictionary<String, Any> = [ "product_id": self.productID!, "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!,
+                              "reviewer_email": self.emailTextField!.text!, "rating": self.rating]
+            let userData = try? JSONSerialization.data(withJSONObject: dict)
+            Alamofire.upload(multipartFormData: { (multiFoormData) in
+                multiFoormData.append(userData!, withName: "reviews")
+                
+            }, to: reviewURL, method: .post, headers: nil) { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.response { answer in
+                        print("statusCode: \(answer.response?.statusCode)")
+                    }
+                    upload.uploadProgress { progress in
+                        //call progress callback here if you need it
+                    }
+                case .failure(let encodingError):
+                    print("multipart upload encodingError: \(encodingError)")
+                }
+            }
+//            let param = [ "product_id": self.productID!, "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!,
+//                   "reviewer_email": self.emailTextField!.text!, "rating": self.rating ]  as [String: Any]
+
         }
 
     }

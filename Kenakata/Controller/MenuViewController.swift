@@ -12,12 +12,12 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
         showAnimate()
         // Do any additional setup after loading the view.
-    
+        
     }
-
+    
     @IBAction func Close_popupView(_ sender: Any) {
         removeAnimate()
     }
@@ -46,23 +46,33 @@ class MenuViewController: UIViewController {
             }
         })
     }
-
     
+    
+    @IBAction func onClickHome(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
     @IBAction func onClickCatagories(_ sender: Any) {
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "CatagoriesViewController")
-        viewController?.modalPresentationStyle = .currentContext
-        
-        self.present(viewController! , animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "Catagories")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     @IBAction func onClickNewArivals(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
-
+    
     @IBAction func onClickTopDeals(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
-    @IBAction func onClickNotifications(_ sender: Any) {
-    }
-    @IBAction func onClickEditorPicks(_ sender: Any) {
-    }
+    
     @IBAction func onClickHelp(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "LiveChatViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
 }

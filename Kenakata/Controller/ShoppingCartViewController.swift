@@ -15,9 +15,9 @@ import RealmSwift
 import AlamofireImage
 
 class ShoppingCartViewController: UIViewController {
-
+    
     let realm = try! Realm()
-   
+    
     let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
     // Save
     @IBOutlet weak var myTableView: UITableView!
@@ -40,8 +40,8 @@ class ShoppingCartViewController: UIViewController {
     }
     func paymentCacculate(){
         for i in 0..<results.count{
-            self.subTotal = subTotal +  Int(results[i].productPrice)!
-
+            self.subTotal = subTotal +  (Int(results[i].productPrice) ?? 0 )
+            
         }
         print(subTotal)
     }
@@ -66,26 +66,27 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         cell.deleteCartProductBtn.tag = self.results[indexPath.row].id
         cell.deleteCartProductBtn.addTarget(self,  action: #selector(buttonClicked), for: .touchUpInside)
         let imageUrl = self.results[indexPath.row].productImage
-         Alamofire.request(imageUrl, method: .get).validate().responseImage { (responseB) in
-             if let img = responseB.result.value{
-                 DispatchQueue.main.async {
-                     cell.productImagemageView.image = img
-                 }
-                 
-             }
-         }
+        Alamofire.request(imageUrl, method: .get).validate().responseImage { (responseB) in
+            if let img = responseB.result.value{
+                DispatchQueue.main.async {
+                    cell.productImagemageView.image = img
+                }
+                
+            }
+        }
         //cell..image
         return cell
     }
-     @objc func buttonClicked(_sender: UIButton) {
+    @objc func buttonClicked(_sender: UIButton) {
+        self.subTotal = 0
         // delete all data from cart
-//        let realm = try! Realm()
-//          let allUploadingObjects = realm.objects(CartDataModel.self)
-//
-//          try! realm.write {
-//              realm.delete(allUploadingObjects)
-//          }
-                // Delete
+        //        let realm = try! Realm()
+        //          let allUploadingObjects = realm.objects(CartDataModel.self)
+        //
+        //          try! realm.write {
+        //              realm.delete(allUploadingObjects)
+        //          }
+        // Delete
         if let userObject = realm.objects(CartDataModel.self).filter("id == \(_sender.tag)").first {
             print("In process of deleting")
             try! realm.write {
@@ -96,11 +97,16 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         else{
             print("Object not found.")
         }
-        
+        addCustomItem()
+        self.myTableView.reloadData()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.myTableView.reloadData()
+        self.totalLbl.text = "৳\(subTotal)"
+        self.toBePaidLbl.text = "৳\(subTotal)"
     }
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }

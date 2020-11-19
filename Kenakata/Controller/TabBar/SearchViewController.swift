@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SVProgressHUD
+import RealmSwift
+import Realm
+import AlamofireImage
 
 class SearchViewController: UIViewController {
 
 
     @IBOutlet var collectionView: UICollectionView!
-    
-    
     @IBOutlet var searchBar: UISearchBar!
+    let allPrdctUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    var allProduct : [AllProduct] = []
+    var dataA = [[String: Any]]()
     let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
                 "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA", "San Antonio, TX",
                 "Dallas, TX", "Detroit, MI", "San Jose, CA", "Indianapolis, IN",
@@ -32,6 +39,30 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = self
         filteredData = data
         
+        Alamofire.request(allPrdctUrl).responseJSON { (myresponse) in
+            switch myresponse.result{
+            case .success:
+                if let json = myresponse.result.value as? [[String: Any]] {
+                    
+                    for i in 0..<json.count{
+                        self.dataA.append(json[i])
+                    }
+                    for dic in self.dataA{
+                        let allData = AllProduct.init(json: dic)
+                        self.allProduct.append(allData)
+                    }
+                    
+                    self.collectionView.reloadData()
+                    
+                    
+                }
+                
+            case let .failure(error):
+                print(error)
+                print("Wrong")
+            }
+        }
+        
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
@@ -47,14 +78,14 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSource, UISearchBarDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredData.count
+        return allProduct.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! SearchCollectionViewCell
         //cell.imageView.image = UIImage(named: "icon-bag")
-        cell.dataNameLbl.text = filteredData[indexPath.row]
+        cell.dataNameLbl.text = self.allProduct[indexPath.row].name
         return cell
     }
     // This method updates filteredData based on the text in the Search Box

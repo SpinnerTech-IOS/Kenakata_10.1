@@ -25,7 +25,7 @@ class MyCartViewController: UIViewController {
     @IBAction func onClickShopNow(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "ShopViewController")
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
         self.navigationController?.pushViewController(cartVC, animated: false)
     }
     

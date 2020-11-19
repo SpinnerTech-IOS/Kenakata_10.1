@@ -19,28 +19,32 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var sliderCollectionView: UICollectionView!
     @IBOutlet weak var pageView: UIPageControl!
-    
-    var imgArr = [  UIImage(named:"mobile_app_final-1"),
-                    UIImage(named:"mobile_app_final-2") ,
-                    UIImage(named:"mobile_app_final-3") ,
-                    UIImage(named:"mobile_app_final-4") ,
-                    UIImage(named:"mobile_app_final-5") ,
-                    UIImage(named:"mobile_app_final-2") ]
     @IBOutlet weak var collectionviewCatgry: UICollectionView!
     @IBOutlet weak var searchBarHome: UISearchBar!
     @IBOutlet weak var collectionViewA: UICollectionView!
     @IBOutlet weak var collectionViewB: UICollectionView!
+    @IBOutlet weak var collectionViewC: UICollectionView!
     
-    let firstCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=458"
+    let firstCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=440"
+    let secondProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=330"
     let secondCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=707"
     let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    
+       var imgArr = [  UIImage(named:"mobile_app_final-1"),
+                       UIImage(named:"mobile_app_final-2") ,
+                       UIImage(named:"mobile_app_final-3") ,
+                       UIImage(named:"mobile_app_final-4") ,
+                       UIImage(named:"mobile_app_final-5") ,
+                       UIImage(named:"mobile_app_final-2") ]
     var parentCatagories: [ParentCatagory] = []
     var parentCatagory = [[String: Any]]()
     var allProductA : [AllProduct] = []
     var allProductB : [ProductData] = []
+    var allProductC : [SingleProduct] = []
     var dataA = [[String: Any]]()
     var dataB = [[String: Any]]()
-    let header = ["Features..", "New Arivals.."]
+    var dataC = [[String: Any]]()
+    
     var timer = Timer()
     var counter = 0
     override func viewDidLoad() {
@@ -53,12 +57,15 @@ class HomeViewController: UIViewController {
         self.collectionViewA.delegate = self
         self.collectionViewB.dataSource = self
         self.collectionViewB.delegate = self
+        self.collectionViewC.dataSource = self
+        self.collectionViewC.delegate = self
         //let realm = try! Realm()
         
         
         getParentCatagoryJson()
         getJsonA()
         getJsonB()
+        getJsonC()
         
         pageView.numberOfPages = imgArr.count
         pageView.currentPage = 0
@@ -80,6 +87,14 @@ class HomeViewController: UIViewController {
             //        return CGSize(width: size.width, height: size.height)
             let itmsize = CGSize(width: size.width, height: size.height)
             layout.itemSize = itmsize
+            
+        }
+        if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            let size = CGSize(width:(collectionViewB!.bounds.width-90)/2, height: 180)
+            layout.itemSize = size
             
         }
         
@@ -147,6 +162,8 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             return allProductB.count
         }else if collectionView == self.sliderCollectionView{
             return imgArr.count
+        }else if collectionView == self.collectionViewC{
+            return allProductC.count
         }
         return 0
     }
@@ -155,7 +172,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         if collectionView == self.collectionViewA{
             let cell = collectionViewA.dequeueReusableCell(withReuseIdentifier: "cacell", for: indexPath) as! HomeCollectionViewACell
             cell.productNameLbl.text = self.allProductA[indexPath.row].name
-            cell.productPriceLbl.text = self.allProductA[indexPath.row].price
+            cell.productPriceLbl.text = "৳" + self.allProductA[indexPath.row].price
             let imageUrlB = self.allProductA[indexPath.row].images.src
             cell.caCartBtn.tag = indexPath.row
             cell.caCartBtn.addTarget(self,  action: #selector(addToCartA), for: .touchUpInside)
@@ -172,7 +189,9 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         }else if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! HomeCollectionViewCellB
             cell.productNameLbl.text = self.allProductB[indexPath.row].name
-            cell.productPriceLbl.text = self.allProductB[indexPath.row].price
+            cell.productPriceLbl.text = "৳" + self.allProductB[indexPath.row].price
+            cell.cbCartBtn .tag = indexPath.row
+            cell.cbCartBtn.addTarget(self,  action: #selector(addToCartB), for: .touchUpInside)
             let imageUrlB = self.allProductB[indexPath.row].images.src
             Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
                 if let img = responseB.result.value{
@@ -187,12 +206,29 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         }else if collectionView == self.sliderCollectionView{
             let cell = sliderCollectionView.dequeueReusableCell(withReuseIdentifier: "bnrcell", for: indexPath) as! HomeBannerCollectionViewCell
             cell.bannerImageView.image = imgArr[indexPath.row]
-            cell.bannerImageView.contentMode = .scaleAspectFill
+            cell.bannerImageView.contentMode = .scaleAspectFit
             
             cell.clipsToBounds = true
             
             return cell
-        }
+        }else if collectionView == self.collectionViewC{
+                   let cell = collectionViewC.dequeueReusableCell(withReuseIdentifier: "cccell", for: indexPath) as! HomeCollectionViewCCell
+                    cell.productNameLbl.text = self.allProductC[indexPath.row].name
+                    cell.priceLbl.text = "৳" + self.allProductC[indexPath.row].price
+                   let imageUrlB = self.allProductC[indexPath.row].images.src
+            cell.addCartBtn.tag = indexPath.row
+            cell.addCartBtn.addTarget(self,  action: #selector(addToCartC), for: .touchUpInside)
+                   Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
+                       if let img = responseB.result.value{
+                           DispatchQueue.main.async {
+                            cell.imageView.image = img
+                           }
+                           
+                       }
+                   }
+                   
+                   return cell
+               }
         let cell = collectionviewCatgry.dequeueReusableCell(withReuseIdentifier: "catCell", for: indexPath) as! HomeCollectionViewCatCell
         cell.catagoryNameTxtLbl.text = parentCatagories[indexPath.row].name
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
@@ -235,6 +271,68 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         }
     }
     @objc func addToCartA(sender:UIButton) {
+        
+        addCustomItem()
+        print(sender.tag)
+        func incrementID() -> Int {
+            let realm = try! Realm()
+            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        }
+        let realm = try! Realm()
+        // Save
+        let cartData = CartDataModel()
+        cartData.id = incrementID()
+        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productName = self.allProductA[sender.tag].name
+        cartData.productPrice = self.allProductA[sender.tag].price
+        cartData.productImage = self.allProductA[sender.tag].images.src
+        cartData.ProductQuantity = 1
+        
+        try! realm.write {
+            realm.add(cartData)
+            notifyUser(message: "Added To Cart Successfully")
+        }
+        
+        // Retrieve
+        let cartDatas = realm.objects(CartDataModel.self)
+        for cart in cartDatas {
+            print(cart)
+        }
+        
+
+    }
+    @objc func addToCartB(sender:UIButton) {
+        
+        addCustomItem()
+        print(sender.tag)
+        func incrementID() -> Int {
+            let realm = try! Realm()
+            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        }
+        let realm = try! Realm()
+        // Save
+        let cartData = CartDataModel()
+        cartData.id = incrementID()
+        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productName = self.allProductA[sender.tag].name
+        cartData.productPrice = self.allProductA[sender.tag].price
+        cartData.productImage = self.allProductA[sender.tag].images.src
+        cartData.ProductQuantity = 1
+        
+        try! realm.write {
+            realm.add(cartData)
+            notifyUser(message: "Added To Cart Successfully")
+        }
+        
+        // Retrieve
+        let cartDatas = realm.objects(CartDataModel.self)
+        for cart in cartDatas {
+            print(cart)
+        }
+        
+
+    }
+    @objc func addToCartC(sender:UIButton) {
         
         addCustomItem()
         print(sender.tag)
@@ -338,6 +436,30 @@ extension HomeViewController{
                     }
                     
                     self.collectionViewB.reloadData()
+                    
+                }
+                
+            case let .failure(error):
+                print(error)
+                print("Wrong")
+            }
+        }
+    }
+    func getJsonC() {
+        Alamofire.request(secondProductUrl).responseJSON { (myresponse) in
+            switch myresponse.result{
+            case .success:
+                if let json = myresponse.result.value as? [[String: Any]] {
+                    
+                    for i in 0..<json.count{
+                        self.dataC.append(json[i])
+                    }
+                    for dic in self.dataC{
+                        let allData = SingleProduct.init(json: dic)
+                        self.allProductC.append(allData)
+                    }
+                    print(self.allProductC.count)
+                    self.collectionViewC.reloadData()
                     
                 }
                 
