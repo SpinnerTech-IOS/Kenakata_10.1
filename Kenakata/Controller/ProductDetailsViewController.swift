@@ -57,15 +57,16 @@ class ProductDetailsViewController: UIViewController {
     @IBAction func onClickAddCart(_ sender: Any) {
         addCustomItem()
         let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
-        var pId : String?
+        var tag = 1
         for i in 0..<results.count{
-            print(results[i].productId)
-            print("\(self.productID!)")
-            if results[i].productId == "\(self.productID)"{
-                pId = results[i].productId
+            
+            if Int(results[i].productId)! == self.productID!{
+                print("Duplicate")
+            }else{
+                print("ok")
             }
         }
-        print(pId)
+       
 //        for item in realm.objects(CartDataModel.self).filter("user_id == 4") {
 //           print(item)
 //        }
@@ -84,7 +85,7 @@ class ProductDetailsViewController: UIViewController {
         // Save
         let cartData = CartDataModel()
         cartData.id = incrementID()
-        cartData.productId = "\(self.productID!)"
+        cartData.productId = String(self.productID!)
         cartData.productName = self.productsName!
         cartData.productPrice = self.productPrice!
         cartData.productImage = self.imageSrc!

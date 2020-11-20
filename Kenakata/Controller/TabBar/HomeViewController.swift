@@ -282,7 +282,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         // Save
         let cartData = CartDataModel()
         cartData.id = incrementID()
-        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productId = String(self.allProductA[sender.tag].id)
         cartData.productName = self.allProductA[sender.tag].name
         cartData.productPrice = self.allProductA[sender.tag].price
         cartData.productImage = self.allProductA[sender.tag].images.src
@@ -313,7 +313,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         // Save
         let cartData = CartDataModel()
         cartData.id = incrementID()
-        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productId =  String(self.allProductA[sender.tag].id)
         cartData.productName = self.allProductA[sender.tag].name
         cartData.productPrice = self.allProductA[sender.tag].price
         cartData.productImage = self.allProductA[sender.tag].images.src
@@ -344,7 +344,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         // Save
         let cartData = CartDataModel()
         cartData.id = incrementID()
-        cartData.productId = "\(self.allProductA[sender.tag].id)"
+        cartData.productId =  String(self.allProductA[sender.tag].id)
         cartData.productName = self.allProductA[sender.tag].name
         cartData.productPrice = self.allProductA[sender.tag].price
         cartData.productImage = self.allProductA[sender.tag].images.src

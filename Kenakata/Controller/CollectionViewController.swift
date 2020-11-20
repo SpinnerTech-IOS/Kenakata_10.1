@@ -55,23 +55,23 @@ class CollectionViewController: UIViewController {
             switch myresponse.result{
             case .success:
                 if let json = myresponse.result.value as? [[String: Any]] {
-                   print(json)
+                    print(json)
                     for dict in json{
-                       
+                        
                         if dict["images"] != nil{
                             let allData = AllProduct.init(json: dict)
                             self.allProducts.append(allData)
                         }
-                       
+                        
                         
                     }
                     print(self.allProducts)
-//                    if let data = self.allProducts[1].imgUrl as? [[String:Any]], !data.isEmpty,
-//                       let username = data[0]["src"] as? String {
-//                          print("uname:\(username)")
-//                    }
+                    //                    if let data = self.allProducts[1].imgUrl as? [[String:Any]], !data.isEmpty,
+                    //                       let username = data[0]["src"] as? String {
+                    //                          print("uname:\(username)")
+                    //                    }
                     
-                   // print(self.allProducts[1].images)
+                    // print(self.allProducts[1].images)
                     self.collectionViewA.reloadData()
                     self.collectionViewB.reloadData()
                     

@@ -36,12 +36,19 @@ class ShoppingCartViewController: UIViewController {
         self.subTotalLbl.text = "৳\(subTotal)"
         self.totalLbl.text = "৳\(subTotal)"
         self.toBePaidLbl.text = "৳\(subTotal)"
+        self.shippingFeeLbl.text = "৳00"
+        self.discountLbl.text = "৳00"
         // Do any additional setup after loading the view.
     }
     func paymentCacculate(){
         for i in 0..<results.count{
             self.subTotal = subTotal +  (Int(results[i].productPrice) ?? 0 )
             
+        }
+        if results.count == 0{
+             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
+            self.navigationController?.pushViewController(cartVC, animated: false)
         }
         print(subTotal)
     }
