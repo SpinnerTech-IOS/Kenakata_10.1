@@ -1,23 +1,27 @@
 //
-//  RewardsViewController.swift
+//  CompleteViewController.swift
 //  Kenakata
 //
-//  Created by Md Sifat on 27/10/20.
+//  Created by Md Sifat on 20/11/20.
 //  Copyright © 2020 Md Sifat. All rights reserved.
 //
 
 import UIKit
 
-class RewardsViewController: UIViewController {
+class CompleteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCustomItem()
-        navigationController!.navigationBar.topItem?.title = "Rewards"
+
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func onClickShopNow(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        self.navigationController?.pushViewController(cartVC, animated: false)
+    }
     /*
     // MARK: - Navigation
 

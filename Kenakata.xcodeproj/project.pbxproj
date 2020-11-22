@@ -11,6 +11,7 @@
 		0B085F1325418F1200CE6329 /* LiveChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B085F1225418F1200CE6329 /* LiveChatViewController.swift */; };
 		0B085F152541915C00CE6329 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B085F142541915C00CE6329 /* WishlistViewController.swift */; };
 		0B0CBD6B2545D49300E339BE /* ParentCatagory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CBD6A2545D49300E339BE /* ParentCatagory.swift */; };
+		0B0CD6B825681CED00116023 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CD6B725681CEC00116023 /* CompleteViewController.swift */; };
 		0B184939252F86A70018AEDF /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B184938252F86A70018AEDF /* FiltersViewController.swift */; };
 		0B1E1BBA252C7D6F00876C13 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */; };
 		0B1E1BBC252C825800876C13 /* CustomViewOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */; };
@@ -102,6 +103,7 @@
 		0B085F1225418F1200CE6329 /* LiveChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatViewController.swift; sourceTree = "<group>"; };
 		0B085F142541915C00CE6329 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
 		0B0CBD6A2545D49300E339BE /* ParentCatagory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCatagory.swift; sourceTree = "<group>"; };
+		0B0CD6B725681CEC00116023 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		0B184938252F86A70018AEDF /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		0B1E1BB9252C7D6F00876C13 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		0B1E1BBB252C825800876C13 /* CustomViewOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewOtp.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				0B27C68B2533293E00DA62C4 /* ProductDetailsViewController.swift */,
 				0BA603D4254788B00032A303 /* RewardsViewController.swift */,
 				0B2B06E6255915510030AA6B /* MyWalletViewController.swift */,
+				0B0CD6B725681CEC00116023 /* CompleteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				0B887B422532D763003AEE6E /* MenuViewController.swift in Sources */,
 				0B971027252DB66A003ABB22 /* CatagoriesViewController.swift in Sources */,
 				0BF224CE252AF6CC00674D9A /* CustomButtonDesign.swift in Sources */,
+				0B0CD6B825681CED00116023 /* CompleteViewController.swift in Sources */,
 				0B7BEBCE252EDFF800732CE4 /* CustomImageView.swift in Sources */,
 				0B887B4825332391003AEE6E /* ShopViewController.swift in Sources */,
 				0B085F1325418F1200CE6329 /* LiveChatViewController.swift in Sources */,
@@ -734,7 +738,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdsifat.Kenakata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -759,7 +763,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mdsifat.Kenakata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

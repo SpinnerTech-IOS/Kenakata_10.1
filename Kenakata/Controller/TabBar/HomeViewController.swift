@@ -27,15 +27,15 @@ class HomeViewController: UIViewController {
     
     let firstCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=440"
     let secondProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=330"
-    let secondCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=707"
+    let secondCollectnProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&category=707per_page=100"
     let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     
-       var imgArr = [  UIImage(named:"mobile_app_final-1"),
-                       UIImage(named:"mobile_app_final-2") ,
-                       UIImage(named:"mobile_app_final-3") ,
-                       UIImage(named:"mobile_app_final-4") ,
-                       UIImage(named:"mobile_app_final-5") ,
-                       UIImage(named:"mobile_app_final-2") ]
+    var imgArr = [  UIImage(named:"mobile_app_final-1"),
+                    UIImage(named:"mobile_app_final-2") ,
+                    UIImage(named:"mobile_app_final-3") ,
+                    UIImage(named:"mobile_app_final-4") ,
+                    UIImage(named:"mobile_app_final-5") ,
+                    UIImage(named:"mobile_app_final-2") ]
     var parentCatagories: [ParentCatagory] = []
     var parentCatagory = [[String: Any]]()
     var allProductA : [AllProduct] = []
@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
     var dataA = [[String: Any]]()
     var dataB = [[String: Any]]()
     var dataC = [[String: Any]]()
-    
+    let realm = try! Realm()
     var timer = Timer()
     var counter = 0
     override func viewDidLoad() {
@@ -93,7 +93,23 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-90)/2, height: 180)
+            let size = CGSize(width:(collectionViewB!.bounds.width-30)/2, height: 160)
+            layout.itemSize = size
+            
+        }
+        if let layout = collectionViewA?.collectionViewLayout as? UICollectionViewFlowLayout{
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            let size = CGSize(width:(collectionViewA!.bounds.width-35)/2, height: 150)
+            layout.itemSize = size
+            
+        }
+        if let layout = collectionViewC?.collectionViewLayout as? UICollectionViewFlowLayout{
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            let size = CGSize(width:(collectionViewC!.bounds.width-35)/2, height: 150)
             layout.itemSize = size
             
         }
@@ -212,23 +228,23 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
             
             return cell
         }else if collectionView == self.collectionViewC{
-                   let cell = collectionViewC.dequeueReusableCell(withReuseIdentifier: "cccell", for: indexPath) as! HomeCollectionViewCCell
-                    cell.productNameLbl.text = self.allProductC[indexPath.row].name
-                    cell.priceLbl.text = "৳" + self.allProductC[indexPath.row].price
-                   let imageUrlB = self.allProductC[indexPath.row].images.src
+            let cell = collectionViewC.dequeueReusableCell(withReuseIdentifier: "cccell", for: indexPath) as! HomeCollectionViewCCell
+            cell.productNameLbl.text = self.allProductC[indexPath.row].name
+            cell.priceLbl.text = "৳" + self.allProductC[indexPath.row].price
+            let imageUrlB = self.allProductC[indexPath.row].images.src
             cell.addCartBtn.tag = indexPath.row
             cell.addCartBtn.addTarget(self,  action: #selector(addToCartC), for: .touchUpInside)
-                   Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
-                       if let img = responseB.result.value{
-                           DispatchQueue.main.async {
-                            cell.imageView.image = img
-                           }
-                           
-                       }
-                   }
-                   
-                   return cell
-               }
+            Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
+                if let img = responseB.result.value{
+                    DispatchQueue.main.async {
+                        cell.imageView.image = img
+                    }
+                    
+                }
+            }
+            
+            return cell
+        }
         let cell = collectionviewCatgry.dequeueReusableCell(withReuseIdentifier: "catCell", for: indexPath) as! HomeCollectionViewCatCell
         cell.catagoryNameTxtLbl.text = parentCatagories[indexPath.row].name
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
@@ -273,95 +289,152 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
     @objc func addToCartA(sender:UIButton) {
         
         addCustomItem()
-        print(sender.tag)
-        func incrementID() -> Int {
+        let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
+        print(Int(sender.tag))
+        var tagA = 0
+        var pIdA = 0
+        for i in 0..<results.count{
+            
+            if Int(results[i].productId)! == Int(self.allProductA[sender.tag].id){
+                tagA = 1
+                pIdA = Int(results[i].productId)!
+                print("Duplicate")
+            }else{
+                tagA = 2
+                print("ok")
+            }
+        }
+        if tagA == 1{
+            // Update
+            let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pIdA))
+            
+            if let object = objects.first {
+                try! realm.write {
+                    object.ProductQuantity = object.ProductQuantity + 1
+                    
+                }
+            }
+        } else{
+            func incrementID() -> Int {
+                let realm = try! Realm()
+                return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+            }
             let realm = try! Realm()
-            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+            // Save
+            let cartData = CartDataModel()
+            cartData.id = incrementID()
+            cartData.productId = String(self.allProductA[sender.tag].id)
+            cartData.productName = self.allProductA[sender.tag].name
+            cartData.productPrice = self.allProductA[sender.tag].price
+            cartData.productImage = self.allProductA[sender.tag].images.src
+            cartData.ProductQuantity = 1
+            
+            try! realm.write {
+                realm.add(cartData)
+                notifyUser(message: "Added To Cart Successfully")
+            }
         }
-        let realm = try! Realm()
-        // Save
-        let cartData = CartDataModel()
-        cartData.id = incrementID()
-        cartData.productId = String(self.allProductA[sender.tag].id)
-        cartData.productName = self.allProductA[sender.tag].name
-        cartData.productPrice = self.allProductA[sender.tag].price
-        cartData.productImage = self.allProductA[sender.tag].images.src
-        cartData.ProductQuantity = 1
-        
-        try! realm.write {
-            realm.add(cartData)
-            notifyUser(message: "Added To Cart Successfully")
-        }
-        
-        // Retrieve
-        let cartDatas = realm.objects(CartDataModel.self)
-        for cart in cartDatas {
-            print(cart)
-        }
-        
-
+ 
     }
     @objc func addToCartB(sender:UIButton) {
-        
         addCustomItem()
-        print(sender.tag)
-        func incrementID() -> Int {
-            let realm = try! Realm()
-            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
-        }
-        let realm = try! Realm()
-        // Save
-        let cartData = CartDataModel()
-        cartData.id = incrementID()
-        cartData.productId =  String(self.allProductA[sender.tag].id)
-        cartData.productName = self.allProductA[sender.tag].name
-        cartData.productPrice = self.allProductA[sender.tag].price
-        cartData.productImage = self.allProductA[sender.tag].images.src
-        cartData.ProductQuantity = 1
+               let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
+               print(Int(sender.tag))
+               var tagA = 0
+               var pIdA = 0
+               for i in 0..<results.count{
+                   
+                   if Int(results[i].productId)! == Int(self.allProductB[sender.tag].id){
+                       tagA = 1
+                       pIdA = Int(results[i].productId)!
+                       print("Duplicate")
+                   }else{
+                       tagA = 2
+                       print("ok")
+                   }
+               }
+               if tagA == 1{
+                   // Update
+                   let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pIdA))
+                   
+                   if let object = objects.first {
+                       try! realm.write {
+                           object.ProductQuantity = object.ProductQuantity + 1
+                           
+                       }
+                   }
+               } else{
+                   func incrementID() -> Int {
+                       let realm = try! Realm()
+                       return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+                   }
+                   let realm = try! Realm()
+                   // Save
+                   let cartData = CartDataModel()
+                   cartData.id = incrementID()
+                   cartData.productId = String(self.allProductB[sender.tag].id)
+                   cartData.productName = self.allProductB[sender.tag].name
+                   cartData.productPrice = self.allProductB[sender.tag].price
+                   cartData.productImage = self.allProductB[sender.tag].images.src
+                   cartData.ProductQuantity = 1
+                   
+                   try! realm.write {
+                       realm.add(cartData)
+                       notifyUser(message: "Added To Cart Successfully")
+                   }
+               }
         
-        try! realm.write {
-            realm.add(cartData)
-            notifyUser(message: "Added To Cart Successfully")
-        }
         
-        // Retrieve
-        let cartDatas = realm.objects(CartDataModel.self)
-        for cart in cartDatas {
-            print(cart)
-        }
-        
-
     }
     @objc func addToCartC(sender:UIButton) {
-        
         addCustomItem()
-        print(sender.tag)
-        func incrementID() -> Int {
-            let realm = try! Realm()
-            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
-        }
-        let realm = try! Realm()
-        // Save
-        let cartData = CartDataModel()
-        cartData.id = incrementID()
-        cartData.productId =  String(self.allProductA[sender.tag].id)
-        cartData.productName = self.allProductA[sender.tag].name
-        cartData.productPrice = self.allProductA[sender.tag].price
-        cartData.productImage = self.allProductA[sender.tag].images.src
-        cartData.ProductQuantity = 1
+               let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
+               print(Int(sender.tag))
+               var tagA = 0
+               var pIdA = 0
+               for i in 0..<results.count{
+                   
+                   if Int(results[i].productId)! == Int(self.allProductC[sender.tag].id){
+                       tagA = 1
+                       pIdA = Int(results[i].productId)!
+                       print("Duplicate")
+                   }else{
+                       tagA = 2
+                       print("ok")
+                   }
+               }
+               if tagA == 1{
+                   // Update
+                   let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pIdA))
+                   
+                   if let object = objects.first {
+                       try! realm.write {
+                           object.ProductQuantity = object.ProductQuantity + 1
+                           
+                       }
+                   }
+               } else{
+                   func incrementID() -> Int {
+                       let realm = try! Realm()
+                       return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+                   }
+                   let realm = try! Realm()
+                   // Save
+                   let cartData = CartDataModel()
+                   cartData.id = incrementID()
+                   cartData.productId = String(self.allProductC[sender.tag].id)
+                   cartData.productName = self.allProductC[sender.tag].name
+                   cartData.productPrice = self.allProductC[sender.tag].price
+                   cartData.productImage = self.allProductC[sender.tag].images.src
+                   cartData.ProductQuantity = 1
+                   
+                   try! realm.write {
+                       realm.add(cartData)
+                       notifyUser(message: "Added To Cart Successfully")
+                   }
+               }
         
-        try! realm.write {
-            realm.add(cartData)
-            notifyUser(message: "Added To Cart Successfully")
-        }
         
-        // Retrieve
-        let cartDatas = realm.objects(CartDataModel.self)
-        for cart in cartDatas {
-            print(cart)
-        }
-        
-
     }
 }
 extension HomeViewController{

@@ -15,7 +15,7 @@ import Realm
 import RealmSwift
 
 class ProductDetailsViewController: UIViewController {
-    
+    @IBOutlet weak var quantityTxtLbl: UILabel!
     @IBOutlet weak var priceTxtLbl: UILabel!
     @IBOutlet weak var sub3ImageView: CustomImageView!
     @IBOutlet weak var sub2ImageView: CustomImageView!
@@ -23,6 +23,7 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var mainImageView: CustomImageView!
     
     @IBOutlet weak var descriptionViewLbl: UILabel!
+    let realm = try! Realm()
     var productID: Int?
     var imageSrc: String?
     var Descriptn: String?
@@ -31,7 +32,7 @@ class ProductDetailsViewController: UIViewController {
     var quantity = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.quantityTxtLbl.text = String(self.quantity)
         navigationController?.addCustomBorderLine()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Product Details"
@@ -54,22 +55,71 @@ class ProductDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func onClickIncreaseQuantity(_ sender: Any) {
+        
+        self.quantity = self.quantity + 1
+        self.quantityTxtLbl.text = String(self.quantity)
+        self.priceTxtLbl.text = "\((Int(self.productPrice!) ?? 0) * self.quantity)৳"
+    }
+    @IBAction func onClickDeccreaseQuantity(_ sender: Any) {
+       if self.quantity >= 2{
+           self.quantity = self.quantity - 1
+           
+       }else{
+           self.quantity = 1
+       }
+        self.quantityTxtLbl.text = String(self.quantity)
+        self.priceTxtLbl.text = "\((Int(self.productPrice!) ?? 0) * self.quantity)৳"
+    }
+    
     @IBAction func onClickAddCart(_ sender: Any) {
         addCustomItem()
         let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
-        var tag = 1
+        var tag = 0
+        var pId = 0
         for i in 0..<results.count{
             
             if Int(results[i].productId)! == self.productID!{
+                tag = 1
+                pId = Int(results[i].productId)!
                 print("Duplicate")
             }else{
+                tag = 2
                 print("ok")
             }
         }
-       
-//        for item in realm.objects(CartDataModel.self).filter("user_id == 4") {
-//           print(item)
-//        }
+        if tag == 1{
+               // Update
+                let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pId))
+ 
+                if let object = objects.first {
+                    try! realm.write {
+                        object.ProductQuantity = object.ProductQuantity + self.quantity
+                        
+                    }
+                }
+             notifyUser(message: "Added To Cart Successfully")
+        } else{
+            func incrementID() -> Int {
+                let realm = try! Realm()
+                return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
+            }
+            let realm = try! Realm()
+            // Save
+            let cartData = CartDataModel()
+            cartData.id = incrementID()
+            cartData.productId = String(self.productID!)
+            cartData.productName = self.productsName!
+            cartData.productPrice = self.productPrice!
+            cartData.productImage = self.imageSrc!
+            cartData.ProductQuantity = self.quantity
+            
+            try! realm.write {
+                realm.add(cartData)
+                notifyUser(message: "Added To Cart Successfully")
+            }
+        }
+
         //
         //               if let object = objects.first {
         //                   try! realm.write {
@@ -77,24 +127,7 @@ class ProductDetailsViewController: UIViewController {
         //                       object.title = "updatetitle"
         //                   }
         //               }
-        func incrementID() -> Int {
-            let realm = try! Realm()
-            return (realm.objects(CartDataModel.self).max(ofProperty: "id") as Int? ?? 0) + 1
-        }
-        let realm = try! Realm()
-        // Save
-        let cartData = CartDataModel()
-        cartData.id = incrementID()
-        cartData.productId = String(self.productID!)
-        cartData.productName = self.productsName!
-        cartData.productPrice = self.productPrice!
-        cartData.productImage = self.imageSrc!
-        cartData.ProductQuantity = self.quantity
-        
-        try! realm.write {
-            realm.add(cartData)
-            notifyUser(message: "Added To Cart Successfully")
-        }
+
         
         // Retrieve
         let cartDatas = realm.objects(CartDataModel.self)

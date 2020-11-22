@@ -50,9 +50,22 @@ class AccountViewController: UIViewController {
         }
         
     }
-    
-    
+    @IBAction func onClickSettings(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
+    @IBAction func onClickProfile(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
+    @IBAction func onClickOrder(_ sender: Any) {
+    }
     @IBAction func onClickGiftVoucher(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "RewardsViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     
     @IBAction func onClickLogout(_ sender: Any) {

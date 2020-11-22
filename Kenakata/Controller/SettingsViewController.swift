@@ -12,9 +12,13 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addCustomItem()
+        navigationController!.navigationBar.topItem?.title = "Settings"
         // Do any additional setup after loading the view.
     }
-    
+    @IBAction func onClickLogout(_ sender: Any) {
+        UserDefaults.standard.logout()
+        
+    }
 
 }

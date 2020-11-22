@@ -34,19 +34,19 @@ class ShoppingCartViewController: UIViewController {
         addCustomItem()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal)"
-        self.toBePaidLbl.text = "৳\(subTotal)"
-        self.shippingFeeLbl.text = "৳00"
+        self.totalLbl.text = "৳\(subTotal + 100)"
+        self.toBePaidLbl.text = "৳\(subTotal + 100)"
+        self.shippingFeeLbl.text = "৳100"
         self.discountLbl.text = "৳00"
         // Do any additional setup after loading the view.
     }
     func paymentCacculate(){
         for i in 0..<results.count{
-            self.subTotal = subTotal +  (Int(results[i].productPrice) ?? 0 )
+            self.subTotal = subTotal +  ((Int(results[i].productPrice) ?? 0) * Int(results[i].ProductQuantity))
             
         }
         if results.count == 0{
-             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let cartVC = storyboard.instantiateViewController(withIdentifier: "MyCartViewController")
             self.navigationController?.pushViewController(cartVC, animated: false)
         }
@@ -69,9 +69,12 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ShopingCartTableViewCell
         cell.productNameTxtLbl.text = self.results[indexPath.row].productName
-        cell.priceTxtLbl.text = self.results[indexPath.row].productPrice
+        cell.priceTxtLbl.text = "৳" + String(((Int(results[indexPath.row].productPrice) ?? 0) * Int(results[indexPath.row].ProductQuantity)))
         cell.deleteCartProductBtn.tag = self.results[indexPath.row].id
+        cell.quantityLbl.text = String(self.results[indexPath.row].ProductQuantity)
         cell.deleteCartProductBtn.addTarget(self,  action: #selector(buttonClicked), for: .touchUpInside)
+        cell.quantityIncreaseLbl.addTarget(self,  action: #selector(onClickIncrease), for: .touchUpInside)
+        cell.quantitydecreaseBtn.addTarget(self,  action: #selector(onClickDeccrease), for: .touchUpInside)
         let imageUrl = self.results[indexPath.row].productImage
         Alamofire.request(imageUrl, method: .get).validate().responseImage { (responseB) in
             if let img = responseB.result.value{
@@ -83,6 +86,47 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         }
         //cell..image
         return cell
+    }
+    @objc func onClickIncrease(_sender: UIButton) {
+        self.subTotal = 0
+        
+        let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(self.results[_sender.tag].productId))
+        
+        if let object = objects.first {
+            try! realm.write {
+                object.ProductQuantity = object.ProductQuantity + 1
+                
+            }
+        }
+        addCustomItem()
+        self.myTableView.reloadData()
+        paymentCacculate()
+        self.subTotalLbl.text = "৳\(subTotal)"
+        self.totalLbl.text = "৳\(subTotal + 100)"
+        self.toBePaidLbl.text = "৳\(subTotal + 100)"
+    }
+    @objc func onClickDeccrease(_sender: UIButton) {
+        self.subTotal = 0
+        
+        let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(self.results[_sender.tag].productId))
+        
+        if let object = objects.first {
+            try! realm.write {
+                if object.ProductQuantity >= 2{
+                    object.ProductQuantity = object.ProductQuantity - 1
+                    
+                }else{
+                    object.ProductQuantity = 1
+                }
+                
+            }
+        }
+        addCustomItem()
+        self.myTableView.reloadData()
+        paymentCacculate()
+        self.subTotalLbl.text = "৳\(subTotal)"
+        self.totalLbl.text = "৳\(subTotal + 100)"
+        self.toBePaidLbl.text = "৳\(subTotal + 100)"
     }
     @objc func buttonClicked(_sender: UIButton) {
         self.subTotal = 0

@@ -90,6 +90,9 @@ class CheckOutViewController: UIViewController {
                 upload.response { answer in
                     print(answer)
                     print("statusCode: \(answer.response?.statusCode)")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let cartVC = storyboard.instantiateViewController(withIdentifier: "CompleteViewController")
+                    self.navigationController?.pushViewController(cartVC, animated: false)
                 }
                 upload.uploadProgress { progress in
                     //call progress callback here if you need it

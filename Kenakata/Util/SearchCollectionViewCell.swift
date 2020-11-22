@@ -9,6 +9,10 @@
 import UIKit
 
 class SearchCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var dataNameLbl: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var productNameLbl: UILabel!
+    
+    @IBOutlet weak var cbCartBtn: UIButton!
+    @IBOutlet weak var productPriceLbl: UILabel!
     
 }

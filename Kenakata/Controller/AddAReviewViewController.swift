@@ -57,20 +57,21 @@ class AddAReviewViewController: UIViewController {
     
     @IBAction func onClickSubmitBtn(_ sender: Any) {
         
-        print("\(self.productID!)\(self.reviewTxtField!.text!)\(self.nameTxtField!.text!)\(self.emailTextField!.text!)\(self.rating)")
+//        print("\(self.productID!)\(self.reviewTxtField!.text!)\(self.nameTxtField!.text!)\(self.emailTextField!.text!)\(self.rating)")
         if emailTextField.text != "" && nameTxtField.text != "" && reviewTxtField.text != ""{
-            //Convert text data to binary
-            let dict: Dictionary<String, Any> = [ "product_id": self.productID!, "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!,
-                              "reviewer_email": self.emailTextField!.text!, "rating": self.rating]
+            let dict: Dictionary<String, Any> = ["product_id": Int(self.productID!), "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!, "reviewer_email": self.emailTextField!.text!, "rating": self.rating]
+            print(dict)
             let userData = try? JSONSerialization.data(withJSONObject: dict)
             Alamofire.upload(multipartFormData: { (multiFoormData) in
-                multiFoormData.append(userData!, withName: "reviews")
-                
+                multiFoormData.append(userData!, withName: "review")
+
             }, to: reviewURL, method: .post, headers: nil) { encodingResult in
                 switch encodingResult {
                 case .success(let upload, _, _):
                     upload.response { answer in
+                        print(answer)
                         print("statusCode: \(answer.response?.statusCode)")
+                        
                     }
                     upload.uploadProgress { progress in
                         //call progress callback here if you need it
@@ -79,8 +80,6 @@ class AddAReviewViewController: UIViewController {
                     print("multipart upload encodingError: \(encodingError)")
                 }
             }
-//            let param = [ "product_id": self.productID!, "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!,
-//                   "reviewer_email": self.emailTextField!.text!, "rating": self.rating ]  as [String: Any]
 
         }
 
