@@ -55,7 +55,8 @@ class ShoppingCartViewController: UIViewController {
     
     @IBAction func onclickCheckout(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutViewController")
+        let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutViewController") as! CheckOutViewController
+        checkoutVC.amountToPay = self.subTotal + 100
         self.navigationController?.pushViewController(checkoutVC, animated: false)
     }
     
@@ -73,7 +74,9 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         cell.deleteCartProductBtn.tag = self.results[indexPath.row].id
         cell.quantityLbl.text = String(self.results[indexPath.row].ProductQuantity)
         cell.deleteCartProductBtn.addTarget(self,  action: #selector(buttonClicked), for: .touchUpInside)
+        cell.quantityIncreaseLbl.tag = indexPath.row
         cell.quantityIncreaseLbl.addTarget(self,  action: #selector(onClickIncrease), for: .touchUpInside)
+        cell.quantitydecreaseBtn.tag = indexPath.row
         cell.quantitydecreaseBtn.addTarget(self,  action: #selector(onClickDeccrease), for: .touchUpInside)
         let imageUrl = self.results[indexPath.row].productImage
         Alamofire.request(imageUrl, method: .get).validate().responseImage { (responseB) in
@@ -152,8 +155,8 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         self.myTableView.reloadData()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal)"
-        self.toBePaidLbl.text = "৳\(subTotal)"
+        self.totalLbl.text = "৳\(subTotal + 100)"
+        self.toBePaidLbl.text = "৳\(subTotal + 100)"
     }
     
     

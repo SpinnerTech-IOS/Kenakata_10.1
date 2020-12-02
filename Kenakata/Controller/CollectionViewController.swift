@@ -17,15 +17,19 @@ class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionViewA: UICollectionView!
     @IBOutlet weak var collectionViewB: UICollectionView!
     
-    var parentCatagory : [ParentCatagory] = []
+    //var parentCatagory : [ParentCatagory] = []
+    var parentCatagories: [ParentCatagory] = []
+    var parentCatagory = [[String: Any]]()
     var CatagoryTitle: String?
     var catagoryID: Int?
     var allProducts : [AllProduct] = []
     var dataStore = [[String:Any]]()
     let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let subCatagoryUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.parentCatagory)
+        getsubCatagry()
         getCatagoryWiseProducts()
         collectionViewA.delegate = self
         collectionViewA.dataSource = self
@@ -49,6 +53,37 @@ class CollectionViewController: UIViewController {
         
         
     }
+    
+    func getsubCatagry(){
+            Alamofire.request(subCatagoryUrl).responseJSON { (myresponse) in
+                switch myresponse.result{
+                case .success:
+                    if let json = myresponse.result.value as? [[String: Any]] {
+                        for i in 0..<json.count{
+                            let id = json[i]["parent"] as! Int
+                            if id == self.catagoryID{
+                                self.parentCatagory.append(json[i])
+                            }
+                        }
+                        print(self.parentCatagory)
+                        
+                        for dic in self.parentCatagory {
+                            if dic["image"] != nil{
+                                let allData = ParentCatagory.init(json: dic)
+                                self.parentCatagories.append(allData)
+                            }
+                            self.collectionViewA.reloadData()
+                            
+                        }
+                        
+                    }
+                    
+                case let .failure(error):
+                    print(error)
+                    print("Wrong")
+                }
+            }
+        }
     func getCatagoryWiseProducts(){
         let params = ["category": self.catagoryID]
         Alamofire.request(allProductUrl, method: .get, parameters: params as Parameters).responseJSON { (myresponse) in
@@ -120,8 +155,8 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionCollectionViewCell
-        cell.parentCatagoryName.text = self.parentCatagory[indexPath.row].name
-        let imageUrl = self.parentCatagory[indexPath.row].Image.src
+        cell.parentCatagoryName.text = self.parentCatagories[indexPath.row].name
+        let imageUrl = self.parentCatagories[indexPath.row].Image.src
         if imageUrl == ""{
             cell.collectionCatagoryImageView.image = nil
         }else{

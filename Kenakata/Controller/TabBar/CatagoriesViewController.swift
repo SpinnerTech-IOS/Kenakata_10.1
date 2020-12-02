@@ -28,6 +28,7 @@ class CatagoriesViewController: UIViewController{
         addCustomItem()
         addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "Catagories"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         
@@ -35,7 +36,7 @@ class CatagoriesViewController: UIViewController{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(myCollectionView!.bounds.width-80)/2, height: 180)
+            let size = CGSize(width:(myCollectionView!.bounds.width-50)/2, height: 180)
             layout.itemSize = size
             
         }
@@ -103,7 +104,7 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
-        collectionVC.parentCatagory = self.parentCatagories;
+        //collectionVC.parentCatagory = self.parentCatagories;
         collectionVC.catagoryID = self.parentCatagories[indexPath.row].id
         collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
         self.navigationController?.pushViewController(collectionVC, animated: false)

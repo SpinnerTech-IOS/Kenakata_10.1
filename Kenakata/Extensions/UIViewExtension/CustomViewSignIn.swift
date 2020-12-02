@@ -20,6 +20,8 @@ class CustomViewSignIn: UIView {
     }
     
    func  customizeView(){
+    layer.borderWidth = 0.5
+    layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
     layer.cornerRadius = 15
     clipsToBounds = true
     }

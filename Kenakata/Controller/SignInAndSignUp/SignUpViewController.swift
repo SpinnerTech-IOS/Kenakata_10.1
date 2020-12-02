@@ -11,8 +11,67 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    @IBOutlet weak var textBox: UITextField!
+    @IBOutlet weak var textBox2: UITextField!
+    @IBOutlet weak var dropDown: UIPickerView!
+    @IBOutlet weak var dropDown2: UIPickerView!
+
+    var list = ["Bangladesh", "Philippines"]
+    var list2 = ["Dhaka", "Chittagong", "Jamalpur", "Kustia", "Natore"]
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        if pickerView == dropDown2{
+            return 1
+        }
+        return 1
+    }
+
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        if pickerView == dropDown2{
+            return list2.count
+        }
+        return list.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == dropDown2{
+            self.view.endEditing(true)
+            return list2[row]
+        }
+        self.view.endEditing(true)
+        return list[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == dropDown2{
+            self.textBox2.text = self.list2[row]
+            self.dropDown2.isHidden = true
+        }
+        if pickerView == dropDown{
+            self.textBox.text = self.list[row]
+            self.dropDown.isHidden = true
+        }
+
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+
+        if textField == self.textBox {
+            self.dropDown.isHidden = false
+            //if you don't want the users to se the keyboard type:
+
+            textField.endEditing(true)
+        }
+        if textField == self.textBox2 {
+            self.dropDown.isHidden = false
+            //if you don't want the users to se the keyboard type:
+
+            textField.endEditing(true)
+        }
+    }
     
+    @IBOutlet weak var firstNameTxtField: UITextField!
+    @IBOutlet weak var lastNameTxtField: UITextField!
     @IBOutlet weak var nameTxtLbl: UITextField!
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
@@ -25,9 +84,9 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         nameTxtLbl.becomeFirstResponder()
         
-        nameTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "Your Name")
-        emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "envelope"), placeholder: "Your Email")
-        passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "Password")
+//        nameTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "Your Name")
+//        emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "envelope"), placeholder: "Your Email")
+//        passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "Password")
         passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"), isSecure: true)
         // Do any additional setup after loading the view.
         Alamofire.request(nonceUrl).responseJSON { response in

@@ -20,7 +20,7 @@ extension UIViewController{
      }
     }
     func addMenuBtn(){
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
                leftButton.setBackgroundImage(UIImage(named: "menu-icon"), for: .normal)
                leftButton.addTarget(self, action: #selector(leftButtonTouched), for: .touchUpInside)
@@ -32,7 +32,7 @@ extension UIViewController{
         let realm = try! Realm()
         let cartDatas = realm.objects(CartDataModel.self)
 
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         // badge label
         let label = UILabel(frame: CGRect(x: 10, y: -10, width: 20, height: 20))

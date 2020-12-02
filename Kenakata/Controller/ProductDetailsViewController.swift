@@ -54,7 +54,9 @@ class ProductDetailsViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        addCustomItem()
+    }
     @IBAction func onClickIncreaseQuantity(_ sender: Any) {
         
         self.quantity = self.quantity + 1
@@ -95,10 +97,11 @@ class ProductDetailsViewController: UIViewController {
                 if let object = objects.first {
                     try! realm.write {
                         object.ProductQuantity = object.ProductQuantity + self.quantity
-                        
+                        notifyUser(message: "Added To Cart Successfully")
+                                    addCustomItem()
                     }
                 }
-             notifyUser(message: "Added To Cart Successfully")
+            
         } else{
             func incrementID() -> Int {
                 let realm = try! Realm()
@@ -116,7 +119,8 @@ class ProductDetailsViewController: UIViewController {
             
             try! realm.write {
                 realm.add(cartData)
-                notifyUser(message: "Added To Cart Successfully")
+                 notifyUser(message: "Added To Cart Successfully")
+                            addCustomItem()
             }
         }
 

@@ -17,8 +17,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTxtLbl: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "user"), placeholder: "example@gmail.com")
-        passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: "lock"), placeholder: "1234")
+//        emailTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: ""), placeholder: "example@gmail.com")
+//        passwordTxtLbl.addLeftImageView(icon: #imageLiteral(resourceName: ""), placeholder: "1234")
         passwordTxtLbl.addRightImageView(image: #imageLiteral(resourceName: "eye-view"), isSecure: true)
         // Do any additional setup after loading the view.
     }

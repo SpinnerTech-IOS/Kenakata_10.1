@@ -59,7 +59,7 @@ class AddAReviewViewController: UIViewController {
         
 //        print("\(self.productID!)\(self.reviewTxtField!.text!)\(self.nameTxtField!.text!)\(self.emailTextField!.text!)\(self.rating)")
         if emailTextField.text != "" && nameTxtField.text != "" && reviewTxtField.text != ""{
-            let dict: Dictionary<String, Any> = ["product_id": Int(self.productID!), "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!, "reviewer_email": self.emailTextField!.text!, "rating": self.rating]
+            let dict: Dictionary<String, Any> = ["product_id": String(self.productID!), "review": self.reviewTxtField!.text!, "reviewer": self.nameTxtField!.text!, "reviewer_email": self.emailTextField!.text!, "rating": String(self.rating)]
             print(dict)
             let userData = try? JSONSerialization.data(withJSONObject: dict)
             Alamofire.upload(multipartFormData: { (multiFoormData) in

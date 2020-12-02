@@ -26,6 +26,7 @@ class AccountViewController: UIViewController {
         addCustomItem()
         addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "My Account"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         getUser()
         
         // Do any additional setup after loading the view.

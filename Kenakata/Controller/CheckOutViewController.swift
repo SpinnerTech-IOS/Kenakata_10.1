@@ -17,10 +17,11 @@ class CheckOutViewController: UIViewController {
     
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var addressLbl: UILabel!
-     var line_items : [[String:Any]] = []
+    var line_items : [[String:Any]] = []
     let orderUrl = "https://afiqsouq.com//wp-json/wc/v3/orders?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
-
+    
     let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
+    var amountToPay: Int?
     var firstName = ""
     var lastName = ""
     var city = ""
@@ -32,6 +33,7 @@ class CheckOutViewController: UIViewController {
     var shippingLine : NSMutableDictionary = NSMutableDictionary()
     var billing : [String:Any] = [:]
     var shipping : [String:Any] = [:]
+    var sslComerzData : [String:Any] = [:]
     let realm = try! Realm()
     let results = try! Realm().objects(CartDataModel.self).sorted(byKeyPath: "id")
     
@@ -41,17 +43,22 @@ class CheckOutViewController: UIViewController {
         let customValues = [firstName, lastName, address, address, city, city, postcode, country, email, phone]
         let neDictionary = Dictionary(uniqueKeysWithValues: zip(customKeys,customValues))
         self.billing = neDictionary as [String: Any]
-       
+        
         let customKeysShipping = ["first_name", "last_name", "address_1", "address_2", "city", "state", "postcode", "country"]
         let customValuesShipping = [firstName, lastName, address, address, city, city, postcode, country]
         let neDictionaryShipping = Dictionary(uniqueKeysWithValues: zip(customKeysShipping,customValuesShipping))
         self.shipping = neDictionaryShipping as [String: Any]
+        
+        let sslComerzData = ["withStoreID", "storePassword", "amountToPay", "amountCurrency", "withCustomerEmail", "customerName", "customerContactNumber", "customerAddress1", "shipmentCity"]
+        let customValuesslComerzData = ["afiqsouq", "12afiqsouq", String(amountToPay!), "BDT", email, firstName, "", address, address]
+        let neDictionarysslComerzData = Dictionary(uniqueKeysWithValues: zip(sslComerzData,customValuesslComerzData))
+        self.sslComerzData = neDictionarysslComerzData as [String: Any]
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         for i in 0..<results.count{
-        let customKeys = ["product_id", "quantity"]
+            let customKeys = ["product_id", "quantity"]
             let customValues = [Int(results[i].productId)!, results[i].ProductQuantity] as [Any]
             let neDictionary = Dictionary(uniqueKeysWithValues: zip(customKeys,customValues))
             self.line_items.append(neDictionary)
@@ -61,8 +68,8 @@ class CheckOutViewController: UIViewController {
         navigationController?.addCustomBorderLine()
         addCustomItem()
         // Do any additional setup after loading the view.
-     
-            
+        
+        
     }
     var paymentMethod  =  "cod"
     var paymentMethodTitle = "Cash on delivery"
@@ -83,7 +90,7 @@ class CheckOutViewController: UIViewController {
         let userData = try? JSONSerialization.data(withJSONObject: dict)
         Alamofire.upload(multipartFormData: { (multiFoormData) in
             multiFoormData.append(userData!, withName: "data")
-
+            
         }, to: orderUrl, method: .post, headers: nil) { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
@@ -104,13 +111,19 @@ class CheckOutViewController: UIViewController {
     }
     
     @IBAction func onClickMasterCard(_ sender: Any) {
+        print(self.sslComerzData)
     }
     @IBAction func onClickCashOnPaypel(_ sender: Any) {
+        print(self.sslComerzData)
     }
     @IBAction func onClickCashOnDelivery(_ sender: Any) {
+        self.paymentMethod  =  "cod"
+        self.paymentMethodTitle = "Cash on delivery"
+        self.setPaid = false
     }
     
     @IBAction func onClickBankTransfer(_ sender: Any) {
+        print(self.sslComerzData)
     }
     func getUser(){
         let token = UserDefaults.standard.string(forKey: "access_token")
