@@ -9,6 +9,7 @@
 import UIKit
 
 class CollectionSecondCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var addCartBtn: UIImageView!
     @IBOutlet weak var colletionViewBImageView: UIImageView!
     
     @IBOutlet weak var collectionViewBTextLbl: UILabel!

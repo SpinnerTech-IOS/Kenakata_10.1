@@ -11,6 +11,16 @@ import UIKit
 import Realm
 import RealmSwift
 extension UIViewController{
+    func hideKeyboardOntap(){
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismishKeyBoard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismishKeyBoard(){
+        view.endEditing(true)
+    }
+}
+extension UIViewController{
     //Alert
     func notifyUser(message: String) -> Void {
      let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)

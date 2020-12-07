@@ -34,9 +34,12 @@ class SearchViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardOntap()
+        searchBar.delegate = self
         searchBar.becomeFirstResponder()
         navigationController?.addCustomBorderLine()
         addCustomItem()
+        addMenuBtn()
         searchBar.delegate = self
         myCollectionView.delegate = self
         myCollectionView.dataSource = self

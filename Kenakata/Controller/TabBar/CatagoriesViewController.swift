@@ -82,8 +82,12 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CatagoriesCollectionViewCell
-        cell.catagoryNameLbl.text = self.parentCatagories[indexPath.row].name
-        cell.catagoryAmountLbl.text = " "
+        let txt = self.parentCatagories[indexPath.row].name
+        let txt1 = txt?.replacingOccurrences(of: "amp;", with: "")
+        let txt2 = txt1?.replacingOccurrences(of: "&#8217;", with: "")
+        let txt3 = txt2?.replacingOccurrences(of: ",", with: "")
+        cell.catagoryNameLbl.text = txt3
+        
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
         print(imageUrl!)
         if imageUrl == ""{
@@ -105,8 +109,12 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
         //collectionVC.parentCatagory = self.parentCatagories;
+        let txt = self.parentCatagories[indexPath.row].name
+        let txt1 = txt?.replacingOccurrences(of: "amp;", with: "")
+        let txt2 = txt1?.replacingOccurrences(of: "&#8217;", with: "")
+        let txt3 = txt2?.replacingOccurrences(of: ",", with: "")
         collectionVC.catagoryID = self.parentCatagories[indexPath.row].id
-        collectionVC.CatagoryTitle = self.parentCatagories[indexPath.row].name
+        collectionVC.CatagoryTitle = txt3
         self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     

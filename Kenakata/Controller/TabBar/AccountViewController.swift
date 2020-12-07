@@ -51,9 +51,23 @@ class AccountViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func onClickRewards(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "RewardsViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
     @IBAction func onClickSettings(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
+        self.navigationController?.pushViewController(collectionVC, animated: false)
+    }
+    
+    @IBAction func onClickTransection(_ sender: Any) {
+    }
+    @IBAction func onClickMyWallet(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "MyWalletViewController")
         self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     @IBAction func onClickProfile(_ sender: Any) {
@@ -65,8 +79,9 @@ class AccountViewController: UIViewController {
     }
     @IBAction func onClickGiftVoucher(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let collectionVC = storyboard.instantiateViewController(withIdentifier: "RewardsViewController")
+        let collectionVC = storyboard.instantiateViewController(withIdentifier: "GiftAndVoucherViewController")
         self.navigationController?.pushViewController(collectionVC, animated: false)
+        
     }
     
     @IBAction func onClickLogout(_ sender: Any) {

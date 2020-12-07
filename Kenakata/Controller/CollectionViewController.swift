@@ -45,10 +45,18 @@ class CollectionViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-100)/2, height: 200)
+            let size = CGSize(width:(collectionViewB!.bounds.width-60)/2, height: 200)
             layout.itemSize = size
             
         }
+        if let layout = collectionViewA?.collectionViewLayout as? UICollectionViewFlowLayout{
+                   layout.minimumLineSpacing = 10
+                   layout.minimumInteritemSpacing = 10
+                   layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                   let size = CGSize(width:(collectionViewB!.bounds.width-100)/2, height: 180)
+                   layout.itemSize = size
+                   
+               }
         self.collectionViewB.reloadData()
         
         
@@ -141,7 +149,11 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! CollectionSecondCollectionViewCell
             cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].price
-            cell.collectionViewNameTextLbl.text = self.allProducts[indexPath.row].name
+            let txt = self.allProducts[indexPath.row].name
+            let txt1 = txt?.replacingOccurrences(of: "amp;", with: "")
+            let txt2 = txt1?.replacingOccurrences(of: "&#8217;", with: "")
+            let txt3 = txt2?.replacingOccurrences(of: ",", with: "")
+            cell.collectionViewNameTextLbl.text = txt3
             let imageUrlB = self.allProducts[indexPath.row].images.src
             print("nb: \(String(describing: imageUrlB))")
             Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
