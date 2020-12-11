@@ -12,6 +12,8 @@ class MyWalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.navigationBar.topItem?.title = "My Wallet"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
         // Do any additional setup after loading the view.
     }

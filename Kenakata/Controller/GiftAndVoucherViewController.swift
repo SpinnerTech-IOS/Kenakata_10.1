@@ -12,6 +12,8 @@ class GiftAndVoucherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.navigationBar.topItem?.title = "Gift & Voucher"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
         // Do any additional setup after loading the view.
     }

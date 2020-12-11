@@ -18,8 +18,8 @@ class MyCartViewController: UIViewController {
         addCustomItem()
         addMenuBtn()
         navigationController!.navigationBar.topItem?.title = "My Cart"
-        navigationController!.navigationBar.barStyle = UIBarStyle.black
-        navigationController!.navigationBar.tintColor = UIColor.white        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
     }
     
     @IBAction func onClickShopNow(_ sender: Any) {

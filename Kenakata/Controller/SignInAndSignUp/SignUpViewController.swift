@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         case incompleteForm
         case invalidEmail
         case incorrectPasswordLength
+        case invalidMobilenb
     }
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var textBox2: UITextField!
@@ -124,46 +125,48 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func onClickSignUp(_ sender: Any) {
         
         do {
-              try login()
-              // Transition to next screen
-              func random(digits:Int) -> String {
-                  var number = String()
-                  for _ in 1...digits {
-                      number += "\(Int.random(in: 1...9))"
-                  }
-                  return number
-              }
-              let customKeys = ["first_name", "last_name", "company", "address_1", "address_2", "city", "state", "postcode", "country", "email", "phone",]
-              let customValues = [firstNameTxtField.text!, lastNameTxtField.text!, " ", addressTxtField.text!, addressTxtField.text!, stateTextField.text!, " ", " ", countryTxtField.text!, emailTxtLbl.text!, mobileNbTxtField.text!,]
-              let neDictionary = Dictionary(uniqueKeysWithValues: zip(customKeys,customValues))
-              self.billing = neDictionary as [String: Any]
-              let customKeys1 = ["first_name", "last_name", "company", "address_1", "address_2", "city", "state", "postcode", "country",]
-              let customValues1 = [firstNameTxtField.text!, lastNameTxtField.text!, " ", addressTxtField.text!, addressTxtField.text!, stateTextField.text!, stateTextField.text!, " ", countryTxtField.text!,]
-              let neDictionary1 = Dictionary(uniqueKeysWithValues: zip(customKeys1,customValues1))
-              self.shipping = neDictionary1 as [String: Any]
-              let storyboard = UIStoryboard(name: "Main", bundle: nil)
-              let otpVC = storyboard.instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
-              otpVC.otpCode = random(digits: 6)
-              otpVC.billing = self.billing
-              otpVC.shipping = self.shipping
-              otpVC.email = self.emailTxtLbl.text!
-              otpVC.firstName = self.firstNameTxtField.text!
-              otpVC.lastName = self.lastNameTxtField.text!
-              otpVC.uniqUserName = self.nameTxtLbl.text!
-              otpVC.mobileNumber = self.mobileNbTxtField.text!
-              otpVC.userEmail = self.emailTxtLbl.text!
-              otpVC.userPass = self.passwordTxtLbl.text!
-              
-              self.present(otpVC, animated: false)
-          } catch LoginError.incompleteForm {
-              Alert.showBasic(title: "Incomplete Form", message: "Please fill out both email and password fields", vc: self)
-          } catch LoginError.invalidEmail {
-              Alert.showBasic(title: "Invalid Email Format", message: "Please make sure you format your email correctly", vc: self)
-          } catch LoginError.incorrectPasswordLength {
-              Alert.showBasic(title: "Password Too Short", message: "Password should be at least 8 characters", vc: self)
-          } catch {
-              Alert.showBasic(title: "Unable To Login", message: "There was an error when attempting to login", vc: self)
-          }
+            try login()
+            // Transition to next screen
+            func random(digits:Int) -> String {
+                var number = String()
+                for _ in 1...digits {
+                    number += "\(Int.random(in: 1...9))"
+                }
+                return number
+            }
+            let customKeys = ["first_name", "last_name", "company", "address_1", "address_2", "city", "state", "postcode", "country", "email", "phone",]
+            let customValues = [firstNameTxtField.text!, lastNameTxtField.text!, " ", addressTxtField.text!, addressTxtField.text!, stateTextField.text!, " ", " ", countryTxtField.text!, emailTxtLbl.text!, mobileNbTxtField.text!,]
+            let neDictionary = Dictionary(uniqueKeysWithValues: zip(customKeys,customValues))
+            self.billing = neDictionary as [String: Any]
+            let customKeys1 = ["first_name", "last_name", "company", "address_1", "address_2", "city", "state", "postcode", "country",]
+            let customValues1 = [firstNameTxtField.text!, lastNameTxtField.text!, " ", addressTxtField.text!, addressTxtField.text!, stateTextField.text!, stateTextField.text!, " ", countryTxtField.text!,]
+            let neDictionary1 = Dictionary(uniqueKeysWithValues: zip(customKeys1,customValues1))
+            self.shipping = neDictionary1 as [String: Any]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let otpVC = storyboard.instantiateViewController(withIdentifier: "OTPViewController") as! OTPViewController
+            otpVC.otpCode = random(digits: 6)
+            otpVC.billing = self.billing
+            otpVC.shipping = self.shipping
+            otpVC.email = self.emailTxtLbl.text!
+            otpVC.firstName = self.firstNameTxtField.text!
+            otpVC.lastName = self.lastNameTxtField.text!
+            otpVC.uniqUserName = self.nameTxtLbl.text!
+            otpVC.mobileNumber = self.mobileNbTxtField.text!
+            otpVC.userEmail = self.emailTxtLbl.text!
+            otpVC.userPass = self.passwordTxtLbl.text!
+            
+            self.present(otpVC, animated: false)
+        } catch LoginError.incompleteForm {
+            Alert.showBasic(title: "Incomplete Form", message: "Please fill out both email and password fields", vc: self)
+        } catch LoginError.invalidEmail {
+            Alert.showBasic(title: "Invalid Email Format", message: "Please make sure you format your email correctly", vc: self)
+        } catch LoginError.incorrectPasswordLength {
+            Alert.showBasic(title: "Password Too Short", message: "Password should be at least 4 characters", vc: self)
+        } catch LoginError.invalidMobilenb {
+            Alert.showBasic(title: "Invalid Mobile Number", message: "Please make sure you format your Mobile Number correctly", vc: self)
+        } catch {
+            Alert.showBasic(title: "Unable To Login", message: "There was an error when attempting to login", vc: self)
+        }
     }
     func login() throws {
         
@@ -176,6 +179,10 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let address = addressTxtField.text!
         let country =  countryTxtField.text!
         let state =  stateTextField.text!
+        
+        if !mobile.isValidPhoneNumber {
+            throw LoginError.invalidMobilenb
+        }
         
         
         if email.isEmpty || password.isEmpty || fName.isEmpty || lName.isEmpty || uName.isEmpty || mobile.isEmpty || address.isEmpty || country.isEmpty || state.isEmpty {

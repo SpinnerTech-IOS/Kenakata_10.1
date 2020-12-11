@@ -36,6 +36,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func onClickForgotPassword(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(withIdentifier: "ForgotPassViewController")
+        self.present(signUpVC, animated: false)
     }
     @IBAction func onClickSignUp(_ sender: Any) {
         print("signup")

@@ -7,14 +7,44 @@
 //
 
 import UIKit
+import UIKit
+import Alamofire
+import SwiftyJSON
+import SVProgressHUD
+import RealmSwift
+import Realm
 
 class MenuViewController: UIViewController {
-    
+    @IBOutlet weak var nameTxxtKbl: UILabel!
+        @IBOutlet weak var emailTxxtKbl: UILabel!
+    let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
     override func viewDidLoad() {
         super.viewDidLoad()
         //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
         showAnimate()
+        getUser()
         // Do any additional setup after loading the view.
+        
+    }
+    
+    func getUser(){
+        let token = UserDefaults.standard.string(forKey: "access_token")
+        let params = ["cookie": token!]
+        Alamofire.request(userURL, method: .post, parameters: params as Parameters).responseJSON { response in
+            switch response.result {
+            case .success:
+                if let value = response.result.value{
+                    let data = JSON(value)
+                    self.nameTxxtKbl.text = "\(data["user"]["displayname"])"
+                    self.emailTxxtKbl.text = "\(data["user"]["email"])"
+                }
+                
+            case let .failure(error):
+                print(error)
+                print("Wrong")
+            }
+            
+        }
         
     }
     

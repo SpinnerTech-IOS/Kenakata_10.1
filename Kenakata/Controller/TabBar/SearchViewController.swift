@@ -44,7 +44,9 @@ class SearchViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
          self.myCollectionView.reloadData()
-       
+       navigationController!.navigationBar.topItem?.title = "Search"
+       navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         print(data)
         Alamofire.request(allPrdctUrl).responseJSON { (myresponse) in
             switch myresponse.result{
@@ -75,7 +77,7 @@ class SearchViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(myCollectionView!.bounds.width-30)/2, height: 180)
+            let size = CGSize(width:(myCollectionView!.bounds.width-90)/2, height: 200)
             layout.itemSize = size
         }
         

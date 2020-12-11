@@ -36,7 +36,7 @@ class CatagoriesViewController: UIViewController{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(myCollectionView!.bounds.width-50)/2, height: 180)
+            let size = CGSize(width:(myCollectionView!.bounds.width-70)/2, height: 180)
             layout.itemSize = size
             
         }

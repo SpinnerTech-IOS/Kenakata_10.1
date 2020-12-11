@@ -31,6 +31,8 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.topItem?.title = "My Shopping Cart"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         addCustomItem()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"

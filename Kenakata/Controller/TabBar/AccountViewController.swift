@@ -20,6 +20,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var nameTxtLbl: UILabel!
     @IBOutlet weak var emailTxtLbl: UILabel!
     @IBOutlet weak var myProfileTxtLbl: UILabel!
+    var userEmail = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.addCustomBorderLine()
@@ -41,6 +42,7 @@ class AccountViewController: UIViewController {
                     let data = JSON(value)
                     self.nameTxtLbl.text = "\(data["user"]["displayname"])"
                     self.emailTxtLbl.text = "\(data["user"]["email"])"
+                    self.userEmail = "\(data["user"]["email"])"
                 }
                 
             case let .failure(error):
@@ -72,8 +74,9 @@ class AccountViewController: UIViewController {
     }
     @IBAction func onClickProfile(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let collectionVC = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-        self.navigationController?.pushViewController(collectionVC, animated: false)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profileVC.searchEmail = userEmail
+        self.navigationController?.pushViewController(profileVC, animated: false)
     }
     @IBAction func onClickOrder(_ sender: Any) {
     }

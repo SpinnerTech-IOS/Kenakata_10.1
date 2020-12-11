@@ -39,13 +39,15 @@ class CollectionViewController: UIViewController {
         addCustomItem()
         collectionViewA.reloadData()
         navigationController!.navigationBar.topItem?.title = CatagoryTitle
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         // Do any additional setup after loading the view.
         
         if let layout = collectionViewB?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-60)/2, height: 200)
+            let size = CGSize(width:(collectionViewB!.bounds.width-90)/2, height: 200)
             layout.itemSize = size
             
         }

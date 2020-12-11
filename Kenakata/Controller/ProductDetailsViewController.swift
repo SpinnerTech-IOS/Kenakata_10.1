@@ -36,10 +36,10 @@ class ProductDetailsViewController: UIViewController {
         navigationController?.addCustomBorderLine()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Product Details"
-        navigationController!.navigationBar.barStyle = UIBarStyle.black
-        navigationController!.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
-        self.descriptionViewLbl.text = self.Descriptn
+        
+        self.descriptionViewLbl.text = self.Descriptn?.html2String
         self.priceTxtLbl.text = "\(self.productPrice ?? "0")৳"
         Alamofire.request(imageSrc!, method: .get).validate().responseImage { (response) in
             if let img = response.result.value{
@@ -64,12 +64,12 @@ class ProductDetailsViewController: UIViewController {
         self.priceTxtLbl.text = "\((Int(self.productPrice!) ?? 0) * self.quantity)৳"
     }
     @IBAction func onClickDeccreaseQuantity(_ sender: Any) {
-       if self.quantity >= 2{
-           self.quantity = self.quantity - 1
-           
-       }else{
-           self.quantity = 1
-       }
+        if self.quantity >= 2{
+            self.quantity = self.quantity - 1
+            
+        }else{
+            self.quantity = 1
+        }
         self.quantityTxtLbl.text = String(self.quantity)
         self.priceTxtLbl.text = "\((Int(self.productPrice!) ?? 0) * self.quantity)৳"
     }
@@ -91,16 +91,16 @@ class ProductDetailsViewController: UIViewController {
             }
         }
         if tag == 1{
-               // Update
-                let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pId))
- 
-                if let object = objects.first {
-                    try! realm.write {
-                        object.ProductQuantity = object.ProductQuantity + self.quantity
-                        notifyUser(message: "Added To Cart Successfully")
-                                    addCustomItem()
-                    }
+            // Update
+            let objects = realm.objects(CartDataModel.self).filter("productId = %@", String(pId))
+            
+            if let object = objects.first {
+                try! realm.write {
+                    object.ProductQuantity = object.ProductQuantity + self.quantity
+                    notifyUser(message: "Added To Cart Successfully")
+                    addCustomItem()
                 }
+            }
             
         } else{
             func incrementID() -> Int {
@@ -119,11 +119,11 @@ class ProductDetailsViewController: UIViewController {
             
             try! realm.write {
                 realm.add(cartData)
-                 notifyUser(message: "Added To Cart Successfully")
-                            addCustomItem()
+                notifyUser(message: "Added To Cart Successfully")
+                addCustomItem()
             }
         }
-
+        
         //
         //               if let object = objects.first {
         //                   try! realm.write {
@@ -131,7 +131,7 @@ class ProductDetailsViewController: UIViewController {
         //                       object.title = "updatetitle"
         //                   }
         //               }
-
+        
         
         // Retrieve
         let cartDatas = realm.objects(CartDataModel.self)
@@ -141,7 +141,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func onClickReview(_ sender: Any) {
-  
+        
         //
         //               // Update
         //               let objects = realm.objects(Note.self).filter("title = %@", "Remember the milk!")

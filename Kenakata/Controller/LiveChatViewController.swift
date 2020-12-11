@@ -19,6 +19,8 @@ class LiveChatViewController: UIViewController {
         navigationController?.addCustomBorderLine()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Live Chat"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.webView.frame.size.height))
         self.view.addSubview(webView)
         let url = URL(string: "https://afiqsouq.com/faqs")

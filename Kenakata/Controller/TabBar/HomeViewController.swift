@@ -77,12 +77,13 @@ class HomeViewController: UIViewController {
         addCustomItem()
         addMenuBtn()
         print(self.allProductA.count)
-        
+        navigationController!.navigationBar.topItem?.title = "Discover"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         if let layout = sliderCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
             layout.minimumLineSpacing = 0.0
             layout.minimumInteritemSpacing = 0.0
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             let size = sliderCollectionView.frame.size
             //        return CGSize(width: size.width, height: size.height)
             let itmsize = CGSize(width: size.width, height: size.height)
@@ -93,7 +94,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewB!.bounds.width-50)/2, height: 160)
+            let size = CGSize(width:(collectionViewB!.bounds.width-60)/2, height: 210)
             layout.itemSize = size
             
         }
@@ -101,7 +102,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewA!.bounds.width-50)/2, height: 160)
+            let size = CGSize(width:(collectionViewA!.bounds.width-60)/2, height: 210)
             layout.itemSize = size
             
         }
@@ -109,7 +110,7 @@ class HomeViewController: UIViewController {
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            let size = CGSize(width:(collectionViewC!.bounds.width-35)/2, height: 190)
+            let size = CGSize(width:(collectionViewC!.bounds.width-80)/2, height: 210)
             layout.itemSize = size
             
         }
@@ -158,15 +159,15 @@ class HomeViewController: UIViewController {
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
        // collectionVC.parentCatagory = self.parentCatagories;
         collectionVC.catagoryID = 330
-        collectionVC.CatagoryTitle = ""
+        collectionVC.CatagoryTitle = "Electronics"
         self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     @IBAction func onClickSeeMoreClctnViewB(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "collection") as! CollectionViewController
        // collectionVC.parentCatagory = self.parentCatagories;
-        collectionVC.catagoryID = 0
-        collectionVC.CatagoryTitle = ""
+        collectionVC.catagoryID = 330
+        collectionVC.CatagoryTitle = "Health & Beauty"
         self.navigationController?.pushViewController(collectionVC, animated: false)
     }
     
@@ -215,7 +216,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         }else if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! HomeCollectionViewCellB
             cell.productNameLbl.text = self.allProductB[indexPath.row].name
-            cell.productPriceLbl.text = "৳" + self.allProductB[indexPath.row].price
+            cell.productPriceLbl.attributedText =  self.allProductB[indexPath.row].price.strikeThrough()
             
             let imageUrlB = self.allProductB[indexPath.row].images.src
             Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
@@ -231,7 +232,7 @@ extension HomeViewController: UICollectionViewDataSource,UICollectionViewDelegat
         }else if collectionView == self.sliderCollectionView{
             let cell = sliderCollectionView.dequeueReusableCell(withReuseIdentifier: "bnrcell", for: indexPath) as! HomeBannerCollectionViewCell
             cell.bannerImageView.image = imgArr[indexPath.row]
-            cell.bannerImageView.contentMode = .scaleAspectFit
+            cell.bannerImageView.contentMode = .center
             
             cell.clipsToBounds = true
             

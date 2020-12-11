@@ -9,11 +9,16 @@
 import UIKit
 
 class RewardsViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Rewards"
+
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         // Do any additional setup after loading the view.
     }
     

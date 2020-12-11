@@ -14,6 +14,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Settings"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
         // Do any additional setup after loading the view.
     }
     @IBAction func onClickLogout(_ sender: Any) {
