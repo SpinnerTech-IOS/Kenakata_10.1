@@ -13,5 +13,6 @@ class CollectionSecondCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var colletionViewBImageView: UIImageView!
     
     @IBOutlet weak var collectionViewBTextLbl: UILabel!
+      @IBOutlet weak var reg_price: UILabel!
     @IBOutlet weak var collectionViewNameTextLbl: UILabel!
 }

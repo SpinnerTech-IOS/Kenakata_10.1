@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameTxtField: UITextField!
     @IBOutlet weak var lastNameTxtField: UITextField!
@@ -24,11 +24,22 @@ class ProfileViewController: UIViewController {
     var searchEmail = ""
     var allCustomerLists: [CustomerDataModel] = []
     var allCustomerList = [[String: Any]]()
-    let retriveCustomerUrl = "https://afiqsouq.com//wp-json/wc/v3/customers?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let retriveCustomerUrl =  SingleTonManager.BASE_URL + "wp-json/wc/v3/customers?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllCustomer()
         print(searchEmail)
+        
+        self.firstNameTxtField.endEditing(false)
+        self.lastNameTxtField.endEditing(false)
+        self.nameTxtLbl.endEditing(false)
+        self.emailTxtLbl.endEditing(false)
+        self.mobileNbTxtField.endEditing(false)
+        self.addressTxtField.endEditing(false)
+        self.stateTextField.endEditing(false)
+        self.countryTxtField.endEditing(false)
+               
     
         // Do any additional setup after loading the view.
     }

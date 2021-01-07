@@ -14,6 +14,7 @@ struct AllProduct {
     let slug: String?
     let description: String!
     let price: String!
+    let regular_price: String!
     let images: ProductImage
     let imgUrl: AnyObject!
     init(json: [String: Any]) {
@@ -22,6 +23,7 @@ struct AllProduct {
         let Slug = json["slug"] as? String
         let Description = json["description"] as? String
         let Price = json["price"] as? String
+        let Regular_price = json["regular_price"] as? String
         let ImgUrl = json["images"]! as? [[String:Any]]
         //let imageDict = json["images"] as? AnyObject
         let images = ProductImage(jsonImage: ImgUrl!)
@@ -31,6 +33,7 @@ struct AllProduct {
         self.slug = Slug
         self.description = Description
         self.price = Price
+        self.regular_price = Regular_price
         self.images = images
         self.imgUrl = ImgUrl as AnyObject?
 

@@ -10,6 +10,9 @@ import UIKit
 
 class MyWalletTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var dateLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

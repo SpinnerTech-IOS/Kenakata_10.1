@@ -16,37 +16,38 @@ import Realm
 
 class MenuViewController: UIViewController {
     @IBOutlet weak var nameTxxtKbl: UILabel!
-        @IBOutlet weak var emailTxxtKbl: UILabel!
-    let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
+    @IBOutlet weak var emailTxxtKbl: UILabel!
+    let userURL = SingleTonManager.BASE_URL + "api/user/get_currentuserinfo/"
     override func viewDidLoad() {
         super.viewDidLoad()
         //  let storyboard = UIStoryboard(name: "Main", bundle: nil)
         showAnimate()
-        getUser()
+        self.emailTxxtKbl.text = UserDefaults.standard.string(forKey: "access_email")
+        self.nameTxxtKbl.text = UserDefaults.standard.string(forKey: "access_user")
         // Do any additional setup after loading the view.
         
     }
     
-    func getUser(){
-        let token = UserDefaults.standard.string(forKey: "access_token")
-        let params = ["cookie": token!]
-        Alamofire.request(userURL, method: .post, parameters: params as Parameters).responseJSON { response in
-            switch response.result {
-            case .success:
-                if let value = response.result.value{
-                    let data = JSON(value)
-                    self.nameTxxtKbl.text = "\(data["user"]["displayname"])"
-                    self.emailTxxtKbl.text = "\(data["user"]["email"])"
-                }
-                
-            case let .failure(error):
-                print(error)
-                print("Wrong")
-            }
-            
-        }
-        
-    }
+//    func getUser(){
+//        let token = UserDefaults.standard.string(forKey: "access_token")
+//        let params = ["cookie": token!]
+//        Alamofire.request(userURL, method: .post, parameters: params as Parameters).responseJSON { response in
+//            switch response.result {
+//            case .success:
+//                if let value = response.result.value{
+//                    let data = JSON(value)
+//                    self.nameTxxtKbl.text = "\(data["user"]["displayname"])"
+//                    self.emailTxxtKbl.text = "\(data["user"]["email"])"
+//                }
+//
+//            case let .failure(error):
+//                print(error)
+//                print("Wrong")
+//            }
+//
+//        }
+//
+//    }
     
     @IBAction func Close_popupView(_ sender: Any) {
         removeAnimate()
@@ -90,17 +91,19 @@ class MenuViewController: UIViewController {
     }
     @IBAction func onClickNewArivals(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let collectionVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        self.navigationController?.pushViewController(collectionVC, animated: false)
+        let catagoryVC = storyboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController
+        catagoryVC!.mainTitle = "New Arrivals"
+        self.navigationController?.pushViewController(catagoryVC!, animated: false)
     }
     
     @IBAction func onClickTopDeals(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let collectionVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        self.navigationController?.pushViewController(collectionVC, animated: false)
+        let catagoryVC = storyboard.instantiateViewController(withIdentifier: "TopDealsViewController") as? TopDealsViewController
+        catagoryVC!.mainTitle = "Top Deals"
+        self.navigationController?.pushViewController(catagoryVC!, animated: false)
     }
     
-    @IBAction func onClickHelp(_ sender: Any) {
+    @IBAction func onClickLiveChat(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let collectionVC = storyboard.instantiateViewController(withIdentifier: "LiveChatViewController")
         self.navigationController?.pushViewController(collectionVC, animated: false)

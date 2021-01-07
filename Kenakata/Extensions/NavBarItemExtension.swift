@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Realm
 import RealmSwift
+
 extension UIViewController{
     func hideKeyboardOntap(){
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismishKeyBoard))

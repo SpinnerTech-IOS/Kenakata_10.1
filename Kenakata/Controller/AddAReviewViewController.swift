@@ -30,7 +30,8 @@ class AddAReviewViewController: UIViewController, UITextFieldDelegate {
     var productID : Int?
     
     let userURL = "https://afiqsouq.com/api/user/get_currentuserinfo/"
-    let reviewURL = "https://afiqsouq.com/wp-json/wc/v3/products/reviews?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let reviewURL = SingleTonManager.BASE_URL + "wp-json/wc/v3/products/reviews?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    
     var rating = 1
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class AddAReviewViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         nameTxtField.delegate = self
         
-        print("id....\(self.productID)")
+       
         getUser()
         navigationController!.navigationBar.topItem?.title = "Add Review"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -126,8 +127,7 @@ class AddAReviewViewController: UIViewController, UITextFieldDelegate {
                             UIAlertAction in
                             
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let addReviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
-                            addReviewVC.productId = self.productID
+                            let addReviewVC = storyboard.instantiateViewController(withIdentifier: "main")
                             self.present(addReviewVC, animated: false)
                         }
                         alertController.addAction(okAction)

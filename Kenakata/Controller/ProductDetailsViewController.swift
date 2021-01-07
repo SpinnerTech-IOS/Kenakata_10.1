@@ -37,8 +37,7 @@ class ProductDetailsViewController: UIViewController {
         addCustomItem()
         navigationController!.navigationBar.topItem?.title = "Product Details"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
-        
+        print(self.Descriptn?.html2String)
         self.descriptionViewLbl.text = self.Descriptn?.html2String
         self.priceTxtLbl.text = "\(self.productPrice ?? "0")৳"
         Alamofire.request(imageSrc!, method: .get).validate().responseImage { (response) in

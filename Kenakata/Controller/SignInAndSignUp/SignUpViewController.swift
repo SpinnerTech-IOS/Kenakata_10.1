@@ -35,8 +35,8 @@ class SignUpViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var nonce : String?
     var billing : [String:Any] = [:]
     var shipping : [String:Any] = [:]
-    let signUpUrl = "https://afiqsouq.com/api/user/register/?"
-    let nonceUrl = "https://afiqsouq.com/api/user/register/?json=get_nonce&controller=user&method=register"
+    let signUpUrl = SingleTonManager.BASE_URL + "api/user/register/?"
+    let nonceUrl = SingleTonManager.BASE_URL + "api/user/register/?json=get_nonce&controller=user&method=register"
     
     var list = ["Barguna", "Barisal", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur", "Bandarban", "Brahmanbaria", "Chandpur", "Chittagong", "Comilla", "Cox's Bazar", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati", "Bandarban", "Brahmanbaria", "Chandpur", "Chittagong", "Comilla", "Cox's Bazar", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati", "Bagerhat", "Chuadanga", "Jessore", "Jhenaidah",  "Khulna", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira", "Jamalpur", "Mymensingh", "Netrakona", "Sherpur", "Bogra",    "Chapainawabganj","Joypurhat","Naogaon", "Natore", "Pabna", "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat","Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon", "Habiganj", "Moulvibazar", "Sunamganj","Sylhet",  "Barisal", "Chittagong", "Dhaka",  "Khulna",  "Mymensingh",  "Rajshahi",  "Rangpur", "Sylhet"]
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{

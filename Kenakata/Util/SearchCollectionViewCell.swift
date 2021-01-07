@@ -14,5 +14,5 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cbCartBtn: UIButton!
     @IBOutlet weak var productPriceLbl: UILabel!
-    
+    @IBOutlet weak var reg_PriceLbl: UILabel!
 }

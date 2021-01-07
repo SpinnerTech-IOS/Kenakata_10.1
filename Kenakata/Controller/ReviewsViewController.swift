@@ -34,7 +34,8 @@ class ReviewsViewController: UIViewController {
     var ratingCount3 = 0
     var ratingCount4 = 0
     var ratingCount5 = 0
-        let reviewUrl = "https://afiqsouq.com//wp-json/wc/v3/products/reviews?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+        let reviewUrl = SingleTonManager.BASE_URL + "wp-json/wc/v3/products/reviews?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self

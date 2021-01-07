@@ -12,9 +12,11 @@ import SwiftyJSON
 
 extension UserDefaults {
     
-    func setLoggedIn(tokenText: JSON) {
+    func setLoggedIn(tokenText: JSON, userEmail: JSON, userName: JSON) {
         set(true, forKey: "isLoggedIn")
         set(String(describing: tokenText), forKey: "access_token")
+        set(String(describing: userEmail), forKey: "access_email")
+        set(String(describing: userName), forKey: "access_user")
         synchronize()
     }
     
@@ -28,8 +30,11 @@ extension UserDefaults {
         UIApplication.shared.keyWindow?.rootViewController = vc
         set(false, forKey: "isLoggedIn")
         set(nil, forKey: "access_token")
+        set(nil, forKey: "access_email")
+        set(nil, forKey: "access_pass")
         synchronize()
         
     }
+    
     
 }

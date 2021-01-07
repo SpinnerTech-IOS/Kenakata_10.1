@@ -8,6 +8,7 @@ target 'Kenakata' do
   pod 'SwiftyJSON'
   pod 'SVProgressHUD'
   pod 'AlamofireImage'
+  pod 'Charts'
   pod 'RealmSwift'
   # Pods for Kenakata
 

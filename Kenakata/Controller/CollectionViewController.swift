@@ -24,8 +24,8 @@ class CollectionViewController: UIViewController {
     var catagoryID: Int?
     var allProducts : [AllProduct] = []
     var dataStore = [[String:Any]]()
-    let allProductUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
-    let subCatagoryUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let allProductUrl = SingleTonManager.BASE_URL + "wp-json/wc/v2/products?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    let subCatagoryUrl = SingleTonManager.BASE_URL + "wp-json/wc/store/products/categories?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.parentCatagory)
@@ -150,12 +150,11 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         
         if collectionView == self.collectionViewB{
             let cell = collectionViewB.dequeueReusableCell(withReuseIdentifier: "cbcell", for: indexPath) as! CollectionSecondCollectionViewCell
-            cell.collectionViewBTextLbl.text = self.allProducts[indexPath.row].price
-            let txt = self.allProducts[indexPath.row].name
-            let txt1 = txt?.replacingOccurrences(of: "amp;", with: "")
-            let txt2 = txt1?.replacingOccurrences(of: "&#8217;", with: "")
-            let txt3 = txt2?.replacingOccurrences(of: ",", with: "")
-            cell.collectionViewNameTextLbl.text = txt3
+            cell.collectionViewBTextLbl.text = "৳" + self.allProducts[indexPath.row].price
+            let r_price = "৳" + self.allProducts[indexPath.row].regular_price
+            cell.reg_price.attributedText =  r_price.strikeThrough()
+    
+            cell.collectionViewNameTextLbl.text = self.allProducts[indexPath.row].name
             let imageUrlB = self.allProducts[indexPath.row].images.src
             print("nb: \(String(describing: imageUrlB))")
             Alamofire.request(imageUrlB!, method: .get).validate().responseImage { (responseB) in
@@ -169,7 +168,11 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionCollectionViewCell
-        cell.parentCatagoryName.text = self.parentCatagories[indexPath.row].name
+        let txt = self.parentCatagories[indexPath.row].name
+                   let txt1 = txt?.replacingOccurrences(of: "amp;", with: "")
+                   let txt2 = txt1?.replacingOccurrences(of: "&#8217;", with: "")
+                   let txt3 = txt2?.replacingOccurrences(of: ",", with: "")
+        cell.parentCatagoryName.text = txt3
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
         if imageUrl == ""{
             cell.collectionCatagoryImageView.image = nil

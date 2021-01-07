@@ -44,12 +44,13 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     var userEmail: String?
     var userPass = ""
     var checkOtp: String?
-    var apiUsername = "afiqsouq2021"
-    var apiPass = "12afiqsouq3434$"
+    var apiUsername = SingleTonManager.OTP_user
+    var apiPass = SingleTonManager.OTP_pass
     
-    let otpSendUrl = "http://66.45.237.70/api.php?"
-    let loginURL = "https://afiqsouq.com/api/user/generate_auth_cookie?"
-    let regURL = "https://afiqsouq.com//wp-json/wc/v3/customers?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let otpSendUrl = SingleTonManager.OTP_URL
+    let loginURL = SingleTonManager.BASE_URL + "api/user/generate_auth_cookie?"
+    let regURL = SingleTonManager.BASE_URL + "wp-json/wc/v3/customers?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.otp1TxtField.delegate = self
@@ -59,7 +60,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         self.otp5TxtField.delegate = self
         self.otp6TxtField.delegate = self
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            if let x = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+            if string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) != nil {
                 return true
             } else {
                 return false
@@ -124,10 +125,23 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                     let data = JSON(value)
                     print("Data\(data)")
                     let token = data["cookie"]
-                    let user = data["user"]["email"]
-                    UserDefaults.standard.setLoggedIn(tokenText: token)
-                    if [self.email] == [user]{
+                    let user_email = data["user"]["email"]
+                    let user_name = data["user"]["displayname"]
+                    
+                    if [self.email] == [user_email]{
+                        UserDefaults.standard.setLoggedIn(tokenText: token, userEmail: user_email, userName: user_name)
                         self.changeRootView()
+                    }else{
+                        let alertController = UIAlertController(title: "Unable To Register!", message: "There was an error when attempting to Register", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                            UIAlertAction in
+                            
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let signUpVC = storyboard.instantiateViewController(withIdentifier: "SignUp")
+                            self.present(signUpVC, animated: false)
+                        }
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }
                 
@@ -208,7 +222,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
     
     func changeRootView() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBar")
+        let vc = storyboard.instantiateViewController(withIdentifier: "main")
         UIApplication.shared.keyWindow?.rootViewController = vc
     }
     @objc func textdidCgange(textfield: UITextField){

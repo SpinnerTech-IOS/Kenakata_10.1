@@ -1,0 +1,336 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target armv7-apple-ios9.3 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name SSLCommerzSDK
+import CoreGraphics
+import Foundation
+import QuartzCore
+import Swift
+import SystemConfiguration
+import UIKit
+import WebKit
+extension UIDevice {
+  public static let modelName: Swift.String
+}
+@objc public protocol SSLCommerzDelegate {
+  @objc func transactionCompleted(withTransactionData transactionData: SSLCommerzSDK.TransactionDetails?)
+}
+@objc public class SSLCommerz : ObjectiveC.NSObject {
+  @objc public var integrationInformation: SSLCommerzSDK.IntegrationInformation {
+    @objc get
+    @objc set(integration)
+  }
+  @objc public var emiInformation: SSLCommerzSDK.EMIInformation? {
+    @objc get
+    @objc set(emi)
+  }
+  @objc public var customerInformation: SSLCommerzSDK.CustomerInformation? {
+    @objc get
+    @objc set(customer)
+  }
+  @objc public var shipmentInformation: SSLCommerzSDK.ShipmentInformation? {
+    @objc get
+    @objc set(shipment)
+  }
+  @objc public var productInformation: SSLCommerzSDK.ProductInformation? {
+    @objc get
+    @objc set(product)
+  }
+  @objc public var additionalInformation: SSLCommerzSDK.AdditionalInformation? {
+    @objc get
+    @objc set(additional)
+  }
+  @objc public var delegate: SSLCommerzSDK.SSLCommerzDelegate?
+  @objc public init(integrationInformation: SSLCommerzSDK.IntegrationInformation)
+  @objc public init(integrationInformation: SSLCommerzSDK.IntegrationInformation, emiInformation: SSLCommerzSDK.EMIInformation?, customerInformation: SSLCommerzSDK.CustomerInformation?, shipmentInformation: SSLCommerzSDK.ShipmentInformation?, productInformation: SSLCommerzSDK.ProductInformation?, additionalInformation: SSLCommerzSDK.AdditionalInformation?)
+  @objc public func start(in viewController: UIKit.UIViewController, shouldRunInTestMode isTestMode: Swift.Bool)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public class IntegrationInformation : ObjectiveC.NSObject {
+  @objc public var storeID: Swift.String
+  @objc public var storePassword: Swift.String
+  @objc public var totalAmount: Swift.Double
+  @objc public var currency: Swift.String
+  @objc public var transactionId: Swift.String
+  @objc public var productCategory: Swift.String
+  @objc public var ipnURL: Swift.String?
+  @objc public var multiCardName: Swift.String?
+  @objc public var allowedBIN: Swift.String?
+  @objc public init(storeID: Swift.String, storePassword: Swift.String, totalAmount: Swift.Double, currency: Swift.String, transactionId: Swift.String, productCategory: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public enum EMIOptions : Swift.Int {
+  case HasEMI = 1
+  case NoEMI = 0
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+}
+@objc public class EMIInformation : ObjectiveC.NSObject {
+  @objc public var emiOption: SSLCommerzSDK.EMIOptions
+  @objc public var emiMaximumInstallmentOption: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public var emiSelectedInstallmentOption: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public init(emiOption: SSLCommerzSDK.EMIOptions)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public class CustomerInformation : ObjectiveC.NSObject {
+  @objc public var customerName: Swift.String
+  @objc public var customerEmail: Swift.String
+  @objc public var customerAddressOne: Swift.String
+  @objc public var customerAddressTwo: Swift.String?
+  @objc public var customerCity: Swift.String
+  @objc public var customerState: Swift.String?
+  @objc public var customerPostCode: Swift.String
+  @objc public var customerCountry: Swift.String
+  @objc public var customerPhone: Swift.String
+  @objc public var customerFax: Swift.String?
+  @objc public init(customerName: Swift.String, customerEmail: Swift.String, customerAddressOne: Swift.String, customerCity: Swift.String, customerPostCode: Swift.String, customerCountry: Swift.String, customerPhone: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+}
+public enum ShipmentOptions {
+  case NotRequired(shippingMethod: Swift.String, numberOfItem: Swift.Int)
+  case Required(numberOfItem: Swift.Int, shippingName: Swift.String, shippingAddressOne: Swift.String, shippingAddressTwo: Swift.String, shippingCity: Swift.String, shippingPostCode: Swift.String, shippingCountry: Swift.String)
+  public var info: SSLCommerzSDK.ShipmentInformation {
+    get
+  }
+}
+@objc public class ShipmentInformation : ObjectiveC.NSObject {
+  @objc public var shippingMethod: Swift.String
+  @objc public var numberOfItem: Swift.Int
+  @objc public var shippingName: Swift.String?
+  @objc public var shippingAddressOne: Swift.String?
+  @objc public var shippingAddressTwo: Swift.String?
+  @objc public var shippingCity: Swift.String?
+  @objc public var shippingState: Swift.String?
+  @objc public var shippingPostCode: Swift.String?
+  @objc public var shippingCountry: Swift.String?
+  @objc public init(shippingMethod: Swift.String, numberOfItem: Swift.Int)
+  @objc public init(shippingMethod: Swift.String, numberOfItem: Swift.Int, shippingName: Swift.String, shippingAddressOne: Swift.String, shippingAddressTwo: Swift.String, shippingCity: Swift.String, shippingPostCode: Swift.String, shippingCountry: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+}
+public enum ProductProfileOptions {
+  case General
+  case PhysicalGoods
+  case NonPhysicalGoods
+  case AirlineTickets(hoursTillDeparture: Swift.String, flightType: Swift.String, pnr: Swift.String, journeyFromTo: Swift.String, thirdPartyBooking: Swift.Bool)
+  case TravelVertical(hotelName: Swift.String, lengthOfStay: Swift.String, checkInTime: Swift.String, hotelCity: Swift.String)
+  case TelecomVertical(productType: Swift.String, topupNumber: Swift.String, countryTopup: Swift.String)
+  public var profile: SSLCommerzSDK.ProductProfile {
+    get
+  }
+}
+@objc public class ProductProfile : ObjectiveC.NSObject {
+  @objc public var productProfile: Swift.String {
+    get
+  }
+  @objc public var hoursTillDeparture: Swift.String? {
+    get
+  }
+  @objc public var flightType: Swift.String? {
+    get
+  }
+  @objc public var pnr: Swift.String? {
+    get
+  }
+  @objc public var journeyFromTo: Swift.String? {
+    get
+  }
+  @objc public var thirdPartyBooking: Swift.String? {
+    get
+  }
+  @objc public var hotelName: Swift.String? {
+    get
+  }
+  @objc public var lengthOfStay: Swift.String? {
+    get
+  }
+  @objc public var checkInTime: Swift.String? {
+    get
+  }
+  @objc public var hotelCity: Swift.String? {
+    get
+  }
+  @objc public var productType: Swift.String? {
+    get
+  }
+  @objc public var topupNumber: Swift.String? {
+    get
+  }
+  @objc public var countryTopup: Swift.String? {
+    get
+  }
+  @objc public init(productProfile: Swift.String)
+  @objc public init(productProfile: Swift.String, hoursTillDeparture: Swift.String, flightType: Swift.String, pnr: Swift.String, journeyFromTo: Swift.String, thirdPartyBooking: Swift.String)
+  @objc public init(productProfile: Swift.String, hotelName: Swift.String, lengthOfStay: Swift.String, checkInTime: Swift.String, hotelCity: Swift.String)
+  @objc public init(productProfile: Swift.String, productType: Swift.String, topupNumber: Swift.String, countryTopup: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public class CartItem : ObjectiveC.NSObject, Swift.Encodable {
+  @objc public var product: Swift.String
+  @objc public var quantity: Swift.String
+  @objc public var amount: Swift.String
+  @objc public init(product: Swift.String, quantity: Swift.String, amount: Swift.String)
+  @objc deinit
+  @objc override dynamic public init()
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@objc public class ProductInformation : ObjectiveC.NSObject {
+  @objc public var productName: Swift.String
+  @objc public var productCategory: Swift.String
+  @objc public var productProfile: SSLCommerzSDK.ProductProfile
+  @objc public var cart: [SSLCommerzSDK.CartItem]?
+  @objc public var productAmount: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public var vat: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public var discountAmount: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public var convenienceFee: Foundation.NSNumber? {
+    @objc get
+    @objc set(newNumber)
+  }
+  @objc public init(productName: Swift.String, productCategory: Swift.String, productProfile: SSLCommerzSDK.ProductProfile)
+  @objc deinit
+  @objc override dynamic public init()
+}
+@objc public class AdditionalInformation : ObjectiveC.NSObject {
+  @objc public var paramA: Swift.String?
+  @objc public var paramB: Swift.String?
+  @objc public var paramC: Swift.String?
+  @objc public var paramD: Swift.String?
+  @objc public init(paramA: Swift.String?, paramB: Swift.String?, paramC: Swift.String?, paramD: Swift.String?)
+  @objc deinit
+  @objc override dynamic public init()
+}
+public func == (lhs: SSLCommerzSDK.CreditCardValidationType, rhs: SSLCommerzSDK.CreditCardValidationType) -> Swift.Bool
+public struct CreditCardValidationType : Swift.Equatable {
+  public var name: Swift.String
+  public var regex: Swift.String
+  public init(dict: [Swift.String : Any])
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class TransactionDetails : ObjectiveC.NSObject {
+  @objc public var status: Swift.String? {
+    get
+  }
+  @objc public var sessionkey: Swift.String? {
+    get
+  }
+  @objc public var tran_date: Swift.String? {
+    get
+  }
+  @objc public var tran_id: Swift.String? {
+    get
+  }
+  @objc public var val_id: Swift.String? {
+    get
+  }
+  @objc public var amount: Swift.String? {
+    get
+  }
+  @objc public var store_amount: Swift.String? {
+    get
+  }
+  @objc public var bank_tran_id: Swift.String? {
+    get
+  }
+  @objc public var card_type: Swift.String? {
+    get
+  }
+  @objc public var card_no: Swift.String? {
+    get
+  }
+  @objc public var card_issuer: Swift.String? {
+    get
+  }
+  @objc public var card_brand: Swift.String? {
+    get
+  }
+  @objc public var card_issuer_country: Swift.String? {
+    get
+  }
+  @objc public var card_issuer_country_code: Swift.String? {
+    get
+  }
+  @objc public var currency_type: Swift.String? {
+    get
+  }
+  @objc public var currency_amount: Swift.String? {
+    get
+  }
+  @objc public var currency_rate: Swift.String? {
+    get
+  }
+  @objc public var base_fair: Swift.String? {
+    get
+  }
+  @objc public var value_a: Swift.String? {
+    get
+  }
+  @objc public var value_b: Swift.String? {
+    get
+  }
+  @objc public var value_c: Swift.String? {
+    get
+  }
+  @objc public var value_d: Swift.String? {
+    get
+  }
+  @objc public var risk_title: Swift.String? {
+    get
+  }
+  @objc public var risk_level: Swift.String? {
+    get
+  }
+  @objc public var apiConnect: Swift.String? {
+    get
+  }
+  @objc public var validated_on: Swift.String? {
+    get
+  }
+  @objc public var gw_version: Swift.String? {
+    get
+  }
+  @objc deinit
+}
+extension UINavigationController {
+  @objc override dynamic open var shouldAutorotate: Swift.Bool {
+    @objc get
+  }
+  @objc override dynamic open var supportedInterfaceOrientations: UIKit.UIInterfaceOrientationMask {
+    @objc get
+  }
+}
+public class CreditCardValidator {
+  public var types: [SSLCommerzSDK.CreditCardValidationType] {
+    get
+    set
+  }
+  public init()
+  public func type(from string: Swift.String) -> SSLCommerzSDK.CreditCardValidationType?
+  public func validate(string: Swift.String) -> Swift.Bool
+  public func validate(string: Swift.String, forType type: SSLCommerzSDK.CreditCardValidationType) -> Swift.Bool
+  public func onlyNumbers(string: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension SSLCommerzSDK.EMIOptions : Swift.Equatable {}
+extension SSLCommerzSDK.EMIOptions : Swift.Hashable {}
+extension SSLCommerzSDK.EMIOptions : Swift.RawRepresentable {}

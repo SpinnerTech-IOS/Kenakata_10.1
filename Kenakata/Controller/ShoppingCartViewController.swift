@@ -24,10 +24,18 @@ class ShoppingCartViewController: UIViewController {
     
     @IBOutlet weak var subTotalLbl: UILabel!
     @IBOutlet weak var shippingFeeLbl: UILabel!
+    @IBOutlet weak var taxLabel: UILabel!
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var toBePaidLbl: UILabel!
-    var subTotal = 0
+    
+    public func calculatePercentage(value:Double,percentageVal:Double)->Double{
+        let val = value * percentageVal
+        return val / 100.0
+    }
+    var tax = 0.00
+    var subTotal = 0.00
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.topItem?.title = "My Shopping Cart"
@@ -35,17 +43,19 @@ class ShoppingCartViewController: UIViewController {
 
         addCustomItem()
         paymentCacculate()
+         
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal + 100)"
-        self.toBePaidLbl.text = "৳\(subTotal + 100)"
-        self.shippingFeeLbl.text = "৳100"
+        self.totalLbl.text = "৳\(subTotal + tax + 105.0)"
+        self.taxLabel.text = "৳\(tax)"
+        self.toBePaidLbl.text = "৳\(subTotal + tax + 105.0)"
+        self.shippingFeeLbl.text = "৳105.0"
         self.discountLbl.text = "৳00"
         // Do any additional setup after loading the view.
     }
     func paymentCacculate(){
         for i in 0..<results.count{
-            self.subTotal = subTotal +  ((Int(results[i].productPrice) ?? 0) * Int(results[i].ProductQuantity))
-            
+            self.subTotal = subTotal +  Double(((Double(results[i].productPrice) ?? 0.0) * Double(results[i].ProductQuantity)))
+            self.tax = calculatePercentage(value: Double(subTotal) ,percentageVal: 5)
         }
         if results.count == 0{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -58,8 +68,10 @@ class ShoppingCartViewController: UIViewController {
     @IBAction func onclickCheckout(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckOutViewController") as! CheckOutViewController
-        checkoutVC.amountToPay = self.subTotal + 100
-        self.navigationController?.pushViewController(checkoutVC, animated: false)
+        checkoutVC.subtotal = self.subTotal
+        checkoutVC.totalTax = self.tax
+        checkoutVC.amountToPay = self.subTotal + tax + 105.0
+         self.navigationController?.pushViewController(checkoutVC, animated: false)
     }
     
 }
@@ -107,8 +119,9 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         self.myTableView.reloadData()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal + 100)"
-        self.toBePaidLbl.text = "৳\(subTotal + 100)"
+        self.totalLbl.text = "৳\(subTotal + tax + 105.0)"
+        self.taxLabel.text = "৳\(tax)"
+        self.toBePaidLbl.text = "৳\(subTotal + tax + 105.0)"
     }
     @objc func onClickDeccrease(_sender: UIButton) {
         self.subTotal = 0
@@ -130,8 +143,9 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         self.myTableView.reloadData()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal + 100)"
-        self.toBePaidLbl.text = "৳\(subTotal + 100)"
+        self.totalLbl.text = "৳\(subTotal + tax + 105.0)"
+        self.taxLabel.text = "৳\(tax)"
+        self.toBePaidLbl.text = "৳\(subTotal + tax + 105.0)"
     }
     @objc func buttonClicked(_sender: UIButton) {
         self.subTotal = 0
@@ -157,8 +171,9 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         self.myTableView.reloadData()
         paymentCacculate()
         self.subTotalLbl.text = "৳\(subTotal)"
-        self.totalLbl.text = "৳\(subTotal + 100)"
-        self.toBePaidLbl.text = "৳\(subTotal + 100)"
+        self.totalLbl.text = "৳\(subTotal + tax + 105.0)"
+        self.taxLabel.text = "৳\(tax)"
+        self.toBePaidLbl.text = "৳\(subTotal + tax + 105.0)"
     }
     
     

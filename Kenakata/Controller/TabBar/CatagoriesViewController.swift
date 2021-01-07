@@ -16,7 +16,7 @@ import AlamofireImage
 
 class CatagoriesViewController: UIViewController{
     
-    let catagoriesUrl = "https://afiqsouq.com//wp-json/wc/store/products/categories?&consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53"
+    let catagoriesUrl = SingleTonManager.BASE_URL + "wp-json/wc/store/products/categories?" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     var parentCatagories: [ParentCatagory] = []
@@ -56,7 +56,7 @@ class CatagoriesViewController: UIViewController{
                             self.parentCatagory.append(json[i])
                         }
                     }
-                    print(self.parentCatagory)
+                   // print(self.parentCatagory)
                     
                     for dic in self.parentCatagory {
                         if dic["image"] != nil{
@@ -89,7 +89,7 @@ extension CatagoriesViewController: UICollectionViewDataSource, UICollectionView
         cell.catagoryNameLbl.text = txt3
         
         let imageUrl = self.parentCatagories[indexPath.row].Image.src
-        print(imageUrl!)
+      //  print(imageUrl!)
         if imageUrl == ""{
             cell.catagoryImageView.image = nil
         }else{

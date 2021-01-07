@@ -19,8 +19,8 @@ class CompleteViewController: UIViewController {
     @IBAction func onClickShopNow(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let cartVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        self.navigationController?.pushViewController(cartVC, animated: false)
+        let cartVC = storyboard.instantiateViewController(withIdentifier: "main")
+        self.present(cartVC, animated: false)
     }
     /*
     // MARK: - Navigation

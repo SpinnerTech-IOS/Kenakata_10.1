@@ -17,9 +17,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         case invalidEmail
         case incorrectPasswordLength
     }
-    let loginURL = "https://afiqsouq.com/api/user/generate_auth_cookie?"
+    let loginURL = SingleTonManager.BASE_URL + "api/user/generate_auth_cookie?"
     @IBOutlet weak var emailTxtLbl: UITextField!
     @IBOutlet weak var passwordTxtLbl: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardOntap()
@@ -50,32 +51,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         do {
             try login()
-           //  Transition to next screen
-                        SVProgressHUD.show(withStatus: "Loading...")
-            
-                        let params = ["email": emailTxtLbl!.text!, "password": passwordTxtLbl!.text!]
-                        Alamofire.request(loginURL, method: .post, parameters: params as Parameters).validate(statusCode: 200..<299).responseJSON(completionHandler: { response in
-                            switch response.result {
-                            case .success(let data):
-                                 print(data)
-                                if let value = response.result.value{
-                                    let data = JSON(value)
-                                    print("Data\(data)")
-                                    let token = data["cookie"]
-                                    let user = data["user"]["email"]
-                                    UserDefaults.standard.setLoggedIn(tokenText: token)
-                                    if [self.emailTxtLbl.text!] == [user]{
-                                        self.changeRootView()
-                                    }
-                                }
-                                self.emailTxtLbl.text = nil
-                                self.passwordTxtLbl.text = nil
-                            case .failure(let error):
-                                print(error)
-                                print("Wrong")
-                            }
-                            SVProgressHUD.dismiss()
-                        })
+            //  Transition to next screen
+            SVProgressHUD.show(withStatus: "Loading...")
+            mainLogin()
             
         } catch LoginError.incompleteForm {
             Alert.showBasic(title: "Incomplete Form", message: "Please fill out both email and password fields", vc: self)
@@ -90,7 +68,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     func changeRootView() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBar")
+        let vc = storyboard.instantiateViewController(withIdentifier: "main")
         UIApplication.shared.keyWindow?.rootViewController = vc
     }
     func login() throws {
@@ -112,5 +90,45 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         // Pretend this is great code that logs in my user.
         // It really is amazing...
+    }
+    
+    func mainLogin(){
+        
+        let params = ["email": emailTxtLbl!.text!, "password": passwordTxtLbl!.text!]
+        Alamofire.request(loginURL, method: .post, parameters: params as Parameters).validate(statusCode: 200..<299).responseJSON(completionHandler: { response in
+            switch response.result {
+            case .success(let data):
+                print(data)
+                if let value = response.result.value{
+                    let data = JSON(value)
+                    
+                    let token = data["cookie"]
+                    let user_email = data["user"]["email"]
+                    let user_name = data["user"]["displayname"]
+                    
+                    
+                    if [self.emailTxtLbl.text!] == [user_email]{
+                        UserDefaults.standard.setLoggedIn(tokenText: token, userEmail: user_email, userName: user_name)
+                        self.changeRootView()
+                    }else{
+                        Alert.showBasic(title: "Unables To Login", message: "There was an error when attempting to login", vc: self)
+                        
+                    }
+                    
+                    
+                }else{
+                    Alert.showBasic(title: "Unables To Login", message: "There was an error when attempting to login", vc: self)
+                    
+                }
+                self.emailTxtLbl.text = nil
+                self.passwordTxtLbl.text = nil
+            case .failure(let error):
+                Alert.showBasic(title: "Unable To Login", message: "There was an error when attempting to login", vc: self)
+                print(error)
+                print("Wrong")
+            }
+            SVProgressHUD.dismiss()
+        })
+        
     }
 }

@@ -13,5 +13,6 @@ class HomeCollectionViewCCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var priceLbl: UILabel!
+    @IBOutlet weak var regular_priceLbl: UILabel!
     @IBOutlet weak var productNameLbl: UILabel!
 }

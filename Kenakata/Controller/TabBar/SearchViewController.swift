@@ -19,7 +19,9 @@ class SearchViewController: UIViewController {
 
     @IBOutlet var myCollectionView: UICollectionView!
     @IBOutlet var searchBar: UISearchBar!
-    let allPrdctUrl = "https://afiqsouq.com/wp-json/wc/v2/products?consumer_key=ck_62eed78870531071b419c0dca0b1dd9acf277227&consumer_secret=cs_a5b646ab7513867890dd63f2c504af98f00cee53&per_page=100"
+    var mainTitle = "Search"
+    let allPrdctUrl = SingleTonManager.BASE_URL + "wp-json/wc/v2/products?&per_page=100&" + SingleTonManager.Api_User + "&" + SingleTonManager.Api_Key
+    
     let realm = try! Realm()
     var allProduct : [AllProduct] = []
     var dataA = [[String: Any]]()
@@ -44,7 +46,7 @@ class SearchViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
          self.myCollectionView.reloadData()
-       navigationController!.navigationBar.topItem?.title = "Search"
+        navigationController!.navigationBar.topItem?.title = self.mainTitle
        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
         print(data)
@@ -84,6 +86,7 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
          getData()
+      
          self.myCollectionView.reloadData()
     }
     
@@ -100,6 +103,8 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
         //cell.imageView.image = UIImage(named: "icon-bag")
         if data[indexPath.row] == self.allProduct[indexPath.row].name{
             cell.productNameLbl.text = self.allProduct[indexPath.row].name
+            let r_price = "৳" + self.allProduct[indexPath.row].regular_price
+            cell.reg_PriceLbl.attributedText =  r_price.strikeThrough()
             cell.productPriceLbl.text = "৳" + self.allProduct[indexPath.row].price
             let imageUrlB = self.allProduct[indexPath.row].images.src
             cell.cbCartBtn.tag = indexPath.row
